@@ -1,24 +1,22 @@
-﻿(function () {
-    'use strict';
+﻿'use strict';
 
-    var id = 'myApp';
+angular.module('myApp', [
+    // Angular modules 
+    //'ngAnimate',        // animations
+    //'ngRoute'           // routing
 
-    // TODO: Inject modules as needed.
-    var myApp = angular.module('myApp', [
-        // Angular modules 
-        'ngAnimate',        // animations
-        'ngRoute'           // routing
+    // Custom modules 
 
-        // Custom modules 
-
-        // 3rd Party Modules
+    // 3rd Party Modules
         
-    ]);
+]);
 
-    // Execute bootstrapping code and any dependencies.
-    // TODO: inject services as needed.
-    myApp.run(['$q', '$rootScope',
-        function ($q, $rootScope) {
 
-        }]);
-})();
+
+
+//// Execute bootstrapping code and any dependencies.
+//// TODO: inject services as needed.
+//myApp.run(['$q', '$rootScope',
+//    function ($q, $rootScope) {
+
+//    }]);
