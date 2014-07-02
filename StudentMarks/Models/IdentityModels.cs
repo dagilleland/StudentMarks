@@ -29,5 +29,7 @@ namespace StudentMarks.Models
         {
             return new ApplicationDbContext();
         }
+
+        public System.Data.Entity.DbSet<StudentMarks.Models.Entities.Student> Students { get; set; }
     }
 }
