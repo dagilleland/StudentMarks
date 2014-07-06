@@ -80,3 +80,4 @@ When I enter my list of students, it would be easier to just paste in all the st
     * ClassController - REST-ful - get/post/put/delete student lists
     * EvaluationController - REST-ful - get/post/put/delete markable items
     * MarkController - REST-ful - get/post/put/delete student marks
+  * BulkAddController - Parse Student Information (bulk insert)
