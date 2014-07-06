@@ -16,6 +16,12 @@ In my current situation, I have a course with two quizzes (21% and 7%) and a set
   * **R2** Oh, and sometimes I have to go back to earlier exercises to mark those that the student has turned in later on in the course.
   * **Q)** Are there any due-dates for the exercises?
   * **R)** Sometimes there are fixed due dates, but sometimes I just leave the due-dates open until later on in the course when I give the students a firm drop-dead date to hand in their exercises for marking. After that point, I don't accept late exercises (unless the student has a reason, such as illness or other "life" event).
+* **Future** - *Look at these features in future releases*
+  * Handle other types of marked items - labs, group assignments, etc.
+  * Track multiple courses - **This Version: *One Course Only*!**
+  * Allow changing of course evaluation after marks have been partially entered (e.g.: replace a quiz with two smaller quizzes, or combine one or two labs)
+  * Handle student-specific exceptions (combine/average lab mark if one missed, different potential marks for specific student)
+  * Handle "bonus" marks (over 100%)
 
 When I enter my list of students, it would be easier to just paste in all the student information as one "chunk" and have the system figure out [parse] what the student information is. There would be one student per line, and all the information on each line is separated by spaces, tabs, and/or commas. Each line has the student's name (typically *First Last*, but perhaps with a middle name) and then ends with the school id for the student.
 
@@ -71,3 +77,6 @@ When I enter my list of students, it would be easier to just paste in all the st
 
 * [ ] AngularJS functionality, tested with Jasmine.
   * Includes tests for the presence of WebAPI
+    * ClassController - REST-ful - get/post/put/delete student lists
+    * EvaluationController - REST-ful - get/post/put/delete markable items
+    * MarkController - REST-ful - get/post/put/delete student marks
