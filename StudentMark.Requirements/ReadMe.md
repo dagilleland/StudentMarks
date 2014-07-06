@@ -2,6 +2,12 @@
 
 As an instructor, I need to track marks for my students. For any given course, this entails a few tasks. Firstly, as part of initializing my tracking, I need to know/enter my class list (student first/last name + school id) and know/enter the different things I need to get marked (mark item, weight, etc.). After that, I need to just enter my marks, which I would like to do in a "bulk" fashion.
 
+* **Q)** Are there any rules around the values of marks?
+  * **R)** Yes.
+    * Total weighted marks must equal 100.
+    * Non-pass/fail items will have a Total Potential Marks > 0
+    * Earned Marks must be > 0 && <= Total Potential Marks
+
 * **Q)** Can you describe further what you mean when you say you enter your marks in "bulk"?
   * **R)** Basically, after I mark an item like a quiz, I have all the quiz marks for the class, and I want to just pull up a list of the students and enter each student's quiz mark, and then just save the marks after I've entered them.
   * *Implementation Note* - When it comes to entering marks for students, it would be easiest to be able to click the marked item and then just enter each student's mark by using tab/alt-tab to go from student to student, and then bulk-add the class marks for the marked item.
@@ -17,6 +23,7 @@ In my current situation, I have a course with two quizzes (21% and 7%) and a set
   * **Q)** Are there any due-dates for the exercises?
   * **R)** Sometimes there are fixed due dates, but sometimes I just leave the due-dates open until later on in the course when I give the students a firm drop-dead date to hand in their exercises for marking. After that point, I don't accept late exercises (unless the student has a reason, such as illness or other "life" event).
 * **Future** - *Look at these features in future releases*
+  * Handle more alternate scenarios for the main stories
   * Handle other types of marked items - labs, group assignments, etc.
   * Track multiple courses - **This Version: *One Course Only*!**
   * Allow changing of course evaluation after marks have been partially entered (e.g.: replace a quiz with two smaller quizzes, or combine one or two labs)
