@@ -11,6 +11,8 @@ In my current situation, I have a course with two quizzes (21% and 7%) and a set
 * **Q)** Can you tell me more about the "all-or-nothing" exercises?
   * **R)** Those exercises are each marked as either a pass/fail. They are fairly easy to do, and for the most part student pass them when they try them. However, sometimes they don't, and I'll explcitly mark them as a fail.
     * *Note* Use **Pass/Fail** as part of the domain language to describe these types of marked items.
+  * **Q)** You say that you explicitly mark them as a fail. Do you not enter all the marks (i.e., do you leave any "un-marked", or mark them as incomplete)?
+  * **R)** I don't mark them as incomplete, I just don't enter any mark for that exercise. Then, at the end of the course, if there isn't a mark, it's assumed they didn't do it and therefore fail that exercise.
 
 When I enter my list of students, it would be easier to just paste in all the student information as one "chunk" and have the system figure out [parse] what the student information is. There would be one student per line, and all the information on each line is separated by spaces, tabs, and/or commas. Each line has the student's name (typically *First Last*, but perhaps with a middle name) and then ends with the school id for the student.
 
