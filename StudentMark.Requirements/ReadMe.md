@@ -7,6 +7,7 @@ As an instructor, I need to track marks for my students. For any given course, t
     * Total weighted marks must equal 100.
     * Non-pass/fail items will have a Total Potential Marks > 0
     * Earned Marks must be > 0 && <= Total Potential Marks
+    * Total grade at end of course must be <= 100
 
 * **Q)** Can you describe further what you mean when you say you enter your marks in "bulk"?
   * **R)** Basically, after I mark an item like a quiz, I have all the quiz marks for the class, and I want to just pull up a list of the students and enter each student's quiz mark, and then just save the marks after I've entered them.
