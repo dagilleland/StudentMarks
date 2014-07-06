@@ -30,8 +30,15 @@ In my current situation, I have a course with two quizzes (21% and 7%) and a set
   * Allow changing of course evaluation after marks have been partially entered (e.g.: replace a quiz with two smaller quizzes, or combine one or two labs)
   * Handle student-specific exceptions (combine/average lab mark if one missed, different potential marks for specific student)
   * Handle "bonus" marks (over 100%)
+  * More UI cases for bulk-inserting student names (cases of middle names)
 
-When I enter my list of students, it would be easier to just paste in all the student information as one "chunk" and have the system figure out [parse] what the student information is. There would be one student per line, and all the information on each line is separated by spaces, tabs, and/or commas. Each line has the student's name (typically *First Last*, but perhaps with a middle name) and then ends with the school id for the student.
+When I enter my list of students, it would be easier to just paste in all the student information as one "chunk" and have the system figure out [parse] what the student information is. There would be one student per line, and all the information on each line is separated by spaces, tabs, and/or commas. Each line has the student's name (typically *First Last*, ~~but perhaps with a middle name~~ **(*Note 1*)**) and then ends with the school id for the student.
+
+* **Q)** How complex can the structures be for student names & school Ids?
+  * **R)** Actually, this term it's pretty basic. Just *First*, *Last*, and *School ID*
+  * **Q)** Can we just accept this simple structure this time around and add edge cases later?
+  * **R)** Sure.
+  * *Mark this characteristic as future in the narrative:* **(*Note 1*)**
 
 * [ ] **ToDo** - notes on how to enter the mark breakdown for the course
 
@@ -88,4 +95,6 @@ When I enter my list of students, it would be easier to just paste in all the st
     * ClassController - REST-ful - get/post/put/delete student lists
     * EvaluationController - REST-ful - get/post/put/delete markable items
     * MarkController - REST-ful - get/post/put/delete student marks
-  * BulkAddController - Parse Student Information (bulk insert)
+  * BulkAddController
+    * Parse Student Information (bulk insert) -  First, Last, SchoolID - *per line*
+    * Flag entire set as "dirty"
