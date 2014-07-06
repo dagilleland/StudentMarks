@@ -16,12 +16,35 @@ When I enter my list of students, it would be easier to just paste in all the st
 
 **User Stories** become the basis for System Tests and/or Integration Tests. *All the following user stories are from the perspective of the Instructor, since this is only an Instructor tool at present. Therefore, it can be assumed to start with* **An an Instructor***.*
 
+* *Initialize Course Information*
+  * **I Want** to enter the mark structure for the course,
+  * **So That** I have the basic framework to enter student marks.
+    * *Scenario Title* (Primary)
+      * **Given** something **When** action **Then** result
+    * *Scenario Title*
+      * **Given** something **When** action **Then** result
+* *Generate Class List*
+  * **I Want** to enter a list of students in my class,
+  * **So That** I know who to assign marks to.
+    * *Scenario Title* (Primary)
+      * **Given** something **When** action **Then** result
+    * *Scenario Title*
+      * **Given** something **When** action **Then** result
+* *Title*
+  * **I Want** to enter student marks,
+  * **So That** I can track each student's progress in the course.
+    * *Scenario Title* (Primary)
+      * **Given** something **When** action **Then** result
+    * *Scenario Title*
+      * **Given** something **When** action **Then** result
 
 ----
 
 * *Title*
   * **I Want** ,
   * **So That** .
+    * *Scenario Title* (Primary)
+      * **Given** something **When** action **Then** result
     * *Scenario Title*
       * **Given** something **When** action **Then** result
 
