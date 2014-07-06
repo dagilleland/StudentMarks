@@ -90,11 +90,15 @@ When I enter my list of students, it would be easier to just paste in all the st
 
 ### UI Unit Tests
 
-* [ ] AngularJS functionality, tested with Jasmine.
-  * Includes tests for the presence of WebAPI
-    * ClassController - REST-ful - get/post/put/delete student lists
-    * EvaluationController - REST-ful - get/post/put/delete markable items
-    * MarkController - REST-ful - get/post/put/delete student marks
-  * BulkAddController
-    * Parse Student Information (bulk insert) -  First, Last, SchoolID - *per line*
-    * Flag entire set as "dirty"
+AngularJS functionality, tested with Jasmine.
+
+* Includes tests for the presence of WebAPI
+  * ClassController - REST-ful - get/post/put/delete student lists
+  * EvaluationController - REST-ful - get/post/put/delete markable items
+  * MarkController - REST-ful - get/post/put/delete student marks
+* StudentController.BulkParse() - text as *Add Multiple*, then parse into separate entries
+  * Parse Student Information (bulk insert) -  First, Last, SchoolID - *per line*
+* StudentController.Update()
+  * Flag for each student info to be *Changed* if their individual info was edited
+* MarkController.BulkAdd()
+  * List student names with text boxes or checkboxes for entering mark info (un-checked means no-data)
