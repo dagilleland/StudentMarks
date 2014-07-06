@@ -14,6 +14,8 @@ In my current situation, I have a course with two quizzes (21% and 7%) and a set
   * **Q)** You say that you explicitly mark them as a fail. Do you not enter all the marks (i.e., do you leave any "un-marked", or mark them as incomplete)?
   * **R)** I don't mark them as incomplete, I just don't enter any mark for that exercise. Then, at the end of the course, if there isn't a mark, it's assumed they didn't do it and therefore fail that exercise.
   * **R2** Oh, and sometimes I have to go back to earlier exercises to mark those that the student has turned in later on in the course.
+  * **Q)** Are there any due-dates for the exercises?
+  * **R)** Sometimes there are fixed due dates, but sometimes I just leave the due-dates open until later on in the course when I give the students a firm drop-dead date to hand in their exercises for marking. After that point, I don't accept late exercises (unless the student has a reason, such as illness or other "life" event).
 
 When I enter my list of students, it would be easier to just paste in all the student information as one "chunk" and have the system figure out [parse] what the student information is. There would be one student per line, and all the information on each line is separated by spaces, tabs, and/or commas. Each line has the student's name (typically *First Last*, but perhaps with a middle name) and then ends with the school id for the student.
 
