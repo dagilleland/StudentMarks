@@ -8,6 +8,10 @@ As an instructor, I need to track marks for my students. For any given course, t
 
 In my current situation, I have a course with two quizzes (21% and 7%) and a set of all-or-nothing exercises (24 worth 3% each and totalling to 72%). Each quiz can be out of a differnt set of marks; for example, the first quiz is out of 40 marks. Since the exercises are worth all-or-nothing, they don't have individual marks.
 
+* **Q)** Can you tell me more about the "all-or-nothing" exercises?
+  * **R)** Those exercises are each marked as either a pass/fail. They are fairly easy to do, and for the most part student pass them when they try them. However, sometimes they don't, and I'll explcitly mark them as a fail.
+    * *Note* Use **Pass/Fail** as part of the domain language to describe these types of marked items.
+
 When I enter my list of students, it would be easier to just paste in all the student information as one "chunk" and have the system figure out [parse] what the student information is. There would be one student per line, and all the information on each line is separated by spaces, tabs, and/or commas. Each line has the student's name (typically *First Last*, but perhaps with a middle name) and then ends with the school id for the student.
 
 * [ ] **ToDo** - notes on how to enter the mark breakdown for the course
