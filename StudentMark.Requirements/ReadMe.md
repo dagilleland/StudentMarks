@@ -40,7 +40,7 @@ When I enter my list of students, it would be easier to just paste in all the st
   * **R)** Sure.
   * *Mark this characteristic as future in the narrative:* **(*Note 1*)**
 
-* [ ] **ToDo** - notes on how to enter the mark breakdown for the course
+* **C)** The screen mockups look nice!
 
 ## Screen Mockups
 
