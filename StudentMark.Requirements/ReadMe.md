@@ -1,7 +1,5 @@
 # Student Marks - Narrative
 
-* **ToDo** - *Simple Balsamiq Mockups*
-
 As an instructor, I need to track marks for my students. For any given course, this entails a few tasks. Firstly, as part of initializing my tracking, I need to know/enter my class list (student first/last name + school id) and know/enter the different things I need to get marked (mark item, weight, etc.). After that, I need to just enter my marks, which I would like to do in a "bulk" fashion.
 
 * **Q)** Are there any rules around the values of marks?
@@ -43,6 +41,28 @@ When I enter my list of students, it would be easier to just paste in all the st
   * *Mark this characteristic as future in the narrative:* **(*Note 1*)**
 
 * [ ] **ToDo** - notes on how to enter the mark breakdown for the course
+
+## Screen Mockups
+
+#### Home-Setup
+
+![Home-Setup](./Mockups/Home-Setup.png)
+
+#### Home-Student Marks
+
+![Home-Student Marks](./Mockups/Home-Student Marks.png)
+
+#### Course-Configure
+
+![Course-Configure](./Mockups/Course-Configure.png)
+
+#### Students-Setup
+
+![Students-Setup](./Mockups/Students-Setup.png)
+
+#### Students-Edit
+
+![Students-Edit](./Mockups/Students-Edit.png)
 
 ## User Stories
 
@@ -104,3 +124,10 @@ AngularJS functionality, tested with Jasmine.
   * Flag for each student info to be *Changed* if their individual info was edited
 * MarkController.BulkAdd()
   * List student names with text boxes or checkboxes for entering mark info (un-checked means no-data)
+
+----
+
+# Notes on Narratives
+
+- Need icons in narrative to indicate discussions, comments, images, screen mockups, etc.
+- Option to in-line discussions, comments, images, and/or screen mockups
