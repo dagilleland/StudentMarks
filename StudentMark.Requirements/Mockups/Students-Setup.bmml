@@ -1,0 +1,151 @@
+<mockup version="1.0" skin="sketch" fontFace="Balsamiq Sans" measuredW="677" measuredH="570" mockupW="668" mockupH="555">
+  <controls>
+    <control controlID="17" controlTypeID="com.balsamiq.mockups::BrowserWindow" x="9" y="15" w="581" h="555" measuredW="450" measuredH="400" zOrder="0" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>A%20Web%20Page%0Ahttp%3A//website/students</text>
+      </controlProperties>
+    </control>
+    <control controlID="20" controlTypeID="com.balsamiq.mockups::Title" x="20" y="102" w="-1" h="-1" measuredW="184" measuredH="43" zOrder="1" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Class%20List</text>
+      </controlProperties>
+    </control>
+    <control controlID="22" controlTypeID="com.balsamiq.mockups::TextArea" x="24" y="145" w="322" h="140" measuredW="200" measuredH="140" zOrder="2" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Bulk%20Add%20-%20One%20student%20per%20line</text>
+      </controlProperties>
+    </control>
+    <control controlID="40" controlTypeID="__group__" x="24" y="322" w="322" h="201" measuredW="322" measuredH="201" zOrder="3" locked="false" isInGroup="-1">
+      <groupChildrenDescriptors>
+        <control controlID="0" controlTypeID="com.balsamiq.mockups::DataGrid" x="0" y="0" w="322" h="201" measuredW="231" measuredH="201" zOrder="0" locked="false" isInGroup="40">
+          <controlProperties>
+            <text>First%20Name%2C%20Last%20Name%2C%20School%20ID%0AStewart%2C%20Dent%2C%2012345671%20%0ASally%2C%20Edwards%2C%2012345673%0ACasey%2C%20Finnigen%2C%2012345675%0ASam%2C%20Green%2C%2012345672%0AEric%2C%20Lineman%2C%2012345674%0AWalter%2C%20Winds%2C%2012345677</text>
+          </controlProperties>
+        </control>
+        <control controlID="1" controlTypeID="com.balsamiq.mockups::TextInput" x="214" y="20" w="93" h="-1" measuredW="79" measuredH="26" zOrder="1" locked="false" isInGroup="40">
+          <controlProperties>
+            <backgroundAlpha>0</backgroundAlpha>
+            <text/>
+          </controlProperties>
+        </control>
+        <control controlID="2" controlTypeID="com.balsamiq.mockups::TextInput" x="106" y="21" w="93" h="-1" measuredW="79" measuredH="26" zOrder="2" locked="false" isInGroup="40">
+          <controlProperties>
+            <backgroundAlpha>0</backgroundAlpha>
+            <text/>
+          </controlProperties>
+        </control>
+        <control controlID="3" controlTypeID="com.balsamiq.mockups::TextInput" x="2" y="22" w="93" h="-1" measuredW="79" measuredH="26" zOrder="3" locked="false" isInGroup="40">
+          <controlProperties>
+            <backgroundAlpha>0</backgroundAlpha>
+            <text/>
+          </controlProperties>
+        </control>
+        <control controlID="4" controlTypeID="com.balsamiq.mockups::TextInput" x="214" y="48" w="93" h="-1" measuredW="79" measuredH="26" zOrder="4" locked="false" isInGroup="40">
+          <controlProperties>
+            <backgroundAlpha>0</backgroundAlpha>
+            <text/>
+          </controlProperties>
+        </control>
+        <control controlID="5" controlTypeID="com.balsamiq.mockups::TextInput" x="106" y="49" w="93" h="-1" measuredW="79" measuredH="26" zOrder="5" locked="false" isInGroup="40">
+          <controlProperties>
+            <backgroundAlpha>0</backgroundAlpha>
+            <text/>
+          </controlProperties>
+        </control>
+        <control controlID="6" controlTypeID="com.balsamiq.mockups::TextInput" x="2" y="50" w="93" h="-1" measuredW="79" measuredH="26" zOrder="6" locked="false" isInGroup="40">
+          <controlProperties>
+            <backgroundAlpha>0</backgroundAlpha>
+            <text/>
+          </controlProperties>
+        </control>
+        <control controlID="7" controlTypeID="com.balsamiq.mockups::TextInput" x="215" y="80" w="93" h="-1" measuredW="79" measuredH="26" zOrder="7" locked="false" isInGroup="40">
+          <controlProperties>
+            <backgroundAlpha>0</backgroundAlpha>
+            <text/>
+          </controlProperties>
+        </control>
+        <control controlID="8" controlTypeID="com.balsamiq.mockups::TextInput" x="107" y="81" w="93" h="-1" measuredW="79" measuredH="26" zOrder="8" locked="false" isInGroup="40">
+          <controlProperties>
+            <backgroundAlpha>0</backgroundAlpha>
+            <text/>
+          </controlProperties>
+        </control>
+        <control controlID="9" controlTypeID="com.balsamiq.mockups::TextInput" x="3" y="82" w="93" h="-1" measuredW="79" measuredH="26" zOrder="9" locked="false" isInGroup="40">
+          <controlProperties>
+            <backgroundAlpha>0</backgroundAlpha>
+            <text/>
+          </controlProperties>
+        </control>
+        <control controlID="10" controlTypeID="com.balsamiq.mockups::TextInput" x="215" y="108" w="93" h="-1" measuredW="79" measuredH="26" zOrder="10" locked="false" isInGroup="40">
+          <controlProperties>
+            <backgroundAlpha>0</backgroundAlpha>
+            <text/>
+          </controlProperties>
+        </control>
+        <control controlID="11" controlTypeID="com.balsamiq.mockups::TextInput" x="107" y="109" w="93" h="-1" measuredW="79" measuredH="26" zOrder="11" locked="false" isInGroup="40">
+          <controlProperties>
+            <backgroundAlpha>0</backgroundAlpha>
+            <text/>
+          </controlProperties>
+        </control>
+        <control controlID="12" controlTypeID="com.balsamiq.mockups::TextInput" x="3" y="110" w="93" h="-1" measuredW="79" measuredH="26" zOrder="12" locked="false" isInGroup="40">
+          <controlProperties>
+            <backgroundAlpha>0</backgroundAlpha>
+            <text/>
+          </controlProperties>
+        </control>
+        <control controlID="13" controlTypeID="com.balsamiq.mockups::TextInput" x="216" y="140" w="93" h="-1" measuredW="79" measuredH="26" zOrder="13" locked="false" isInGroup="40">
+          <controlProperties>
+            <backgroundAlpha>0</backgroundAlpha>
+            <text/>
+          </controlProperties>
+        </control>
+        <control controlID="14" controlTypeID="com.balsamiq.mockups::TextInput" x="108" y="141" w="93" h="-1" measuredW="79" measuredH="26" zOrder="14" locked="false" isInGroup="40">
+          <controlProperties>
+            <backgroundAlpha>0</backgroundAlpha>
+            <text/>
+          </controlProperties>
+        </control>
+        <control controlID="15" controlTypeID="com.balsamiq.mockups::TextInput" x="4" y="142" w="93" h="-1" measuredW="79" measuredH="26" zOrder="15" locked="false" isInGroup="40">
+          <controlProperties>
+            <backgroundAlpha>0</backgroundAlpha>
+            <text/>
+          </controlProperties>
+        </control>
+        <control controlID="16" controlTypeID="com.balsamiq.mockups::TextInput" x="216" y="168" w="93" h="-1" measuredW="79" measuredH="26" zOrder="16" locked="false" isInGroup="40">
+          <controlProperties>
+            <backgroundAlpha>0</backgroundAlpha>
+            <text/>
+          </controlProperties>
+        </control>
+        <control controlID="17" controlTypeID="com.balsamiq.mockups::TextInput" x="108" y="169" w="93" h="-1" measuredW="79" measuredH="26" zOrder="17" locked="false" isInGroup="40">
+          <controlProperties>
+            <backgroundAlpha>0</backgroundAlpha>
+            <text/>
+          </controlProperties>
+        </control>
+        <control controlID="18" controlTypeID="com.balsamiq.mockups::TextInput" x="4" y="170" w="93" h="-1" measuredW="79" measuredH="26" zOrder="18" locked="false" isInGroup="40">
+          <controlProperties>
+            <backgroundAlpha>0</backgroundAlpha>
+            <text/>
+          </controlProperties>
+        </control>
+      </groupChildrenDescriptors>
+    </control>
+    <control controlID="41" controlTypeID="com.balsamiq.mockups::Link" x="33" y="293" w="-1" h="-1" measuredW="51" measuredH="19" zOrder="4" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Bulk%20Add</text>
+      </controlProperties>
+    </control>
+    <control controlID="42" controlTypeID="com.balsamiq.mockups::Link" x="149" y="293" w="-1" h="-1" measuredW="94" measuredH="19" zOrder="5" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Save%20Class%20List</text>
+      </controlProperties>
+    </control>
+    <control controlID="43" controlTypeID="com.balsamiq.mockups::StickyNote" x="396" y="108" w="281" h="406" measuredW="109" measuredH="123" zOrder="6" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Paste%20in%20a%20line-by-line%20separated%20list%20of%20student%20info%2C%20and%20click%20%5BBulk%20Add%5D%20to%20generate%20a%20class%20list.%0A%20%0AMake%20any%20desired%20edits%20and%20then%20click%20%22Save%22.</text>
+      </controlProperties>
+    </control>
+  </controls>
+</mockup>
