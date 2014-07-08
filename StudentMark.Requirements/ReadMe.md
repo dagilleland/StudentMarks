@@ -17,6 +17,7 @@ In my current situation, I have a course with two quizzes (21% and 7%) and a set
 
 * **C)** I forgot to mention that the bucket exercises are grouped under topics (to make it easier to track). I tend to have anywhere from one to five buckets per topic, and I like to see the quizzes, topics and buckets ordered according to how they are delivered during the course.
   * **R)** Ok. I wrote that change up in the narrative. I'll reflect that in the screen mockups soon.
+  * **R)** The screen mockup is updated.
 
 * **Q)** Can you tell me more about the "all-or-nothing" exercises?
   * **R)** Those exercises are each marked as either a pass/fail. They are fairly easy to do, and for the most part student pass them when they try them. However, sometimes they don't, and I'll explcitly mark them as a fail.
