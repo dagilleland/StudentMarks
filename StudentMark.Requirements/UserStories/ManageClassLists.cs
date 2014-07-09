@@ -18,7 +18,8 @@ namespace StudentMark.Requirements.UserStories
 {
     [Story(AsA = Actor.INSTRUCTOR,
            IWant = "To enter student names",
-           SoThat = "I can manage my class list")]
+           SoThat = "I can manage my class list",
+           Title = "Manage Class List")]
     public class ManageClassLists
     {
         [Theory]
