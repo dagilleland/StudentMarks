@@ -77,6 +77,8 @@ namespace StudentMark.Requirements.UserStories
 
         private void ThenTheStudentHasBeenAdded(Student expected, Student actual)
         {
+            StudentsController sut = new StudentsController();
+            actual = (sut.GetStudent(actual.Id) as OkNegotiatedContentResult<Student>).Content;
             Assert.Equal(expected.FirstName, actual.FirstName);
             Assert.Equal(expected.LastName, actual.LastName);
             Assert.Equal(expected.SchoolID, actual.SchoolID);

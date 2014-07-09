@@ -16,6 +16,7 @@ using Microsoft.Owin.Security.OAuth;
 using StudentMarks.Models;
 using StudentMarks.Providers;
 using StudentMarks.Results;
+using StudentMarks.App;
 
 namespace StudentMarks.Controllers
 {

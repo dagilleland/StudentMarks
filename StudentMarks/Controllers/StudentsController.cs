@@ -10,12 +10,13 @@ using System.Web.Http;
 using System.Web.Http.Description;
 using StudentMarks.Models;
 using StudentMarks.Models.Entities;
+using StudentMarks.App.DAL;
 
 namespace StudentMarks.Controllers
 {
     public class StudentsController : ApiController
     {
-        private ApplicationDbContext db = new ApplicationDbContext();
+        private AppContext db = AppContext.Create();
 
         // GET: api/Students
         public IQueryable<Student> GetStudents()

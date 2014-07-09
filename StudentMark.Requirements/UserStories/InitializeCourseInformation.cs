@@ -61,11 +61,14 @@ namespace StudentMark.Requirements.UserStories
         }
         private void WhenIEnterACourseName(string name)
         {
-            throw new NotImplementedException();
+            CourseConfigController app = new CourseConfigController();
+            app.SetCourseName(name);
         }
-        private Task ThenTheCourseNameIsRecorded(string expectedName)
+        private void ThenTheCourseNameIsRecorded(string expectedName)
         {
-            throw new NotImplementedException();
+            CourseConfigController app = new CourseConfigController();
+            var actual = app.GetCourseName();
+            Assert.Equal(expectedName, actual);
         }
         #endregion
     }
