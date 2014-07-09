@@ -122,7 +122,7 @@ When I enter my list of students, it would be easier to just paste in all the st
 
 ## Unit Tests
 
-**Unit Tests** are for smaller parts of the system and are done as "units". I'm breaking these down into tests related to the *Application Framework* and those related to the *User Interface* (in this case, a browser). There will also be unit tests to check aspects of the "seams" between the UI and the App Framework.
+**Unit Tests** are for smaller parts of the system and are done as "units". I'm sub-dividing these down into tests related to the *Application Framework* and those related to the *User Interface* (in this case, a browser). There will also be unit tests to check aspects of the "seams" between the UI and the App Framework.
 
 ### App Framework Unit Tests
 
