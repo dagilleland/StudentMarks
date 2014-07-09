@@ -79,16 +79,30 @@ When I enter my list of students, it would be easier to just paste in all the st
       * **Given** something **When** action **Then** result
     * *Scenario Title*
       * **Given** something **When** action **Then** result
-* *Generate Class List*
+* Manage Class List*
   * **I Want** to enter a list of students in my class,
   * **So That** I know who to assign marks to.
     * *Scenario Title* (Primary)
       * **Given** something **When** action **Then** result
     * *Scenario Title*
       * **Given** something **When** action **Then** result
-* *Title*
+* *Enter Student Marks*
   * **I Want** to enter student marks,
   * **So That** I can track each student's progress in the course.
+    * *Scenario Title* (Primary)
+      * **Given** something **When** action **Then** result
+    * *Scenario Title*
+      * **Given** something **When** action **Then** result
+* *View Class Marks*
+  * **I Want** to view marks for the whole class,
+  * **So That** I can see the overall progress of my students.
+    * *Scenario Title* (Primary)
+      * **Given** something **When** action **Then** result
+    * *Scenario Title*
+      * **Given** something **When** action **Then** result
+* *View Individual Student Marks*
+  * **I Want** to generate a student-by-student report of marks,
+  * **So That** I can give each student a report of their marks.
     * *Scenario Title* (Primary)
       * **Given** something **When** action **Then** result
     * *Scenario Title*
