@@ -36,7 +36,7 @@ namespace StudentMarks.Controllers
             using (var db = AppContext.Create())
             {
                 var existing = db.Courses.FirstOrDefault();
-                if (existing.Id > 0)
+                if (existing != null)
                 {
                     // Update the name
                     existing.Name = name;
@@ -44,7 +44,7 @@ namespace StudentMarks.Controllers
                 }
                 else
                 {
-                    db.Courses.Add(existing);
+                    db.Courses.Add(new Course() { Name = name });
                 }
                 db.SaveChanges();
             }

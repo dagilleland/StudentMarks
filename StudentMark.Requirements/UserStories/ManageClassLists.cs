@@ -67,18 +67,18 @@ namespace StudentMark.Requirements.UserStories
         private void WhenIAddAStudent(Student expected, out Student actual)
         {
             StudentsController sut = new StudentsController();
-            IHttpActionResult result = sut.PostStudent(expected);
+            // IHttpActionResult result = sut.PostStudent(expected);
 
-            var contentResult = result as CreatedAtRouteNegotiatedContentResult<Student>;
+            var contentResult = sut.PostStudent(expected); // result as CreatedAtRouteNegotiatedContentResult<Student>;
             Assert.NotNull(contentResult);
-            Assert.NotNull(contentResult.Content);
-            actual = contentResult.Content;
+            //Assert.NotNull(contentResult.Content);
+            actual = contentResult; //.Content;
         }
 
         private void ThenTheStudentHasBeenAdded(Student expected, Student actual)
         {
             StudentsController sut = new StudentsController();
-            actual = (sut.GetStudent(actual.Id) as OkNegotiatedContentResult<Student>).Content;
+            actual = (sut.GetStudent(actual.Id)) ;// as OkNegotiatedContentResult<Student>).Content;
             Assert.Equal(expected.FirstName, actual.FirstName);
             Assert.Equal(expected.LastName, actual.LastName);
             Assert.Equal(expected.SchoolID, actual.SchoolID);
