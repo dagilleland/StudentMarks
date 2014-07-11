@@ -66,34 +66,34 @@ describe('myApp', function () {
 /*
  * describe myApp
  *      - should exist as an angular module
- *      x - should have myApp.mainCtrl as a dependency
- *      x - should have myApp.courseCtrl as a dependency
  * 
  * describe myApp.mainCtrl
  *      - should determine if myApp requires setup of evaluation components
  *      - should determine if myApp requires setup of class list
  * 
- * describe myApp.courseCtrl
+ * describe App.Services
+ *   describe using $http
  *      - should retrieve course name
  *      - should retrieve evaluation components
  *      - should retrieve bucket weight and topics
  *      - should maintain a copy of course name original value
  *      - should maintain a copy of evaluation components original values
  *      - should maintain a copy of bucket weight and topics original values
+ *      - should save course name to server
+ *      - should save evaluation components to server as a single batch job
+ *      - should prevent saving evaluation components if validation fails
+ *   describe performing validation
+ *      - should validate component name as required
+ *      - should validate quiz weight as required
+ *      - should validate bucket topic as required
+ *      - should validate topic name as required
+ *      - should validate individual bucket weights as required
+ *   describe manipulating data
  *      - should add bucket topics
  *      - should add quiz component
  *      - should add bucket component
  *      - should tally total weight of evaluation components
- *      - should save course name to server
- *      - should save evaluation components to server as a single batch job
- *      - should validate component name as required
- *      - should validate quiz weight as required
- *      - should validate bucket topic as required
  *      - should allow ordering of evaluation components
- *      - should validate topic name as required
- *      - should validate individual bucket weights as required
- *      - should prevent saving evaluation components if validation fails
  *      - should reset course name to original value when cancelling course name changes
  *      - should reset evaluation components and bucket weight and topics when cancelling evaluation component changes
- *      - should 
  */
