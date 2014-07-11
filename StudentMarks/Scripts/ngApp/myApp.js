@@ -1,4 +1,5 @@
-﻿'use strict';
+﻿/// <reference path="../angular.js" />
+'use strict';
 
 angular.module('myApp', [
     // Angular modules 
@@ -11,6 +12,9 @@ angular.module('myApp', [
         
 ]);
 
+angular.module('myApp').controller('Controllers', function ($scope) {
+    $scope.whazoo = 5;
+});
 
 
 
