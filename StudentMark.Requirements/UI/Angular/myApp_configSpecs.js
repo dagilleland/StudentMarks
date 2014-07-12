@@ -62,15 +62,53 @@ describe('myApp', function () {
     });
 });
 
+describe('App.Services', function () {
+    describe('using $http', function () {
+        it('should retrieve course name', function () { expect('Test Specs').toBe('To Be Detailed'); });
+        it('should retrieve evaluation components', function () { expect('Test Specs').toBe('To Be Detailed'); });
+        it('should retrieve bucket weight and topics', function () { expect('Test Specs').toBe('To Be Detailed'); });
+        it('should maintain a copy of course name original value', function () { expect('Test Specs').toBe('To Be Detailed'); });
+        it('should maintain a copy of evaluation components original values', function () { expect('Test Specs').toBe('To Be Detailed'); });
+        it('should maintain a copy of bucket weight and topics original values', function () { expect('Test Specs').toBe('To Be Detailed'); });
+        it('should save course name to server', function () { expect('Test Specs').toBe('To Be Detailed'); });
+        it('should save evaluation components to server as a single batch job', function () { expect('Test Specs').toBe('To Be Detailed'); });
+        it('should prevent saving evaluation components if validation fails', function () { expect('Test Specs').toBe('To Be Detailed'); });
+    });
 
-/*
+    describe('performing validation', function () {
+        it('should validate component name as required', function () { expect('Test Specs').toBe('To Be Detailed'); });
+        it('should validate quiz weight as required', function () { expect('Test Specs').toBe('To Be Detailed'); });
+        it('should validate bucket topic as required', function () { expect('Test Specs').toBe('To Be Detailed'); });
+        it('should validate topic name as required', function () { expect('Test Specs').toBe('To Be Detailed'); });
+        it('should validate individual bucket weights as required', function () { expect('Test Specs').toBe('To Be Detailed'); });
+    });
+
+    describe('manipulating data', function () {
+        it('should add bucket topics', function () { expect('Test Specs').toBe('To Be Detailed'); });
+        it('should add quiz component', function () { expect('Test Specs').toBe('To Be Detailed'); });
+        it('should add bucket component', function () { expect('Test Specs').toBe('To Be Detailed'); });
+        it('should tally total weight of evaluation components', function () { expect('Test Specs').toBe('To Be Detailed'); });
+        it('should allow ordering of evaluation components', function () { expect('Test Specs').toBe('To Be Detailed'); });
+        it('should reset course name to original value when cancelling course name changes', function () { expect('Test Specs').toBe('To Be Detailed'); });
+        it('should reset evaluation components and bucket weight and topics when cancelling evaluation component changes', function () { expect('Test Specs').toBe('To Be Detailed'); });
+    });
+
+    //describe('', function () {
+    //    it('', function () { expect('Test Specs').toBe('To Be Detailed'); });
+    //});
+});
+
+
+/* NOT in queue
  * describe myApp
  *      - should exist as an angular module
  * 
  * describe myApp.mainCtrl
  *      - should determine if myApp requires setup of evaluation components
  *      - should determine if myApp requires setup of class list
- * 
+ */
+
+/* ADDED TO QUEUE...
  * describe App.Services
  *   describe using $http
  *      - should retrieve course name
