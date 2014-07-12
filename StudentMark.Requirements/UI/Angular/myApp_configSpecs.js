@@ -39,7 +39,7 @@ describe('myApp', function () {
             expect(hasModule('myApp.Controllers')).toEqual(true);
         });
         */
-    })
+    });
 
 
     it('should map routes to controllers', function () {
@@ -62,9 +62,127 @@ describe('myApp', function () {
     });
 });
 
+angular.module('App.Services', []);
+
+angular.module('App.Services')
+.factory('$appServer', function ($http) {
+    return {
+
+    };
+});
+
+
+// The App.Services module contains all XHR calls and corresponding injection of data into the angular $scope.
 describe('App.Services', function () {
+
+    //Setup
+    beforeEach(function () {
+
+    });
+
+    // NOTE: 
+    it('should exist as angular module', function () {
+        expect(angular.module('App.Services')).not.toBe(null);
+        expect(angular.module('App.Services')).not.toBe(undefined);
+    });
+
+    describe('has angular dependencies', function () {
+        var deps;
+        var hasModule = function (m) { return deps.indexOf(m) >= 0; };
+
+        beforeEach(function () {
+            deps = angular.module('App.Services').value('appName').requires;
+        })
+
+        it('should have $http as a dependency', function () {
+            expect(hasModule('$http')).toEqual(true);
+        });
+
+        /*
+        // NOTE: If I add dependencies on my module, then use the sample in this block
+        it('should have no dependencies', function () {
+            expect(deps.length).toEqual(0);
+        });
+
+        it('should have myApp.mainCtrl as a dependency', function () {
+            expect(hasModule('myApp.Controllers')).toEqual(true);
+        });
+        */
+    })
+
+    describe('has services', function () {
+        // Approach based on http://www.benlesh.com/2013/06/angular-js-unit-testing-services.html
+        // and http://busypeoples.github.io/post/writing-unit-tests-for-service-in-angular-js/
+        var $appServer, httpBackend;
+
+        // executed before each "it" is run.
+        beforeEach(function () {
+            // load the module
+            angular.mock.module('App.Services')
+
+            // Inject the service for testing.
+            // Also get $httpBackend, which is a mock provided by angular-mocks.js
+            // The _underscores_ are a convenience thing
+            // so you can have your variable name be the 
+            // same as your injected service.
+            inject(function (_$appServer_, _$httpBackend_) {
+                $appServer = _$appServer_;
+                httpBackend = _$httpBackend_;
+            })
+        });
+
+        // make sure no expectations were missed in your tests.
+        // (e.g. expectGET or expectPOST)
+        afterEach(function () {
+            httpBackend.verifyNoOutstandingExpectation();
+            httpBackend.verifyNoOutstandingRequest();
+        });
+
+        //beforeEach(inject(function ($injector) {
+        //    $appServer = $injector.get('$appServer');
+        //   // $http = $injector.get('$http');
+        //}));
+
+        it('should contain an $appServer service', function () {
+            expect($appServer).toBeDefined();
+        });
+
+    });
+
     describe('using $http', function () {
-        it('should retrieve course name', function () { expect('Test Specs').toBe('To Be Detailed'); });
+        //var tester;
+        //beforeEach(function () {
+        //    if (tester) {
+        //        tester.destroy();
+        //    };
+        //    tester = ngMidwayTester('App');
+        //});
+
+        // local variable copies of injected objects
+        var $scope, $rootScope, $httpBackend, $timeout;
+
+        // Ensure the module exists
+        beforeEach(module('App.Services'));
+
+        // Ensure the DI objects
+        // http://nathanleclaire.com/blog/2013/12/13/how-to-unit-test-controllers-in-angularjs-without-setting-your-hair-on-fire/
+        beforeEach(inject(function ($injector) {
+            $timeout = $injector.get('$timeout');
+            $httpBackend = $injector.get('$httpBackend');
+            $rootScope = $injector.get('$rootScope');
+            $scope = $rootScope.$new();
+        }));
+
+        // Cleanup - verification
+        afterEach(function () {
+            $httpBackend.verifyNoOutstandingExpectation();
+            $httpBackend.verifyNoOutstandingRequest();
+        });
+
+        it('should retrieve course name', inject(['$http', function () {
+            expect('Test Specs').toBe('To Be Detailed');
+        }]));
+
         it('should retrieve evaluation components', function () { expect('Test Specs').toBe('To Be Detailed'); });
         it('should retrieve bucket weight and topics', function () { expect('Test Specs').toBe('To Be Detailed'); });
         it('should maintain a copy of course name original value', function () { expect('Test Specs').toBe('To Be Detailed'); });
@@ -73,6 +191,7 @@ describe('App.Services', function () {
         it('should save course name to server', function () { expect('Test Specs').toBe('To Be Detailed'); });
         it('should save evaluation components to server as a single batch job', function () { expect('Test Specs').toBe('To Be Detailed'); });
         it('should prevent saving evaluation components if validation fails', function () { expect('Test Specs').toBe('To Be Detailed'); });
+
     });
 
     describe('performing validation', function () {
