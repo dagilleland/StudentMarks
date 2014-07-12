@@ -66,7 +66,47 @@ describe('myApp', function () {
 
 // The App.Services module contains all XHR calls and corresponding injection of data into the angular $scope.
 describe('App.Services', function () {
-    // Tests the urlService factory to ensure it correctly generates urls for api calls
+    // Ensure that the courseConfigService can make XHR requests without stubbing
+    describe('courseConfigService', function () {
+        // CREDITS: Approach based on http://www.benlesh.com/2013/06/angular-js-unit-testing-services.html and http://busypeoples.github.io/post/writing-unit-tests-for-service-in-angular-js/
+        var urlService, courseConfigService, httpBackend;
+
+        // executed before each "it" is run.
+        beforeEach(function () {
+            // load the module
+            angular.mock.module('App.Services')
+
+            // Get the services associated with the module
+            // The _underscores_ are a convenience thing allowing the closure variable name to be the same as the injected service.
+            inject(function (_urlService_, _courseConfigService_, _$httpBackend_) {
+                urlService = _urlService_;
+                courseConfigService = _courseConfigService_;
+                httpBackend = _$httpBackend_;
+            })
+        });
+
+        // make sure no expectations were missed in your tests.
+        // (e.g. expectGET or expectPOST)
+        afterEach(function () {
+            httpBackend.verifyNoOutstandingExpectation();
+            httpBackend.verifyNoOutstandingRequest();
+        });
+
+        it('should retrieve course name', inject(['$http', function () {
+            httpBackend
+                .expect('GET', 'http://localhost:58955/api/CourseConfig/GetCourseName')
+                .respond(200, '{ "name" : "Whazoo" }');
+            courseConfigService.getCourseName().success(function (data) {
+                expect(data).toBeDefined();
+                expect(data.name).toEqual('Whazoo');
+            });
+            httpBackend.flush();
+        }]));
+
+        it('should retrieve evaluation components', function () { expect('Test Specs').toBe('To Be Detailed'); });
+
+        it('should retrieve bucket weight and topics', function () { expect('Test Specs').toBe('To Be Detailed'); });
+    });
 });
 
 describe('Queue-up:', function () {
@@ -101,12 +141,6 @@ describe('App.Services', function () {
             $httpBackend.verifyNoOutstandingRequest();
         });
 
-        it('should retrieve course name', inject(['$http', function () {
-            expect('Test Specs').toBe('To Be Detailed');
-        }]));
-
-        it('should retrieve evaluation components', function () { expect('Test Specs').toBe('To Be Detailed'); });
-        it('should retrieve bucket weight and topics', function () { expect('Test Specs').toBe('To Be Detailed'); });
         it('should maintain a copy of course name original value', function () { expect('Test Specs').toBe('To Be Detailed'); });
         it('should maintain a copy of evaluation components original values', function () { expect('Test Specs').toBe('To Be Detailed'); });
         it('should maintain a copy of bucket weight and topics original values', function () { expect('Test Specs').toBe('To Be Detailed'); });
