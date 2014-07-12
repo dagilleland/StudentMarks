@@ -148,7 +148,10 @@ describe('App.Services', function () {
         });
 
     });
+});
 
+describe('Queue-up:', function () {
+describe('App.Services', function () {
     describe('using $http', function () {
         //var tester;
         //beforeEach(function () {
@@ -215,6 +218,7 @@ describe('App.Services', function () {
     //describe('', function () {
     //    it('', function () { expect('Test Specs').toBe('To Be Detailed'); });
     //});
+});
 });
 
 
