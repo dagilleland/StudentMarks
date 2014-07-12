@@ -133,7 +133,7 @@
     <Content Include="Scripts\jasmine-html.js" />
     <Content Include="Scripts\jasmine.js" />
     <Content Include="Scripts\ngMidwayTester.js" />
-    <Content Include="UI\Angular\myApp_configSpecs.js" />
+    <Content Include="UI\Angular\queue-up.myApp_Specs.js" />
     <Content Include="UI\Angular\myApp_e2eSpecs.js.js" />
     <Content Include="UI\Angular\ProofOfConceptRunner.html" />
     <Content Include="UI\Angular\ProofOfConceptSpecs.js" />
