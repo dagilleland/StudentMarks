@@ -1,6 +1,7 @@
 ﻿/// <reference path="../../../studentmarks/scripts/angular.js" />
 /// <reference path="../../../studentmarks/scripts/angular-mocks.js" />
 /// <reference path="../../../studentmarks/scripts/ngapp/myapp.js" />
+/// <reference path="../../../studentmarks/scripts/ngapp/app.services.js" />
 /// <reference path="../../scripts/ngapp/app.services.js" />
 /// <reference path="../../Scripts/jasmine.js" />
 /// <reference path="../../Scripts/ngmidwaytester.js" />
