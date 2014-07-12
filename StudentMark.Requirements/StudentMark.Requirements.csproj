@@ -98,6 +98,9 @@
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+    <Content Include="Scripts\ngApp\App.Services.js" />
+    <Content Include="UI\Angular\describe.App_Services.as_AngularModule.js" />
+    <Content Include="UI\Angular\describe.App_Services.urlService.js" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\StudentMarks\StudentMarks.csproj">
