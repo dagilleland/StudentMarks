@@ -7,12 +7,15 @@ angular.module('myApp', [
     //'ngRoute'           // routing
 
     // Custom modules 
-
+    'App.Services',
+    'App.Controllers',
+    'App.Routes',
+    'App.Directives'
     // 3rd Party Modules
         
 ]);
 
-angular.module('myApp').controller('Controllers', function ($scope) {
+angular.module('myApp').controller('WazooCtrl', function ($scope) {
     $scope.whazoo = 5;
 });
 

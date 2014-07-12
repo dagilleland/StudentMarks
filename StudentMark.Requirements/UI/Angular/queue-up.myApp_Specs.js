@@ -13,36 +13,6 @@ describe('myApp', function () {
     beforeEach(function () {
     });
 
-    //Spec - 1
-    it('should exist as angular module', function () {
-        expect(angular.module('myApp')).not.toBe(null);
-        expect(angular.module('myApp')).not.toBe(undefined);
-    });
-
-    describe('dependencies', function () {
-        // TODO: Decide how much my tests need to determine about the wiring up of the module and it's pieces. At present, I can find the dependencies on a module, but not on a module's factory, controller, etc.
-        var deps;
-        var hasModule = function (m) { return deps.indexOf(m) >= 0; };
-
-        beforeEach(function () {
-            deps = angular.module('myApp').value('appName').requires;
-        })
-
-        it('should have no dependencies', function () {
-            expect(deps.length).toEqual(0);
-        });
-
-        /*
-        it('should have no dependencies', function () {
-            expect(deps.length).toEqual(0);
-        });
-
-        it('should have $http as a dependency', function () {
-            expect(hasModule('$http')).toEqual(true);
-        });
-        */
-    });
-
 
     it('should map routes to controllers', function () {
         angular.module('myApp');
@@ -107,6 +77,51 @@ describe('App.Services', function () {
         it('should retrieve evaluation components', function () { expect('Test Specs').toBe('To Be Detailed'); });
 
         it('should retrieve bucket weight and topics', function () { expect('Test Specs').toBe('To Be Detailed'); });
+    });
+});
+
+// The App.Controllers module contains all management of the $scope and exposes functionality for manipulating $scope model data to the view
+describe('App.Controllers', function () {
+    // Ensure that the courseConfigController can use XHR service calls, set $scope members properly, and execute logic on the $scope model in response to the view
+    describe('courseConfigController', function () {
+        //// CREDITS: Approach based on http://www.benlesh.com/2013/06/angular-js-unit-testing-services.html and http://busypeoples.github.io/post/writing-unit-tests-for-service-in-angular-js/
+        //var urlService, courseConfigService, httpBackend;
+
+        //// executed before each "it" is run.
+        //beforeEach(function () {
+        //    // load the module
+        //    angular.mock.module('App.Services')
+
+        //    // Get the services associated with the module
+        //    // The _underscores_ are a convenience thing allowing the closure variable name to be the same as the injected service.
+        //    inject(function (_urlService_, _courseConfigService_, _$httpBackend_) {
+        //        urlService = _urlService_;
+        //        courseConfigService = _courseConfigService_;
+        //        httpBackend = _$httpBackend_;
+        //    })
+        //});
+
+        //// make sure no expectations were missed in your tests.
+        //// (e.g. expectGET or expectPOST)
+        //afterEach(function () {
+        //    httpBackend.verifyNoOutstandingExpectation();
+        //    httpBackend.verifyNoOutstandingRequest();
+        //});
+
+        //it('should retrieve course name', inject(['$http', function () {
+        //    httpBackend
+        //        .expect('GET', 'http://localhost:58955/api/CourseConfig/GetCourseName')
+        //        .respond(200, '{ "name" : "Whazoo" }');
+        //    courseConfigService.getCourseName().success(function (data) {
+        //        expect(data).toBeDefined();
+        //        expect(data.name).toEqual('Whazoo');
+        //    });
+        //    httpBackend.flush();
+        //}]));
+
+        //it('should retrieve evaluation components', function () { expect('Test Specs').toBe('To Be Detailed'); });
+
+        //it('should retrieve bucket weight and topics', function () { expect('Test Specs').toBe('To Be Detailed'); });
     });
 });
 

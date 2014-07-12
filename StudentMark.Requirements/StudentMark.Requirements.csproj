@@ -98,6 +98,7 @@
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+    <Content Include="UI\Angular\describe.App_Controllers.as_AngularModule.js" />
     <Content Include="UI\Angular\describe.App_Services.as_AngularModule.js" />
     <Content Include="UI\Angular\describe.App_Services.urlService.js" />
   </ItemGroup>
@@ -132,6 +133,7 @@
     <Content Include="Scripts\jasmine-html.js" />
     <Content Include="Scripts\jasmine.js" />
     <Content Include="Scripts\ngMidwayTester.js" />
+    <Content Include="UI\Angular\describe.myApp.as_AngularModule.js" />
     <Content Include="UI\Angular\queue-up.myApp_Specs.js" />
     <Content Include="UI\Angular\myApp_e2eSpecs.js.js" />
     <Content Include="UI\Angular\ProofOfConceptRunner.html" />
