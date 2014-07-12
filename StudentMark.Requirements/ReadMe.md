@@ -54,7 +54,7 @@ When I enter my list of students, it would be easier to just paste in all the st
 
 #### Home-Student Marks
 
-![Home-Student Marks](./Mockups/Home-Student Marks.png)
+![Home-StudentMarks](./Mockups/Home-StudentMarks.png)
 
 #### Course-Configure
 
