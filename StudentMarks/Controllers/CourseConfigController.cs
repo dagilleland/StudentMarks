@@ -23,7 +23,8 @@ using StudentMarks.Models.Entities;
 
 namespace StudentMarks.Controllers
 {
-    [Authorize]
+    // TODO: Re-instate http://localhost:58955/api/CourseConfig/GetCourseName
+    // [Authorize]
     [RoutePrefix("api/CourseConfig")]
     public class CourseConfigController : ApiController
     {
@@ -49,11 +50,16 @@ namespace StudentMarks.Controllers
                 db.SaveChanges();
             }
         }
+        [Route("GetCourseName")]
         public string GetCourseName()
         {
             using (var db = AppContext.Create())
             {
-                return db.Courses.FirstOrDefault().Name;
+                Course info = db.Courses.FirstOrDefault();
+                if (info != null)
+                    return info.Name;
+                else
+                    return "Un-named Course";
             }
         }
 

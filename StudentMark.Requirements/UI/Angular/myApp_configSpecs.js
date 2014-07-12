@@ -65,9 +65,27 @@ describe('myApp', function () {
 angular.module('App.Services', []);
 
 angular.module('App.Services')
-.factory('$appServer', function ($http) {
+.factory('urlService', function () {
+    var rootUrl = 'http://localhost:58955';
     return {
+        rootUrl: rootUrl,
+        url: function (routePrefix, route) {
+            // CREDITS: for .filter(Boolean) to remove null, empty, NaN, and undefined http://www.devign.me/javascript-tip-remove-falsy-items-out-of-an-array
+            return [rootUrl, routePrefix, route].filter(Boolean).join('/');
+        }
+    };
+});
 
+angular.module('App.Services')
+.factory('courseConfigService', function ($http, urlService) {
+    var routePrefix = 'api/CourseConfig';
+    return {
+        // api/CourseConfig/SetCourseName
+
+        // api/CourseConfig/GetCourseName
+        getCourseName: function () {
+            return $http.get(urlService.url(routePrefix, 'GetCourseName'));
+        }
     };
 });
 
@@ -86,7 +104,8 @@ describe('App.Services', function () {
         expect(angular.module('App.Services')).not.toBe(undefined);
     });
 
-    describe('has angular dependencies', function () {
+    describe('dependencies', function () {
+        // TODO: Decide how much my tests need to determine about the wiring up of the module and it's pieces. At present, I can find the dependencies on a module, but not on a module's factory, controller, etc.
         var deps;
         var hasModule = function (m) { return deps.indexOf(m) >= 0; };
 
@@ -94,8 +113,8 @@ describe('App.Services', function () {
             deps = angular.module('App.Services').value('appName').requires;
         })
 
-        it('should have $http as a dependency', function () {
-            expect(hasModule('$http')).toEqual(true);
+        it('should have no module dependencies', function () {
+            expect(deps.length).toEqual(0);
         });
 
         /*
@@ -107,13 +126,50 @@ describe('App.Services', function () {
         it('should have myApp.mainCtrl as a dependency', function () {
             expect(hasModule('myApp.Controllers')).toEqual(true);
         });
+
+        it('should have $http as a dependency', function () {
+            expect(hasModule('$http')).toEqual(true);
+        });
         */
     })
+
+    // Tests the urlService factory to ensure it correctly generates urls for api calls
+    describe('urlService', function () {
+        var urlService;
+
+        beforeEach(function () {
+            angular.mock.module('App.Services')
+
+            inject(function (_urlService_) {
+                urlService = _urlService_;
+            })
+        });
+
+        it('should have rootUrl', function () {
+            expect(urlService.rootUrl).toEqual('http://localhost:58955');
+        });
+
+        it('should calculate url', function () {
+            expect(urlService.url('api/NotReal', 'GetName')).toEqual('http://localhost:58955/api/NotReal/GetName');
+        });
+
+        it('should calculate url without routePrefix', function () {
+            expect(urlService.url(null, 'GetName')).toEqual('http://localhost:58955/GetName');
+        });
+
+        it('should calculate url without route', function () {
+            expect(urlService.url('api/NotReal')).toEqual('http://localhost:58955/api/NotReal');
+        });
+
+        it('should calculate url without any parameter as equal to the rootUrl', function () {
+            expect(urlService.url()).toEqual(urlService.rootUrl);
+        });
+    });
 
     describe('has services', function () {
         // Approach based on http://www.benlesh.com/2013/06/angular-js-unit-testing-services.html
         // and http://busypeoples.github.io/post/writing-unit-tests-for-service-in-angular-js/
-        var $appServer, httpBackend;
+        var urlService, courseConfigService, httpBackend;
 
         // executed before each "it" is run.
         beforeEach(function () {
@@ -125,8 +181,9 @@ describe('App.Services', function () {
             // The _underscores_ are a convenience thing
             // so you can have your variable name be the 
             // same as your injected service.
-            inject(function (_$appServer_, _$httpBackend_) {
-                $appServer = _$appServer_;
+            inject(function (_urlService_, _courseConfigService_, _$httpBackend_) {
+                urlService = _urlService_;
+                courseConfigService = _courseConfigService_;
                 httpBackend = _$httpBackend_;
             })
         });
@@ -139,12 +196,16 @@ describe('App.Services', function () {
         });
 
         //beforeEach(inject(function ($injector) {
-        //    $appServer = $injector.get('$appServer');
+        //    courseConfigService = $injector.get('courseConfigService');
         //   // $http = $injector.get('$http');
         //}));
 
-        it('should contain an $appServer service', function () {
-            expect($appServer).toBeDefined();
+        it('should contain a courseConfigService service', function () {
+            expect(courseConfigService).toBeDefined();
+        });
+
+        it('should contain a urlService service', function () {
+            expect(urlService).toBeDefined();
         });
 
     });
@@ -233,6 +294,12 @@ describe('App.Services', function () {
 
 /* ADDED TO QUEUE...
  * describe App.Services
+ *   describe has services
+ *      - should contain a courseConfigService
+ *      - should contain a urlService
+ *   describe urlService
+ *      - should have rootUrl
+ *      - should calculate url
  *   describe using $http
  *      - should retrieve course name
  *      - should retrieve evaluation components
