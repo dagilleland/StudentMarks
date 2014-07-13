@@ -14,6 +14,7 @@ using StudentMarks.Controllers;
 using System.Web.Http;
 using System.Web.Http.Results;
 using StudentMarks.App.DAL;
+using StudentMarks.Models.Entities.DTOs;
 
 namespace StudentMark.Requirements.UserStories
 {
@@ -23,6 +24,7 @@ namespace StudentMark.Requirements.UserStories
     public class InitializeCourseInformation
     {
         #region Primary - Enter Evaluation Components
+        EvaluationComponent ExpectedEvaluationComponent;
         IList<Topic> ExpectedTopics;
         IList<Quiz> ExpectedQuizzes;
         IList<Bucket> ExpectedBuckets;
@@ -40,11 +42,19 @@ namespace StudentMark.Requirements.UserStories
         }
         private void GivenNoEvaluationComponentInformationHasBeenEntered()
         {
-            CourseConfigController sut = new CourseConfigController(AppContext.Create());
-            Assert.Equal(0, sut.GetBucketTopics().Count);
-            Assert.Equal(0, sut.GetQuizzes().Count);
-            Assert.Equal(0, sut.GetBuckets().Count);
-            sut.Dispose();
+            CourseConfigController sut = new CourseConfigController();
+
+            var actual = sut.GetEvaluationComponents();
+
+            Assert.NotNull(actual);
+            Assert.Empty(actual.BucketTopics);
+            Assert.Empty(actual.MarkableItems);
+            Assert.Equal(0, actual.BucketWeights);
+            //CourseConfigController sut = new CourseConfigController(AppContext.Create());
+            //Assert.Equal(0, sut.GetBucketTopics().Count);
+            //Assert.Equal(0, sut.GetQuizzes().Count);
+            //Assert.Equal(0, sut.GetBuckets().Count);
+            //sut.Dispose();
         }
         private void GivenEvaluationComponentDataToBeEntered()
         {
@@ -54,26 +64,40 @@ namespace StudentMark.Requirements.UserStories
             ExpectedTopics.Add(new Topic() { Description = "Virtual Machines" });
 
             ExpectedQuizzes = new List<Quiz>();
-            ExpectedQuizzes.Add(new Quiz() { Name = "Quiz A", Weight = 25, PotentialMarks = 40 });
-            ExpectedQuizzes.Add(new Quiz() { Name = "Quiz B", Weight = 15 });
-            ExpectedQuizzes.Add(new Quiz() { Name = "Quiz C", Weight = 10 });
+            ExpectedQuizzes.Add(new Quiz() { Name = "Quiz A", Weight = 25, PotentialMarks = 40, DisplayOrder = 1 });
+            ExpectedQuizzes.Add(new Quiz() { Name = "Quiz B", Weight = 15, DisplayOrder = 4 });
+            ExpectedQuizzes.Add(new Quiz() { Name = "Quiz C", Weight = 10, DisplayOrder = 8 });
 
             ExpectedConfiguration = new CourseConfiguration() { BucketWeight = 10 };
 
             ExpectedBuckets = new List<Bucket>();
-            ExpectedBuckets.Add(new Bucket() { Name = "OSI Model", Topic = ExpectedTopics[0], Weight = ExpectedConfiguration.BucketWeight });
-            ExpectedBuckets.Add(new Bucket() { Name = "Network Diagramming", Topic = ExpectedTopics[0], Weight = ExpectedConfiguration.BucketWeight });
-            ExpectedBuckets.Add(new Bucket() { Name = "DCHP and IPConfig", Topic = ExpectedTopics[1], Weight = ExpectedConfiguration.BucketWeight });
-            ExpectedBuckets.Add(new Bucket() { Name = "Classifying IP Addresses", Topic = ExpectedTopics[1], Weight = ExpectedConfiguration.BucketWeight });
-            ExpectedBuckets.Add(new Bucket() { Name = "Backup to a Virtual Machine", Topic = ExpectedTopics[2], Weight = ExpectedConfiguration.BucketWeight });
+            ExpectedBuckets.Add(new Bucket() { Name = "OSI Model", Topic = ExpectedTopics[0], Weight = ExpectedConfiguration.BucketWeight, DisplayOrder = 2 });
+            ExpectedBuckets.Add(new Bucket() { Name = "Network Diagramming", Topic = ExpectedTopics[0], Weight = ExpectedConfiguration.BucketWeight, DisplayOrder = 3 });
+            ExpectedBuckets.Add(new Bucket() { Name = "DCHP and IPConfig", Topic = ExpectedTopics[1], Weight = ExpectedConfiguration.BucketWeight, DisplayOrder = 5 });
+            ExpectedBuckets.Add(new Bucket() { Name = "Classifying IP Addresses", Topic = ExpectedTopics[1], Weight = ExpectedConfiguration.BucketWeight, DisplayOrder = 6 });
+            ExpectedBuckets.Add(new Bucket() { Name = "Backup to a Virtual Machine", Topic = ExpectedTopics[2], Weight = ExpectedConfiguration.BucketWeight, DisplayOrder = 7 });
+
+            var markables = new List<MarkableItem>();
+            foreach (var item in ExpectedBuckets)
+                markables.Add(item);
+            foreach (var item in ExpectedQuizzes)
+                markables.Add(item);
+            ExpectedEvaluationComponent = new EvaluationComponent()
+            {
+                BucketTopics = ExpectedTopics.ToList(),
+                BucketWeights = ExpectedConfiguration.BucketWeight,
+                MarkableItems = markables
+            };
         }
         private void WhenIAddEvaluationComponents()
         {
-            CourseConfigController sut = new CourseConfigController(AppContext.Create());
-            sut.AddCourseConfiguration(ExpectedConfiguration);
-            sut.AddBuckets(ExpectedBuckets);
-            sut.AddQuizzes(ExpectedQuizzes);
-            sut.Dispose();
+            CourseConfigController sut = new CourseConfigController();
+            sut.AddEvaluationComponents(ExpectedEvaluationComponent);
+            //CourseConfigController sut = new CourseConfigController(AppContext.Create());
+            //sut.AddCourseConfiguration(ExpectedConfiguration);
+            //sut.AddBuckets(ExpectedBuckets);
+            //sut.AddQuizzes(ExpectedQuizzes);
+            //sut.Dispose();
         }
         private void ThenICanRetrieveEvaluationComponentsForTheCourse()
         {

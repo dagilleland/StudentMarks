@@ -30,6 +30,8 @@ namespace StudentMarks.Models.Entities
         public int Id { get; set; }
         public string Name { get; set; }
         public int Weight { get; set; }
+
+        public int DisplayOrder { get; set; }
     }
     public class Quiz : MarkableItem
     {

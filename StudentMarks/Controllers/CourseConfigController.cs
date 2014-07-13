@@ -21,6 +21,7 @@ using StudentMarks.App;
 using StudentMarks.App.DAL;
 using StudentMarks.Models.Entities;
 using System.Data.Entity;
+using StudentMarks.Models.Entities.DTOs;
 
 namespace StudentMarks.Controllers
 {
@@ -84,12 +85,33 @@ namespace StudentMarks.Controllers
             }
         }
 
+        [Route("AddEvaluationComponents")]
+        public void AddEvaluationComponents(EvaluationComponent dto)
+        {
+            
+        }
+
         [Route("GetEvaluationComponents")]
-        public object GetEvaluationComponents()
+        public EvaluationComponent GetEvaluationComponents()
         {
             using (var db = AppContext.Create())
             {
-                return null;
+                List<MarkableItem> components = new List<MarkableItem>();
+                foreach (var item in db.Buckets)
+                    components.Add(item);
+                foreach (var item in db.Quizzes)
+                    components.Add(item);
+                int bucketWeight = 0;
+                var config = db.CourseCongiruations.FirstOrDefault();
+                if (config != null)
+                    bucketWeight = config.BucketWeight;
+
+                return new EvaluationComponent()
+                    {
+                        MarkableItems = components.OrderBy(x => x.DisplayOrder).ToList(),
+                        BucketTopics = db.Topics.ToList(),
+                        BucketWeights = bucketWeight
+                    };
             }
         }
         #endregion
