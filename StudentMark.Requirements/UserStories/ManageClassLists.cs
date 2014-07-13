@@ -23,7 +23,7 @@ namespace StudentMark.Requirements.UserStories
     public class ManageClassLists
     {
         [Theory]
-        [AutoRollback]
+        //[AutoRollback]
         [InlineData("Auresh", "Nsand", 12331414408L)]
         [InlineData("Aonathan", "Rjca", 12307165510L)]
         [InlineData("Bicholas", "Rnownlee", 12331783816L)]

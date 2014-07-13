@@ -86,9 +86,96 @@ namespace StudentMarks.Controllers
         }
 
         [Route("AddEvaluationComponents")]
-        public void AddEvaluationComponents(EvaluationComponent dto)
+        public void SaveEvaluationComponents(EvaluationComponent dto)
         {
-            
+            using (var db = AppContext.Create())
+            {
+                var config = db.CourseConfiruations.FirstOrDefault();
+                if (config == null)
+                    db.CourseConfiruations.Add(new CourseConfiguration() { BucketWeight = dto.BucketWeights });
+                else
+                {
+                    config.BucketWeight = dto.BucketWeights;
+                    db.CourseConfiruations.Attach(config);
+                    db.Entry(config).State = EntityState.Modified;
+                }
+
+                var newTopics = dto.BucketTopics;
+                var existing = db.Topics.ToList();
+                foreach (var item in existing)
+                    if (!newTopics.Exists(x => x.Description == item.Description))
+                        db.Topics.Remove(item);
+                foreach (var item in newTopics)
+                    if (!existing.Exists(x => x.Description == item.Description))
+                        db.Topics.Add(item);
+
+                db.SaveChanges();
+                existing = db.Topics.ToList();
+
+                var quizzes = (from item in dto.MarkableItems
+                               where item.ItemType.Equals("Quiz")
+                               select new Quiz()
+                               {
+                                   DisplayOrder = item.DisplayOrder,
+                                   Name = item.Name,
+                                   Weight = item.Weight.Value,
+                                   PotentialMarks = item.TotalPossibleMarks.HasValue ? item.TotalPossibleMarks.Value : 0,
+                                   Id = item.ID.HasValue ? item.ID.Value : 0
+                               }).ToList();
+                List<Quiz> dbQuizzesToList = db.Quizzes.ToList();
+                foreach (var item in dbQuizzesToList)
+                    if (!quizzes.Exists(x => x.Id == item.Id))
+                        db.Quizzes.Remove(item);
+                foreach (var item in quizzes)
+                {
+                    var found = dbQuizzesToList.FirstOrDefault(x => x.Id == item.Id);
+                    if (found == null)
+                        db.Quizzes.Add(item);
+                    else
+                    {
+                        found = db.Quizzes.Find(item.Id);
+                        found.Name = item.Name;
+                        found.PotentialMarks = item.PotentialMarks;
+                        found.Weight = item.Weight;
+                        found.DisplayOrder = item.DisplayOrder;
+                        db.Quizzes.Attach(found);
+                        db.Entry(found).State = EntityState.Modified;
+                    }
+                }
+
+                var buckets = (from item in dto.MarkableItems
+                               where item.ItemType.Equals("Bucket")
+                               select new Bucket()
+                               {
+                                   DisplayOrder = item.DisplayOrder,
+                                   Name = item.Name,
+                                   Weight = dto.BucketWeights,
+                                   Id = item.ID.HasValue ? item.ID.Value : 0,
+                                   TopicID = existing.Single(x => x.Description == item.Topic).TopicID
+                               }).ToList();
+                List<Bucket> dbBucketsToList = db.Buckets.ToList();
+                foreach (var item in dbBucketsToList)
+                    if (!buckets.Exists(x => x.Id == item.Id))
+                        db.Buckets.Remove(item);
+                foreach (var item in buckets)
+                {
+                    var found = dbBucketsToList.FirstOrDefault(x=>x.Id == item.Id);
+                    if (found == null)
+                        db.Buckets.Add(item);
+                    else
+                    {
+                        found = db.Buckets.Find(item.Id);
+                        found.Name = item.Name;
+                        found.TopicID = item.TopicID;
+                        found.Weight = item.Weight;
+                        found.DisplayOrder = item.DisplayOrder;
+                        db.Buckets.Attach(found);
+                        db.Entry(found).State = EntityState.Modified;
+                    }
+                }
+
+                db.SaveChanges();
+            }
         }
 
         [Route("GetEvaluationComponents")]
@@ -96,13 +183,13 @@ namespace StudentMarks.Controllers
         {
             using (var db = AppContext.Create())
             {
-                List<MarkableItem> components = new List<MarkableItem>();
+                List<Component> components = new List<Component>();
                 foreach (var item in db.Buckets)
-                    components.Add(item);
+                    components.Add(new Component(item));
                 foreach (var item in db.Quizzes)
-                    components.Add(item);
+                    components.Add(new Component(item));
                 int bucketWeight = 0;
-                var config = db.CourseCongiruations.FirstOrDefault();
+                var config = db.CourseConfiruations.FirstOrDefault();
                 if (config != null)
                     bucketWeight = config.BucketWeight;
 
@@ -135,7 +222,7 @@ namespace StudentMarks.Controllers
         #region Commands - CQRS
         public void AddCourseConfiguration(CourseConfiguration info)
         {
-            SharedContext.CourseCongiruations.Add(info);
+            SharedContext.CourseConfiruations.Add(info);
         }
         public void AddBuckets(IList<Bucket> info)
         {

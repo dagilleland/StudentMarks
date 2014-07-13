@@ -31,7 +31,7 @@ namespace StudentMark.Requirements.UserStories
         CourseConfiguration ExpectedConfiguration;
 
         [Fact]
-        [AutoRollback]
+        //[AutoRollback]
         public void EnterEvaluationComponents()
         {
             this.Given(_ => GivenNoEvaluationComponentInformationHasBeenEntered())
@@ -77,11 +77,11 @@ namespace StudentMark.Requirements.UserStories
             ExpectedBuckets.Add(new Bucket() { Name = "Classifying IP Addresses", Topic = ExpectedTopics[1], Weight = ExpectedConfiguration.BucketWeight, DisplayOrder = 6 });
             ExpectedBuckets.Add(new Bucket() { Name = "Backup to a Virtual Machine", Topic = ExpectedTopics[2], Weight = ExpectedConfiguration.BucketWeight, DisplayOrder = 7 });
 
-            var markables = new List<MarkableItem>();
+            var markables = new List<Component>();
             foreach (var item in ExpectedBuckets)
-                markables.Add(item);
+                markables.Add(new Component(item));
             foreach (var item in ExpectedQuizzes)
-                markables.Add(item);
+                markables.Add(new Component(item));
             ExpectedEvaluationComponent = new EvaluationComponent()
             {
                 BucketTopics = ExpectedTopics.ToList(),
@@ -92,7 +92,7 @@ namespace StudentMark.Requirements.UserStories
         private void WhenIAddEvaluationComponents()
         {
             CourseConfigController sut = new CourseConfigController();
-            sut.AddEvaluationComponents(ExpectedEvaluationComponent);
+            sut.SaveEvaluationComponents(ExpectedEvaluationComponent);
             //CourseConfigController sut = new CourseConfigController(AppContext.Create());
             //sut.AddCourseConfiguration(ExpectedConfiguration);
             //sut.AddBuckets(ExpectedBuckets);
@@ -110,7 +110,7 @@ namespace StudentMark.Requirements.UserStories
 
         #region Primary - Enter Course Name
         [Fact]
-        [AutoRollback]
+        //[AutoRollback]
         public void SetCourseName()
         {
             this.When(_ => WhenIEnterACourseName("Networking 101"))

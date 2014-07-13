@@ -24,6 +24,6 @@ namespace StudentMarks.App.DAL
         public DbSet<Topic> Topics { get; set; }
         public DbSet<Quiz> Quizzes { get; set; }
         public DbSet<Bucket> Buckets { get; set; }
-        public DbSet<CourseConfiguration> CourseCongiruations { get; set; }
+        public DbSet<CourseConfiguration> CourseConfiruations { get; set; }
     }
 }

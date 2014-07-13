@@ -20,7 +20,7 @@ namespace StudentMark.Requirements.UserStories
     public class ViewClassMarks
     {
         [Fact]
-        [AutoRollback]
+        //[AutoRollback]
         public void GetClassMarks()
         {
             this.Given(_ => GivenAnExistingClassList())
