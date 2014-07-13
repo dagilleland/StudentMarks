@@ -184,7 +184,7 @@ namespace StudentMarks.Controllers
             using (var db = AppContext.Create())
             {
                 List<Component> components = new List<Component>();
-                foreach (var item in db.Buckets)
+                foreach (var item in db.Buckets.Include("Topic"))
                     components.Add(new Component(item));
                 foreach (var item in db.Quizzes)
                     components.Add(new Component(item));

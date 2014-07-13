@@ -14,11 +14,13 @@ using StudentMarks.App.DAL;
 
 namespace StudentMarks.Controllers
 {
+    [RoutePrefix("api/Students")]
     public class StudentsController : ApiController
     {
         //private AppContext db = AppContext.Create();
 
         // GET: api/Students
+        [Route("GetStudents")]
         public IList<Student> GetStudents()
         {
             using (var db = AppContext.Create())
@@ -27,8 +29,9 @@ namespace StudentMarks.Controllers
             }
         }
 
-        // GET: api/Students/5
-        [ResponseType(typeof(Student))]
+        // GET: api/Student/5
+        [Route("GetStudent/{id}")]
+        //[ResponseType(typeof(Student))]
         public Student GetStudent(int id)
         {
             using (var db = AppContext.Create())
