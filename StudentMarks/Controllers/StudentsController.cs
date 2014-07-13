@@ -68,7 +68,7 @@ namespace StudentMarks.Controllers
                     return BadRequest(ModelState);
                 }
 
-                if (id != student.Id)
+                if (id != student.StudentID)
                 {
                     return BadRequest();
                 }
@@ -162,7 +162,7 @@ namespace StudentMarks.Controllers
         {
             using (var db = AppContext.Create())
             {
-                return db.Students.Count(e => e.Id == id) > 0;
+                return db.Students.Count(e => e.StudentID == id) > 0;
             }
         }
     }

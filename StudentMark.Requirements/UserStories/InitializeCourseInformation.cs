@@ -13,6 +13,7 @@ using StudentMarks.Models.Entities;
 using StudentMarks.Controllers;
 using System.Web.Http;
 using System.Web.Http.Results;
+using StudentMarks.App.DAL;
 
 namespace StudentMark.Requirements.UserStories
 {
@@ -22,6 +23,11 @@ namespace StudentMark.Requirements.UserStories
     public class InitializeCourseInformation
     {
         #region Primary - Enter Evaluation Components
+        IList<Topic> ExpectedTopics;
+        IList<Quiz> ExpectedQuizzes;
+        IList<Bucket> ExpectedBuckets;
+        CourseConfiguration ExpectedConfiguration;
+
         [Fact]
         [AutoRollback]
         public void EnterEvaluationComponents()
@@ -34,19 +40,47 @@ namespace StudentMark.Requirements.UserStories
         }
         private void GivenNoEvaluationComponentInformationHasBeenEntered()
         {
-            throw new NotImplementedException();
+            CourseConfigController sut = new CourseConfigController(AppContext.Create());
+            Assert.Equal(0, sut.GetBucketTopics().Count);
+            Assert.Equal(0, sut.GetQuizzes().Count);
+            Assert.Equal(0, sut.GetBuckets().Count);
+            sut.Dispose();
         }
-        private Task GivenEvaluationComponentDataToBeEntered()
+        private void GivenEvaluationComponentDataToBeEntered()
         {
-            throw new NotImplementedException();
+            ExpectedTopics = new List<Topic>();
+            ExpectedTopics.Add(new Topic() { Description = "Network Model" });
+            ExpectedTopics.Add(new Topic() { Description = "IP Addressing" });
+            ExpectedTopics.Add(new Topic() { Description = "Virtual Machines" });
+
+            ExpectedQuizzes = new List<Quiz>();
+            ExpectedQuizzes.Add(new Quiz() { Name = "Quiz A", Weight = 25, PotentialMarks = 40 });
+            ExpectedQuizzes.Add(new Quiz() { Name = "Quiz B", Weight = 15 });
+            ExpectedQuizzes.Add(new Quiz() { Name = "Quiz C", Weight = 10 });
+
+            ExpectedConfiguration = new CourseConfiguration() { BucketWeight = 10 };
+
+            ExpectedBuckets = new List<Bucket>();
+            ExpectedBuckets.Add(new Bucket() { Name = "OSI Model", Topic = ExpectedTopics[0], Weight = ExpectedConfiguration.BucketWeight });
+            ExpectedBuckets.Add(new Bucket() { Name = "Network Diagramming", Topic = ExpectedTopics[0], Weight = ExpectedConfiguration.BucketWeight });
+            ExpectedBuckets.Add(new Bucket() { Name = "DCHP and IPConfig", Topic = ExpectedTopics[1], Weight = ExpectedConfiguration.BucketWeight });
+            ExpectedBuckets.Add(new Bucket() { Name = "Classifying IP Addresses", Topic = ExpectedTopics[1], Weight = ExpectedConfiguration.BucketWeight });
+            ExpectedBuckets.Add(new Bucket() { Name = "Backup to a Virtual Machine", Topic = ExpectedTopics[2], Weight = ExpectedConfiguration.BucketWeight });
         }
-        private Task WhenIAddEvaluationComponents()
+        private void WhenIAddEvaluationComponents()
         {
-            throw new NotImplementedException();
+            CourseConfigController sut = new CourseConfigController(AppContext.Create());
+            sut.AddCourseConfiguration(ExpectedConfiguration);
+            sut.AddBuckets(ExpectedBuckets);
+            sut.AddQuizzes(ExpectedQuizzes);
+            sut.Dispose();
         }
-        private Task ThenICanRetrieveEvaluationComponentsForTheCourse()
+        private void ThenICanRetrieveEvaluationComponentsForTheCourse()
         {
-            throw new NotImplementedException();
+            CourseConfigController sut = new CourseConfigController(AppContext.Create());
+            Assert.Equal(ExpectedTopics.Count, sut.GetBucketTopics().Count);
+            Assert.Equal(ExpectedQuizzes.Count, sut.GetQuizzes().Count);
+            Assert.Equal(ExpectedBuckets.Count, sut.GetBuckets().Count);
         }
         #endregion
 

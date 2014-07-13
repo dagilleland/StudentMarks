@@ -20,6 +20,7 @@ using StudentMarks.Results;
 using StudentMarks.App;
 using StudentMarks.App.DAL;
 using StudentMarks.Models.Entities;
+using System.Data.Entity;
 
 namespace StudentMarks.Controllers
 {
@@ -28,8 +29,28 @@ namespace StudentMarks.Controllers
     [RoutePrefix("api/CourseConfig")]
     public class CourseConfigController : ApiController
     {
+        #region Constructors, Fields/Properties, Overrides
+        protected override void Dispose(bool disposing)
+        {
+            base.Dispose(disposing);
+            if (disposing && SharedContext != null && SharedContext.Database.Connection.State != System.Data.ConnectionState.Closed)
+            {
+                SharedContext.Dispose();
+                SharedContext = null;
+            }
+        }
+
+        private AppContext SharedContext;
+        public CourseConfigController(AppContext context)
+        {
+            SharedContext = context;
+        }
+        public CourseConfigController() : this(null) { }
+        #endregion
+
         //private CourseConfigurationManager _configManager;
 
+        #region Public WebAPI Routes
         // POST api/CourseConfig/SetCourseName
         [Route("SetCourseName")]
         public void SetCourseName(string name)
@@ -62,6 +83,49 @@ namespace StudentMarks.Controllers
                     return "Un-named Course";
             }
         }
+
+        [Route("GetEvaluationComponents")]
+        public object GetEvaluationComponents()
+        {
+            using (var db = AppContext.Create())
+            {
+                return null;
+            }
+        }
+        #endregion
+
+        #region Internal Methods
+        #region  Queries - CQRS
+        internal IList<Topic> GetBucketTopics()
+        {
+            return SharedContext.Topics.ToList();
+        }
+        internal IList<Quiz> GetQuizzes()
+        {
+            return SharedContext.Quizzes.ToList();
+        }
+        internal IList<Bucket> GetBuckets()
+        {
+            return SharedContext.Buckets.ToList();
+        }
+        #endregion
+
+        #region Commands - CQRS
+        public void AddCourseConfiguration(CourseConfiguration info)
+        {
+            SharedContext.CourseCongiruations.Add(info);
+        }
+        public void AddBuckets(IList<Bucket> info)
+        {
+            SharedContext.Buckets.AddRange(info);
+        }
+        public void AddQuizzes(IList<Quiz> info)
+        {
+            SharedContext.Quizzes.AddRange(info);
+        }
+        #endregion
+        #endregion
+
 
     }
 }
