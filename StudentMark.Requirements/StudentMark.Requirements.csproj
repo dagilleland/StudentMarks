@@ -91,6 +91,7 @@
   <ItemGroup>
     <Compile Include="Helpers\Constants.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UserStories\EnterStudentMarks.cs" />
     <Compile Include="UserStories\InitializeCourseInformation.cs" />
     <Compile Include="UserStories\ManageClassLists.cs" />
     <Compile Include="UserStories\ViewClassMarks.cs" />

@@ -22,6 +22,7 @@ namespace StudentMark.Requirements.UserStories
            Title = "Manage Class List")]
     public class ManageClassLists
     {
+        #region Primary - Enter Student Names
         [Theory]
         //[AutoRollback]
         [InlineData("Auresh", "Nsand", 12331414408L)]
@@ -78,11 +79,12 @@ namespace StudentMark.Requirements.UserStories
         private void ThenTheStudentHasBeenAdded(Student expected, Student actual)
         {
             StudentsController sut = new StudentsController();
-            actual = (sut.GetStudent(actual.StudentID)) ;// as OkNegotiatedContentResult<Student>).Content;
+            actual = (sut.GetStudent(actual.StudentID));// as OkNegotiatedContentResult<Student>).Content;
             Assert.Equal(expected.FirstName, actual.FirstName);
             Assert.Equal(expected.LastName, actual.LastName);
             Assert.Equal(expected.SchoolID, actual.SchoolID);
         }
+        #endregion
     }
 }
 

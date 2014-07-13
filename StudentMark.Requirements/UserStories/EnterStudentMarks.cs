@@ -16,22 +16,22 @@ using System.Web.Http.Results;
 
 namespace StudentMark.Requirements.UserStories
 {
-    [Story(AsA = Actor.INSTRUCTOR, 
-           IWant = "To view marks for the whole class",
-           SoThat = "I can see the overall progress of my students",
-           Title = "View Class Marks")]
-    public class ViewClassMarks
+    [Story(AsA = Actor.INSTRUCTOR,
+               IWant = "To enter student marks",
+               SoThat = "I can track each student's progress in the course",
+               Title = "Enter Student Marks")]
+    public class EnterStudentMarks
     {
         #region Primary - Get Student Marks
         [Fact]
         //[AutoRollback]
-        public void GetClassMarks()
+        public void EnterClassMarks()
         {
             this.Given(_ => GivenAnExistingClassList())
                 .And(_ => GivenAnExistingMarkStructure())
-                .And(_ => GivenMarksHaveBeenEntered())
-                .When(_ => WhenIRequestMarks())
-                .Then(_ => ThenClassMarksAreRetrievedForViewing())
+                .And(_ => GivenMarksHaveNotBeenEntered())
+                .When(_ => WhenIEnterMarks())
+                .Then(_ => ThenClassMarksCanBeRetrievedForViewing())
                 .BDDfy();
         }
         private void GivenAnExistingClassList()
@@ -42,15 +42,15 @@ namespace StudentMark.Requirements.UserStories
         {
             throw new NotImplementedException();
         }
-        private Task GivenMarksHaveBeenEntered()
+        private Task GivenMarksHaveNotBeenEntered()
         {
             throw new NotImplementedException();
         }
-        private Task WhenIRequestMarks()
+        private Task WhenIEnterMarks()
         {
             throw new NotImplementedException();
         }
-        private Task ThenClassMarksAreRetrievedForViewing()
+        private Task ThenClassMarksCanBeRetrievedForViewing()
         {
             throw new NotImplementedException();
         }
