@@ -32,7 +32,10 @@ angular.module('App.Services')
 
         // POST api/CourseConfig/SaveEvaluationComponents
         saveEvaluationComponents: function (data) {
-            return $http.post(urlService.url(routePrefix, 'SaveEvaluationComponents'));
+            return $http.post(
+                urlService.url(routePrefix, 'SaveEvaluationComponents'),
+                data
+                );
         },
         // GET api/CourseConfig/GetEvaluationComponents
         getEvaluationComponents: function () {

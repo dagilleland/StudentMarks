@@ -53,7 +53,13 @@ angular.module('App.Controllers')
         $scope.courseName = $scope.courseConfig.resetCourseName;
     }
     $scope.saveComponents = function () {
-        alert($scope.courseEval);
+        //alert($scope.courseEval);
+        $scope.webApiStatus = "Saving Course Evaluation Components...";
+        courseConfigService.saveEvaluationComponents($scope.courseEval).then(function () {
+            $scope.webApiStatus = "Course Evaluation Components Saved.";
+            loadEvaluationComponents();
+            $timeout(clearWebApiStatus, 1500);
+        });
     };
 
     $scope.resetComponents = function () {
