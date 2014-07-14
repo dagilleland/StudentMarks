@@ -9,11 +9,11 @@ angular.module('App.Controllers')
     // Load data from server
     courseConfigService.getCourseName().then(function (data) {
         $scope.courseName = data.data;
-        $scope.courseConfig.courseName = data.data;
+        $scope.courseConfig.resetCourseName = angular.copy($scope.courseName);
     });
     courseConfigService.getEvaluationComponents().then(function (data) {
         $scope.courseEval = data.data;
-        $scope.courseConfig.courseEval = data.data;
+        $scope.courseConfig.resetCourseEval = angular.copy($scope.courseEval);
         console.log(data);
     });
 
@@ -35,7 +35,14 @@ angular.module('App.Controllers')
     };
 
     $scope.resetCourseName = function () {
-        $scope.courseName = $scope.courseConfig.courseName;
+        $scope.courseName = $scope.courseConfig.resetCourseName;
+    }
+    $scope.saveComponents = function () {
+        alert($scope.courseEval);
+    };
+
+    $scope.resetComponents = function () {
+        $scope.courseEval = $scope.courseConfig.resetCourseEval;
     }
 }]);
 
