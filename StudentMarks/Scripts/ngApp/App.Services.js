@@ -18,12 +18,25 @@ angular.module('App.Services')
 .factory('courseConfigService', function ($http, urlService) {
     var routePrefix = 'api/CourseConfig';
     return {
-        // api/CourseConfig/SetCourseName
+        // POST api/CourseConfig/SetCourseName
+        setCourseName: function(data) {
+            return $http.post(urlService.url(routePrefix, 'SetCourseName'));
+        },
 
-        // api/CourseConfig/GetCourseName
+        // GET api/CourseConfig/GetCourseName
         getCourseName: function () {
             return $http.get(urlService.url(routePrefix, 'GetCourseName'));
+        },
+
+        // POST api/CourseConfig/SaveEvaluationComponents
+        saveEvaluationComponents: function (data) {
+            return $http.post(urlService.url(routePrefix, 'SaveEvaluationComponents'));
+        },
+        // GET api/CourseConfig/GetEvaluationComponents
+        getEvaluationComponents: function () {
+            return $http.get(urlService.url(routePrefix, 'GetEvaluationComponents'));
         }
+
     };
 });
 

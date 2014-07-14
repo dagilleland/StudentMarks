@@ -1,13 +1,46 @@
 ﻿<div ng-app="myApp">
-    <div class="jumbotron">
-        <h1>Student Marks</h1>
-        <p class="lead">Student Marks is a course-specific tool for entering and maintaining student marks.</p>
-        <p>This is the result of a learning project to gain a better understanding of using various modern server-side and client-side technologies.</p>
-    </div>
-    <div class="row">
-        <div class="col-md-12" ng-controller="courseConfigCtrl">
-            <h1>Configure Course</h1>
-            {{ courseName }}
+    <div ng-controller="courseConfigCtrl">
+        <div class="jumbotron">
+            <h1>Student Marks {{ '&ndash; ' + courseName }}</h1>
+            <p class="lead">Student Marks is a course-specific tool for entering and maintaining student marks.</p>
+            <p>This is the result of a learning project to gain a better understanding of using various modern server-side and client-side technologies.</p>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <h1>Configure Course</h1>
+                <input type="text" ng-model="courseName" />
+                <input type="button" value="Save Changes" ng-click="saveCourseName()" />
+                <input type="button" value="Reset" ng-click="resetCourseName()" />
+
+                <h2>Evaluation Components</h2>
+                <p>
+                    Edit markable items and save changes.
+                    <input type="button" value="Save Changes" ng-click="saveComponents()" />
+                    <input type="button" value="Reset" ng-click="resetComponents()" />
+                </p>
+                <div ng-repeat="item in courseEval.MarkableItems">
+                    <div class="row">
+                        <input type="radio" value="Quiz" ng-model="item.ItemType" /> Quiz
+                        <input type="radio" value="Bucket" ng-model="item.ItemType" /> Bucket
+
+                        <input type="text" ng-model="item.Name" />
+                        <span ng-switch="item.ItemType">
+                            <span ng-switch-when="Quiz">
+                                <input type="number" ng-model="item.Weight" />
+                                <input type="number" ng-model="item.TotalPossibleMarks" />
+                            </span>
+                            <span ng-switch-when="Bucket">
+                                <select ng-model="item.TopicID" ng-options="topic.TopicID as topic.Description for topic in courseEval.BucketTopics"></select>
+                                <input type="hidden" ng-model="item.TopicID" />
+                            </span>
+                        </span>
+                    </div>
+                </div>
+                <p>Total Weight of Evaluation Components: {{ totalWeight() + ' %' }}</p>
+
+                <h2>Buckets and Topics</h2>
+
+            </div>
         </div>
     </div>
     <div class="row">

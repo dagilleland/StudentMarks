@@ -53,8 +53,9 @@ namespace StudentMarks.Controllers
 
         #region Public WebAPI Routes
         // POST api/CourseConfig/SetCourseName
+        [HttpPost]
         [Route("SetCourseName")]
-        public void SetCourseName(string name)
+        public void SetCourseName([FromBody]string name)
         {
             using (var db = AppContext.Create())
             {
@@ -72,6 +73,9 @@ namespace StudentMarks.Controllers
                 db.SaveChanges();
             }
         }
+
+        // GET api/CourseConfig/GetCourseName
+        [HttpGet]
         [Route("GetCourseName")]
         public string GetCourseName()
         {
@@ -85,8 +89,10 @@ namespace StudentMarks.Controllers
             }
         }
 
-        [Route("AddEvaluationComponents")]
-        public void SaveEvaluationComponents(EvaluationComponent dto)
+        // POST api/CourseConfig/SaveEvaluationComponents
+        [HttpPost]
+        [Route("SaveEvaluationComponents")]
+        public void SaveEvaluationComponents([FromBody]EvaluationComponent dto)
         {
             using (var db = AppContext.Create())
             {
@@ -178,6 +184,8 @@ namespace StudentMarks.Controllers
             }
         }
 
+        // GET api/CourseConfig/GetEvaluationComponents
+        [HttpGet]
         [Route("GetEvaluationComponents")]
         public EvaluationComponent GetEvaluationComponents()
         {
