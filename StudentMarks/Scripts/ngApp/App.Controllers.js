@@ -5,6 +5,7 @@ angular.module('App.Controllers', ['App.Services']);
 angular.module('App.Controllers')
 .controller('courseConfigCtrl', ['$scope', '$timeout', 'courseConfigService', function ($scope, $timeout, courseConfigService) {
     $scope.courseConfig = {};
+    $scope.courseConfig.displayPositions = [];
     $scope.webApiStatus = '';
     // Load data from server
     var loadCourseName = function () {
@@ -17,8 +18,11 @@ angular.module('App.Controllers')
     var loadEvaluationComponents = function () {
         courseConfigService.getEvaluationComponents().then(function (data) {
             $scope.courseEval = data.data;
+            for (var i = 0; i < $scope.courseEval.MarkableItems.length; i++) {
+                $scope.courseConfig.displayPositions.push($scope.courseEval.MarkableItems[i].DisplayOrder);
+            };
             $scope.courseConfig.resetCourseEval = angular.copy($scope.courseEval);
-            console.log(data);
+            //console.log(data);
         });
     };
     var clearWebApiStatus = function () { $scope.webApiStatus = ''; };
@@ -64,6 +68,23 @@ angular.module('App.Controllers')
 
     $scope.resetComponents = function () {
         $scope.courseEval = $scope.courseConfig.resetCourseEval;
+    }
+
+    $scope.reorder = function (item) {
+        console.log(item);
+        var itemIndex, otherIndex;
+        var otherItem;
+        for (var i = 0; i < $scope.courseEval.MarkableItems.length; i++) {
+            if ($scope.courseEval.MarkableItems[i].DisplayOrder === item.DisplayOrder)
+                if ($scope.courseEval.MarkableItems[i].Name !== item.Name) {
+                    otherIndex = i;
+                } else {
+                    itemIndex = i;
+                }
+        }
+        otherItem = $scope.courseEval.MarkableItems[otherIndex];
+        console.log(otherItem);
+        console.log('From ' + itemIndex + ' To ' + otherIndex);
     }
 }]);
 
