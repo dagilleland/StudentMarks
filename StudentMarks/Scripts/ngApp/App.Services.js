@@ -19,8 +19,10 @@ angular.module('App.Services')
     var routePrefix = 'api/CourseConfig';
     return {
         // POST api/CourseConfig/SetCourseName
-        setCourseName: function(data) {
-            return $http.post(urlService.url(routePrefix, 'SetCourseName'));
+        setCourseName: function (data) {
+            // CREDITS: http://www.jasonwatmore.com/post/2014/04/18/Post-a-simple-string-value-from-AngularJS-to-NET-Web-API.aspx
+            // NOTE: For simple string data, be sure to a) wrap in double-quotes as below and b) have only one parameter on the server-side WebAPI
+            return $http.post(urlService.url(routePrefix, 'SetCourseName'), '"' + data + '"');
         },
 
         // GET api/CourseConfig/GetCourseName

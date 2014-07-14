@@ -55,7 +55,8 @@ namespace StudentMarks.Controllers
         // POST api/CourseConfig/SetCourseName
         [HttpPost]
         [Route("SetCourseName")]
-        public void SetCourseName([FromBody]string name)
+        //[ActionName("Simple")]
+        public void SetCourseName([FromBody] string name)
         {
             using (var db = AppContext.Create())
             {
