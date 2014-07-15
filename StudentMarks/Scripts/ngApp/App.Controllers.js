@@ -5,6 +5,8 @@ angular.module('App.Controllers', ['App.Services']);
 angular.module('App.Controllers')
 .controller('courseConfigCtrl', ['$scope', '$timeout', 'courseConfigService', function ($scope, $timeout, courseConfigService) {
     $scope.courseConfig = {};
+    $scope.newItem = {};
+    $scope.newTopic = "";
     $scope.courseConfig.displayPositions = [];
     $scope.webApiStatus = '';
     // Load data from server
@@ -106,7 +108,45 @@ angular.module('App.Controllers')
         var index = $scope.courseEval.MarkableItems.indexOf(item);
         if (index >= 0) {
             $scope.courseEval.MarkableItems.splice(index, 1);
+            // TODO: Clean up DisplayOrder as a result of removing item
+
+            // TODO: Clean up $scope.courseConfig.displayPositions as a result of removing item
         }
+    };
+
+    $scope.add = function () {
+        console.log($scope.newItem);
+        var newItem = {
+            ID: 0,
+            ItemType: angular.copy($scope.newItem.ItemType),
+            Name: angular.copy($scope.newItem.Name),
+            DisplayOrder: $scope.courseEval.MarkableItems.length + 1
+        };
+        if ($scope.newItem.ItemType === "Quiz") {
+            newItem.Weight = $scope.newItem.Weight;
+            newItem.TotalPossibleMarks = $scope.newItem.TotalPossibleMarks | null;
+        } else {
+            newItem.Topic = $scope.newItem.Topic;
+            newItem.TopicID = $scope.newItem.TopicID | null;
+        }
+        $scope.courseEval.MarkableItems.push(newItem);
+        // TODO: Add to $scope.courseConfig.displayPositions as a result of adding item
+        $scope.courseConfig.displayPositions.push(newItem.DisplayOrder);
+        $scope.newItem = {};
+    };
+
+    $scope.deleteTopic = function (item) {
+        var index = $scope.courseEval.BucketTopics.indexOf(item);
+        if (index >= 0) {
+            $scope.courseEval.BucketTopics.splice(index, 1);
+        }
+    };
+
+    $scope.addTopic = function () {
+        console.log($scope.newTopic);
+        var newTopic = { TopicID: 0, Description: angular.copy($scope.newTopic) };
+        $scope.courseEval.BucketTopics.push(newTopic);
+        $scope.newTopic = "";
     };
 }]);
 

@@ -40,10 +40,39 @@
                         </span>
                     </div>
                 </div>
+                <div class="well">
+                    <button ng-click="add()"><span class="glyphicon glyphicon-plus"></span></button>
+                    &mdash;
+                    
+                    <input type="radio" value="Quiz" ng-model="newItem.ItemType" /> Quiz
+                    <input type="radio" value="Bucket" ng-model="newItem.ItemType" /> Bucket
+
+                    <input type="text" ng-model="newItem.Name" />
+                    <span ng-switch="newItem.ItemType">
+                        <span ng-switch-when="Quiz">
+                            <input type="number" ng-model="newItem.Weight" />
+                            <input type="number" ng-model="newItem.TotalPossibleMarks" />
+                        </span>
+                        <span ng-switch-when="Bucket">
+                            <select ng-model="newItem.TopicID" ng-options="topic.TopicID as topic.Description for topic in courseEval.BucketTopics"></select>
+                            <input type="hidden" ng-model="newItem.TopicID" />
+                        </span>
+                    </span>
+                </div>
                 <p>Total Weight of Evaluation Components: {{ totalWeight() + ' %' }}</p>
 
                 <h2>Buckets and Topics</h2>
-
+                <p>
+                    Individual Bucket Weights:
+                    <input type="number" ng-model="courseEval.BucketWeights" />
+                </p>
+                <span ng-repeat="topic in courseEval.BucketTopics">
+                    <button ng-click="deleteTopic(topic)"><span class="glyphicon glyphicon-remove"></span>{{topic.Description}}</button>
+                </span>
+                <div class="well well-sm">
+                    <button ng-click="addTopic()"><span class="glyphicon glyphicon-plus"></span></button>
+                    <input type="text" ng-model="newTopic" />
+                </div>
             </div>
         </div>
     </div>
