@@ -20,6 +20,8 @@
                 </p>
                 <div ng-repeat="item in courseEval.MarkableItems">
                     <div draggable="true">
+                        <button ng-click="delete(item)"><span class="glyphicon glyphicon-remove"></span></button>
+                        &mdash;
                         {{item.DisplayOrder + ' to '}}
                         <select ng-model="item.DisplayOrder" ng-options="position for position in courseConfig.displayPositions" ng-change="reorder(item)"></select>
                         <input type="radio" value="Quiz" ng-model="item.ItemType" /> Quiz

@@ -54,7 +54,7 @@ angular.module('App.Controllers')
     };
 
     $scope.resetCourseName = function () {
-        $scope.courseName = $scope.courseConfig.resetCourseName;
+        $scope.courseName = angular.copy($scope.courseConfig.resetCourseName);
     }
     $scope.saveComponents = function () {
         //alert($scope.courseEval);
@@ -67,7 +67,7 @@ angular.module('App.Controllers')
     };
 
     $scope.resetComponents = function () {
-        $scope.courseEval = $scope.courseConfig.resetCourseEval;
+        $scope.courseEval = angular.copy($scope.courseConfig.resetCourseEval);
     }
 
     $scope.reorder = function (item) {
@@ -101,5 +101,12 @@ angular.module('App.Controllers')
             }
         }
     }
+
+    $scope.delete = function (item) {
+        var index = $scope.courseEval.MarkableItems.indexOf(item);
+        if (index >= 0) {
+            $scope.courseEval.MarkableItems.splice(index, 1);
+        }
+    };
 }]);
 
