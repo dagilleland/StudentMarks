@@ -71,8 +71,7 @@ angular.module('App.Controllers')
     }
 
     $scope.reorder = function (item) {
-        console.log(item);
-        var itemIndex, otherIndex;
+        var itemIndex, otherIndex = -1;
         var otherItem;
         for (var i = 0; i < $scope.courseEval.MarkableItems.length; i++) {
             if ($scope.courseEval.MarkableItems[i].DisplayOrder === item.DisplayOrder)
@@ -82,9 +81,25 @@ angular.module('App.Controllers')
                     itemIndex = i;
                 }
         }
-        otherItem = $scope.courseEval.MarkableItems[otherIndex];
-        console.log(otherItem);
-        console.log('From ' + itemIndex + ' To ' + otherIndex);
+        if (otherIndex > -1) {
+            otherItem = $scope.courseEval.MarkableItems[otherIndex];
+
+            if (itemIndex < otherIndex) {
+                while (itemIndex < otherIndex) {
+                    $scope.courseEval.MarkableItems[itemIndex] = $scope.courseEval.MarkableItems[itemIndex + 1];
+                    $scope.courseEval.MarkableItems[itemIndex].DisplayOrder--;
+                    itemIndex++;
+                }
+                $scope.courseEval.MarkableItems[otherIndex] = item;
+            } else {
+                while (itemIndex > otherIndex) {
+                    $scope.courseEval.MarkableItems[itemIndex] = $scope.courseEval.MarkableItems[itemIndex - 1];
+                    $scope.courseEval.MarkableItems[itemIndex].DisplayOrder++;
+                    itemIndex--;
+                }
+                $scope.courseEval.MarkableItems[otherIndex] = item;
+            }
+        }
     }
 }]);
 
