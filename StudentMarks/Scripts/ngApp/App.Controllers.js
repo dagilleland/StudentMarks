@@ -2,14 +2,20 @@
 
 angular.module('App.Controllers', ['App.Services', 'ui.bootstrap']);
 
+//#region courseConfigCtrl
 angular.module('App.Controllers')
-.controller('courseConfigCtrl', ['$scope', '$timeout', 'courseConfigService', 'modalService', function ($scope, $timeout, courseConfigService, modalService) {
+.controller('courseConfigCtrl',
+['$scope', '$timeout', 'courseConfigService', 'modalService',
+    function ($scope, $timeout, courseConfigService, modalService) {
+    //#region Initial Model values
     $scope.courseConfig = {};
     $scope.newItem = {};
     $scope.newTopic = "";
     $scope.courseConfig.displayPositions = [];
     $scope.webApiStatus = '';
-    // Load data from server
+    //#endregion
+
+    //#region Load data from server
     var loadCourseName = function () {
         courseConfigService.getCourseName().then(function (data) {
             // Stripping all double-quotes from simple string result
@@ -31,8 +37,9 @@ angular.module('App.Controllers')
 
     loadCourseName();
     loadEvaluationComponents();
+    //#endregion
 
-    // Dynamic Values
+    //#region Dynamic Values
     $scope.totalWeight = function () {
         var total = 0;
         if ($scope.courseEval) {
@@ -43,11 +50,10 @@ angular.module('App.Controllers')
 
         return total;
     };
+    //#endregion
 
-    // User Events
+    //#region User [View] Event Handlers
     $scope.saveCourseName = function () {
-        //alert($scope.courseName);
-
         var modalOptions = {
             closeButtonText: 'Cancel',
             actionButtonText: 'Save Course Name',
@@ -68,8 +74,8 @@ angular.module('App.Controllers')
     $scope.resetCourseName = function () {
         $scope.courseName = angular.copy($scope.courseConfig.resetCourseName);
     }
+
     $scope.saveComponents = function () {
-        //alert($scope.courseEval);
         var itemCount = $scope.courseEval.MarkableItems.length;
         var topicCount = $scope.courseEval.BucketTopics.length;
 
@@ -170,5 +176,8 @@ angular.module('App.Controllers')
         $scope.courseEval.BucketTopics.push(newTopic);
         $scope.newTopic = "";
     };
+    //#endregion
 }]);
+//#endregion
 
+// TODO: Add other controllers
