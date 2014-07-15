@@ -1,9 +1,9 @@
 ﻿/// <reference path="../../../studentmarks/scripts/angular.js" />
 
-angular.module('App.Controllers', ['App.Services']);
+angular.module('App.Controllers', ['App.Services', 'ui.bootstrap']);
 
 angular.module('App.Controllers')
-.controller('courseConfigCtrl', ['$scope', '$timeout', 'courseConfigService', function ($scope, $timeout, courseConfigService) {
+.controller('courseConfigCtrl', ['$scope', '$timeout', 'courseConfigService', 'modalService', function ($scope, $timeout, courseConfigService, modalService) {
     $scope.courseConfig = {};
     $scope.newItem = {};
     $scope.newTopic = "";
@@ -47,11 +47,21 @@ angular.module('App.Controllers')
     // User Events
     $scope.saveCourseName = function () {
         //alert($scope.courseName);
-        $scope.webApiStatus = "Saving Course Name...";
-        courseConfigService.setCourseName($scope.courseName).then(function () {
-            $scope.webApiStatus = "Course Name Saved.";
-            loadCourseName();
-            $timeout(clearWebApiStatus, 1500);
+
+        var modalOptions = {
+            closeButtonText: 'Cancel',
+            actionButtonText: 'Save Course Name',
+            headerText: 'Save ' + $scope.courseName + '?',
+            bodyText: 'Are you sure you want to save this as the course name?'
+        };
+
+        modalService.showModal({}, modalOptions).then(function (result) {
+            $scope.webApiStatus = "Saving Course Name...";
+            courseConfigService.setCourseName($scope.courseName).then(function () {
+                $scope.webApiStatus = "Course Name Saved.";
+                loadCourseName();
+                $timeout(clearWebApiStatus, 1500);
+            });
         });
     };
 
@@ -60,11 +70,23 @@ angular.module('App.Controllers')
     }
     $scope.saveComponents = function () {
         //alert($scope.courseEval);
-        $scope.webApiStatus = "Saving Course Evaluation Components...";
-        courseConfigService.saveEvaluationComponents($scope.courseEval).then(function () {
-            $scope.webApiStatus = "Course Evaluation Components Saved.";
-            loadEvaluationComponents();
-            $timeout(clearWebApiStatus, 1500);
+        var itemCount = $scope.courseEval.MarkableItems.length;
+        var topicCount = $scope.courseEval.BucketTopics.length;
+
+        var modalOptions = {
+            closeButtonText: 'Cancel',
+            actionButtonText: 'Save Evaluation Components',
+            headerText: 'Save Changes to Evaluation Components?',
+            bodyText: 'Are you sure you want to save these ' + itemCount + ' Evaluation Components and ' + topicCount + ' Topics? The total weight of all components is ' + $scope.totalWeight() + ' %.'
+        };
+
+        modalService.showModal({}, modalOptions).then(function (result) {
+            $scope.webApiStatus = "Saving Course Evaluation Components...";
+            courseConfigService.saveEvaluationComponents($scope.courseEval).then(function () {
+                $scope.webApiStatus = "Course Evaluation Components Saved.";
+                loadEvaluationComponents();
+                $timeout(clearWebApiStatus, 1500);
+            });
         });
     };
 

@@ -12,7 +12,7 @@ angular.module('myApp', [
     'App.Routes',
     'App.Directives'
     // 3rd Party Modules
-        
+    //,'ui.bootstrap'
 ]);
 
 angular.module('myApp').controller('WazooCtrl', function ($scope) {
