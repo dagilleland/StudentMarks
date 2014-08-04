@@ -58,6 +58,8 @@ namespace StudentMark.Requirements.UserStories
         }
         private void GivenEvaluationComponentDataToBeEntered()
         {
+            /* var evaluation = ObjectMother.EvaluationComponentBuilder.WithConfigurationBucketWeight(10).With
+             */
             ExpectedTopics = new List<Topic>();
             ExpectedTopics.Add(new Topic() { Description = "Network Model" });
             ExpectedTopics.Add(new Topic() { Description = "IP Addressing" });
