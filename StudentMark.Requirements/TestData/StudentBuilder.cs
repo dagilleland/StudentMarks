@@ -18,6 +18,10 @@ namespace StudentMark.Requirements.TestData
     public class EvaluationComponentBuilder : TestDataBuilder<EvaluationComponent, EvaluationComponentBuilder>
     {
 
+        protected override EvaluationComponent BuildObject()
+        {
+            throw new NotImplementedException();
+        }
     }
     public class StudentBuilder : TestDataBuilder<Student, StudentBuilder>
     {
