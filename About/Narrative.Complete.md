@@ -13,7 +13,40 @@ As an instructor, I need to track marks for my students. For any given course, t
   * **R)** Basically, after I mark an item like a quiz, I have all the quiz marks for the class, and I want to just pull up a list of the students and enter each student's quiz mark, and then just save the marks after I've entered them.
   * *Implementation Note* - When it comes to entering marks for students, it would be easiest to be able to click the marked item and then just enter each student's mark by using tab/alt-tab to go from student to student, and then bulk-add the class marks for the marked item.
 
-In my current situation, I have a course with two quizzes (21% and 7%) and a set of all-or-nothing exercises (24 worth 3% each and totalling to 72%). Each quiz can be out of a differnt set of marks; for example, the first quiz is out of 40 marks. Since the exercises are worth all-or-nothing, they don't have individual marks (they are pass/fail). Exercises are grouped under topics, to make tracking a large number of exercises easier.
+As an example, my course may be set up with two quizzes (21% and 7%) and a set of all-or-nothing exercises (24 worth 3% each and totalling to 72%). Each quiz can be out of a differnt set of marks; for example, the first quiz is out of 40 marks. Since the exercises are worth all-or-nothing, they don't have individual marks (they are pass/fail). Exercises are grouped under topics, to make tracking a large number of exercises easier.
+
+Here's a sample of some values.
+
+* 21% - Quiz 1
+* 7% - Quiz 2
+* 72% - Exercises - 3% each
+  * Binary Math
+  * etc., until I have a set of 24 exercises (24 * 3 = 72%)
+
+Another example might involve a mixture of controlled and uncontrolled evaluations. (A controlled evaluation is one that is invigilated in some form.)
+
+* 20% - Exercises
+  * Can vary in #, from 4 to 10 exercises
+  * Allow a bonuns exercise
+* 45% - In-Class Assessments - controlled
+  * Assessment 1
+  * Assessment 2
+  * Assessment 3
+* 35% - Final Project
+  * Can be delivered as a "bulk" project, or sub-divided at a later time into "segments" that would have specific due dates
+    * 5% - Project Plan and Acceptance Tests
+    * 10% - Unit Tests
+    * 10% - Core functionality
+    * 10% - Presentation Layer
+
+And here is yet another example.
+
+* 30% - Labs
+* 20% - Quiz (controlled)
+* 15% - Project Plan
+* 25% - Project Development
+* 10% - Presentation
+
 
 * **C)** I forgot to mention that the bucket exercises are grouped under topics (to make it easier to track). I tend to have anywhere from one to five buckets per topic, and I like to see the quizzes, topics and buckets ordered according to how they are delivered during the course.
   * **R)** Ok. I wrote that change up in the narrative. I'll reflect that in the screen mockups soon.
