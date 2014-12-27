@@ -15,16 +15,59 @@ using System.Web.Http;
 using System.Web.Http.Results;
 using StudentMarks.App.DAL;
 using StudentMarks.Models.Entities.DTOs;
+using StudentMark.Requirements.TestData;
 
 namespace StudentMark.Requirements.UserStories
 {
+    [Story(AsA = Actor.INSTRUCTOR,
+           IWant = "To enter the mark structure for the course",
+           SoThat = "I have the basic framework to enter student marks")]
+    public class InitializeCourseInformation_New_And_Improved
+    {
+        [Fact]
+        [AutoRollback]
+        public void CreatesCourseWithoutComponents()
+        {
+            var expected = ObjectBuilderMother.Courses.NewWithNameOnly.Build();
+
+            //this.Given
+            this.Given(_ => GivenTheCourseNameDoesNotExist(expected.Name))
+                .When(_ => WhenCreatingCourse(expected.Name))
+                .BDDfy();
+        }
+
+        private void GivenTheCourseNameDoesNotExist(string name)
+        {
+            // Precondition
+            Assert.False(string.IsNullOrEmpty(name), "Test Precondition: Course Name must be provided");
+            var sut = ObjectBuilderMother.WebApiControllers.CourseQuery;
+            var actual = sut.GetByName(name);
+            Assert.Null(actual);
+        }
+        private void WhenCreatingCourse(string name)
+        {
+            // Precondition
+            Assert.False(string.IsNullOrEmpty(name), "Test Precondition: Course Name must be provided");
+            var sutBuilder = ObjectBuilderMother.WebApiControllers.CourseCommand;
+            //sut.Request = new System.Net.Http.HttpRequestMessage { RequestUri
+            //var actual = sut.Post(name);
+
+        }
+        [Fact]
+        [AutoRollback]
+        public void AddsPartialEvaluationComponents()
+        {
+        }
+    }
+
+    [Obsolete("Remove at some point...")]
     [Story(AsA = Actor.INSTRUCTOR,
                IWant = "To enter the mark structure for the course",
                SoThat = "I have the basic framework to enter student marks")]
     public class InitializeCourseInformation
     {
         #region Primary - Enter Evaluation Components
-        EvaluationComponent ExpectedEvaluationComponent;
+        Course_Specific_EvaluationComponent ExpectedEvaluationComponent;
         IList<Topic> ExpectedTopics;
         IList<Quiz> ExpectedQuizzes;
         IList<Bucket> ExpectedBuckets;
@@ -84,7 +127,7 @@ namespace StudentMark.Requirements.UserStories
                 markables.Add(new Component(item));
             foreach (var item in ExpectedQuizzes)
                 markables.Add(new Component(item));
-            ExpectedEvaluationComponent = new EvaluationComponent()
+            ExpectedEvaluationComponent = new Course_Specific_EvaluationComponent()
             {
                 BucketTopics = ExpectedTopics.ToList(),
                 BucketWeights = ExpectedConfiguration.BucketWeight,

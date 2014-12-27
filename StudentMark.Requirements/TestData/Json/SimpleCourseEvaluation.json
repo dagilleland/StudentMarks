@@ -1,0 +1,11 @@
+﻿{
+    "CourseName": "Simple Course Evaluation",
+    "CourseId":  3,
+    "Components": [
+        { "Name":  "Labs", "Weight":  30 },
+        { "Name":  "Quiz", "Weight":  20, "Controlled": true },
+        { "Name":  "Project Plan", "Weight":  15 },
+        { "Name":  "Project Development", "Weight":  25 },
+        { "Name":  "Presentation", "Weight":  10, "Controlled":  true }
+    ]
+}

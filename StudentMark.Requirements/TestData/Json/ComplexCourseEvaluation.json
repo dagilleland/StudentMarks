@@ -1,0 +1,27 @@
+﻿{
+    "CourseName": "Complex Course Evaluation",
+    "CourseId":  5,
+    "Components": [
+        { "Name": "Exercises", "Weight": 20, "MinCount": 4, "MaxCount": 10 },
+        {
+            "Name": "In-Class Assessments",
+            "Weight": 45,
+            "Controlled": true,
+            "SubComponents": [
+                { "Name": "Assessment 1" },
+                { "Name": "Assessment 2" },
+                { "Name": "Assessment 3" }
+            ]
+        },
+        {
+            "Name": "Final Project",
+            "Weight": 35,
+            "SubComponents": [
+                { "Name": "Project Plan and Acceptance Tests", "Weight": 5 },
+                { "Name": "Unit Tests", "Weight": 10 },
+                { "Name": "Core functionality", "Weight": 10 },
+                { "Name": "Presentation Layer", "Weight": 10 }
+            ]
+        }
+    ]
+}

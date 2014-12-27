@@ -1,0 +1,17 @@
+﻿{
+    "CourseName": "Partial Course Evaluation",
+    "CourseId":  0,
+    "Components": [
+        { "Name": "Quiz 1", "Weight": 25 },
+        { "Name": "Quiz 2", "Weight": 15 },
+        {
+            "Name": "Exercises",
+            "Weight": 40,
+            "SubComponents": [
+                { "Name": "Part 1" },
+                { "Name": "Part 2", "Weight": 20 },
+                { "Name": "Part 3" }
+            ]
+        }
+    ]
+}
