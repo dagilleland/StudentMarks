@@ -12,6 +12,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "About", "About", "{25389B2A
 		About\Narrative.Complete.md = About\Narrative.Complete.md
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StudentMarksMVC", "StudentMarksMVC\StudentMarksMVC.csproj", "{5080336B-6729-4C14-976E-358ED9D79634}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -26,6 +28,10 @@ Global
 		{CD9857CE-E4D6-4ACC-A3F9-79A93C997B3C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CD9857CE-E4D6-4ACC-A3F9-79A93C997B3C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CD9857CE-E4D6-4ACC-A3F9-79A93C997B3C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5080336B-6729-4C14-976E-358ED9D79634}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5080336B-6729-4C14-976E-358ED9D79634}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5080336B-6729-4C14-976E-358ED9D79634}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5080336B-6729-4C14-976E-358ED9D79634}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

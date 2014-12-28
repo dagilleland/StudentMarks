@@ -1,0 +1,50 @@
+﻿@model StudentMarksMVC.Models.MarkedItem
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>MarkedItem</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.PossibleMarks)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PossibleMarks)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EarnedMark)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EarnedMark)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AssignedMark)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AssignedMark)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Comment)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Comment)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
