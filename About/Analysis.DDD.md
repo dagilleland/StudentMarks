@@ -45,16 +45,96 @@ EF Concerns inside Bounded Context
 
 ------
 
-### Course Development Bounded Context
+### Course Evaluation Bounded Context
 
+Central to the working of the system is setting up a set of **Evaluation Components** for a **Course**. First, a **Course** (identified by its course number and/or name) is "presumed" to exist in the system and is the aggregate root. For the **Course**, we may add an **Evaluation Component** (consisting primarily of a title and weight). **Evaluation Components** may or may not be controlled evaluations (a controlled evaluation is one that has some form of invigilation or supervision during the evaluation, whereas an uncontrolled evaluation is completed by the student on their own, without direct supervision). An **Evaluation Component** may be broken down into **SubComponents**. These **SubComponents** may be *weighted items or simply Pass/Fail items. Alternatively, the **SubComponents** may be a straight equal distribution of its parent evaluation weight. A **SubComponent** is the most granular level of marking recorded; a **SubComponent** cannot be broken down into smaller **SubComponents**.
+
+Some of the rules around setting up **Courses** and their **Evaluation Components**:
+
+* A **Courses** name and number must be unique (with the number often acting as the public identifier of a course).
+* A **Courses** **Evaluation Components** cannot produce a total weight over 100. A **Course** can have its **Evaluation Components** weights total to less than 100.
+* An **Evaluation Components** **SubComponents** must all be the same type: either individually weighted, equal distribution, or as Pass/Fail components.
+* Individual **SubComponent** weights must add up to the weight of its main component
+
+#### User Stories
+
+* *Configure Course Evaluations*
+  * **I Want** to *set the evaluation components* for a course
+  * **So That** I have a basic framework to enter student marks
+    * *New course with evaluation components*
+    * *Existing course with evaluation components*
+    * *Course with partial evaluation components*
+    * *Course with evaluation components and subcomponents*
 
 
 ### Course Offering Bounded Context
 
+Over time, **Courses** are delivered with their **Planned Evaluation Components**. These **Course Offerings** have a specific start and end date. Additionally, there may be multiple instances of a given **Course Offering**, known as **Sections**. An **Instructor** is assigned to each **Section**. For these **Course Offerings** and **Sections**, there may be some variation in the **SubComponents**, according to the **Instructors** preferences, but none are allowed in the main **Evaluation Components**.
+
+In this context, the **CourseOffering** is the aggregate root.
+
+* A **Course** is available to be used as a **Course Offering** if it has a set of **Evaluation Components** that are complete (their total weight equals 100). Otherwise, the **Course** is not ready to be used as a **Course Offering**.
+* The **Evaluation Components** can be edited for their **SubComponents** only.
+* **SubComponents** cannot be modified once marks have been assigned.
+
+#### User Stories
+
+* *Create Course Offering Sections*
+  * **I Want** to *create course offering sections*
+  * **So That** instructors can enter marks for students
+    * *Create a single section*
+    * *Create multiple sections*
+* *Customize Evaluation Components*
+  * **I Want** to *modify evaulation subcomponents*
+  * **So That** I can customize the evaluation of my section
+    * *Remove subcomponents*
+    * *Add subcomponents*
+    * *Modify subcomponents*
+
 ### Course Enrollment Bounded Context
+
+**Students** can be added to a **Section**. **Student** enrollement in a section is done in bulk at the start of the term, but may be modified as the term progresses. **Students** may be removed, added, or transferred between **Sections**.
+
+In this context, the **Section** is the aggregate root.
+
+* **Students** are added to a **Section** "in-bulk".
+* Individually, a **Student** can be added/withdrawn/transferred from a section.
+
+#### User Stories
+
+* *Set up initial class list*
+  * **I Want** to *enter my students in my section*
+  * **So That** I am ready to enter marks for my students
+    * *Add multiple students to my section*
+* *Modify class list*
+  * **I Want** to *modify my class list for my section*
+  * **So That** when I enter student marks, I focus only on students currently in my course
+    * *Withdraw student from my section*
+    * *Add student to my section*
+    * *Transfer student to another section*
+
 
 ### Student Grading Bounded Context
 
+**Marks** are assigned to **Students** for specific **Evaluation Components** and **SubComponents**. Depending on the kind of evaluation, a **Mark** may be some earned or assigned value (e.g.: 45/50) or might be a record of whether an item is a pass or a fail.
+
+In this context, the **Section** is the aggregate root.
+
+* **Marks** are assigned directly for **SubComponents** or **Evaluation Components** that do not have **SubComponents**.
+* Before earned marks can be assigned to students for a **SubComponent** or **Evaluation Component**, the component's total possible marks should be set.
+* Usually an Earned Mark is recorded for a student, and that translates into a percent on the component (earned/possible). Occassionally, however, an assigned mark (a percent) can also be entered for the student.
+* Student marks can be entered in bulk (the preferred way), though they can be individually edited.
+
+#### User Stories
+
+* *Bulk enter student marks*
+  * **I Want** to *enter marks for multiple students* for a given evaluation
+  * **So That** I can simply the recording of my marks
+    * *Scenario*
+* *Edit student marks*
+  * **I Want** to *modify individual student marks*
+  * **So That** I can make additions and corrections to student marks
+    * *Scenario*
 
 
 ----
