@@ -120,12 +120,6 @@
     <Content Include="UI\Angular\describe.App_Services.urlService.js" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\StudentMarks\StudentMarks.csproj">
-      <Project>{1024bfda-fe2e-446a-a753-20b496a8b188}</Project>
-      <Name>StudentMarks</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
   </ItemGroup>
   <ItemGroup>
