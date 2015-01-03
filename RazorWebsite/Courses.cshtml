@@ -3,6 +3,15 @@
     Page.Title = "Courses";
 
     var db = Database.Open("StudentMarks");
+    
+    if(IsPost)
+    {
+        var name = Request["courseName"];
+        var number = Request["courseNumber"];
+        var insert = @"INSERT INTO Courses(Name, Number) VALUES (@0, @1)";
+        db.Execute(insert, name, number);
+    }
+    
     var query = "Select * from Courses";
 }
 
@@ -19,3 +28,8 @@
         <br />
     }
 </div>
+<form method="post">
+    <input placeholder="Course Number" name="courseNumber" required />
+    <input placeholder="Course Name" name="courseName" required />
+    <input type="submit" name="addCourse" value="Add Course" />
+</form>
