@@ -3,16 +3,36 @@
     Page.Title = "Courses";
 
     var db = Database.Open("StudentMarks");
-    
-    if(IsPost)
+
+    if (IsPost)
     {
-        var name = Request["courseName"];
-        var number = Request["courseNumber"];
-        var insert = @"INSERT INTO Courses(Name, Number) VALUES (@0, @1)";
-        db.Execute(insert, name, number);
+        if (!string.IsNullOrEmpty(Request["addCourse"]))
+        {
+            var name = Request["courseName"];
+            var number = Request["courseNumber"];
+            var insert = @"INSERT INTO Courses(Name, Number) VALUES (@0, @1)";
+            db.Execute(insert, name, number);
+        }
+        if (!string.IsNullOrEmpty(Request["addComponent"]))
+        {
+            var number = Request["courseNumber"];
+            var weight = Request["weight"];
+            var name = Request["componentName"];
+            var insert = @"INSERT INTO Components(Title, Weight, Number) VALUES (@0, @1, @2)";
+            db.Execute(insert, name, weight, number);
+        }
+        if (!string.IsNullOrEmpty(Request["editComponent"]))
+        {
+            var number = Request["courseNumber"];
+            var weight = Request["weight"];
+            var name = Request["componentName"];
+            var update = @"UPDATE Components SET Title = @0, Weight = @1 WHERE Number = @2";
+            db.Execute(update, name, weight, number);
+        }
     }
-    
+
     var query = "Select * from Courses";
+    var queryComponents = "SELECT * FROM Components WHERE Number = @0";
 }
 
 <hgroup class="title">
@@ -24,7 +44,31 @@
 <div>
     @foreach (var row in db.Query(query))
     {
-        @(row.Number + " - " + row.Name)           
+        @(row.Number + " - " + row.Name)
+        <blockquote>
+            <ul>
+                @foreach (var component in db.Query(queryComponents, row.Number))
+                {
+                    <li>
+                        <form method="post">
+                            <input type="number" placeholder="% wt" name="weight" value="@component.Weight" />
+                            <input placeholder="Component Name" name="componentName" value="@component.Title" />
+                            <input type="hidden" name="courseNumber" value="@row.Number" />
+                            <input type="submit" name="editComponent" value="Update" />
+                        </form>
+                    </li>
+                }
+                <li>
+                    <form method="post">
+                        <input type="number" placeholder="% wt" name="weight" />
+                        <input placeholder="Component Name" name="componentName" />
+                        <input type="hidden" name="courseNumber" value="@row.Number" />
+                        <input type="submit" name="addComponent" value="Add" />
+                    </form>
+                </li>
+            </ul>
+
+        </blockquote>
         <br />
     }
 </div>
