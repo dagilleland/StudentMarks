@@ -1,0 +1,21 @@
+﻿@{
+    Layout = "~/_SiteLayout.cshtml";
+    Page.Title = "Courses";
+
+    var db = Database.Open("StudentMarks");
+    var query = "Select * from Courses";
+}
+
+<hgroup class="title">
+    <h1>@Page.Title.</h1>
+    <h2>Course and their Evaluation Components.</h2>
+</hgroup>
+
+
+<div>
+    @foreach (var row in db.Query(query))
+    {
+        @(row.Number + " - " + row.Name)           
+        <br />
+    }
+</div>
