@@ -10,7 +10,8 @@ GO
 
 CREATE TABLE [dbo].[Courses](
 	[Number] [nvarchar](10) NOT NULL,
-	[Name] [nvarchar](50) NOT NULL
+	[Name] [nvarchar](50) NOT NULL,
+    [PassMark] [int] NOT NULL
 ) ON [PRIMARY]
 
 GO
@@ -28,7 +29,8 @@ GO
 CREATE TABLE [dbo].[Components](
 	[Title] [nvarchar](50) NOT NULL,
 	[Weight] [int] NOT NULL,
-	[Number] [nvarchar](10) NOT NULL
+	[Number] [nvarchar](10) NOT NULL,
+    [PassMark] [int] NULL
 ) ON [PRIMARY]
 
 GO

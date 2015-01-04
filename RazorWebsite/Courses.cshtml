@@ -10,24 +10,27 @@
         {
             var name = Request["courseName"];
             var number = Request["courseNumber"];
-            var insert = @"INSERT INTO Courses(Name, Number) VALUES (@0, @1)";
-            db.Execute(insert, name, number);
+            var pass = Request["passMark"];
+            var insert = @"INSERT INTO Courses(Name, Number, PassMark) VALUES (@0, @1, @2)";
+            db.Execute(insert, name, number, pass);
         }
         if (!string.IsNullOrEmpty(Request["addComponent"]))
         {
             var number = Request["courseNumber"];
             var weight = Request["weight"];
             var name = Request["componentName"];
-            var insert = @"INSERT INTO Components(Title, Weight, Number) VALUES (@0, @1, @2)";
-            db.Execute(insert, name, weight, number);
+            var pass = Request["passMark"];
+            var insert = @"INSERT INTO Components(Title, Weight, PassMark, Number) VALUES (@0, @1, @2, @3)";
+            db.Execute(insert, name, weight, pass, number);
         }
         if (!string.IsNullOrEmpty(Request["editComponent"]))
         {
             var number = Request["courseNumber"];
             var weight = Request["weight"];
             var name = Request["componentName"];
-            var update = @"UPDATE Components SET Title = @0, Weight = @1 WHERE Number = @2";
-            db.Execute(update, name, weight, number);
+            var pass = Request["passMark"];
+            var update = @"UPDATE Components SET Title = @0, Weight = @1, PassMark = @2 WHERE Number = @3";
+            db.Execute(update, name, weight, pass, number);
         }
     }
 
@@ -40,6 +43,12 @@
     <h2>Course and their Evaluation Components.</h2>
 </hgroup>
 
+<form method="post">
+    <input placeholder="Course Number" name="courseNumber" required />
+    <input placeholder="Course Name" name="courseName" required />
+    <input type="number" placeholder="% pass" name="passMark" />
+    <input type="submit" name="addCourse" value="Add Course" />
+</form>
 
 <div>
     @foreach (var row in db.Query(query))
@@ -51,8 +60,9 @@
                 {
                     <li>
                         <form method="post">
-                            <input type="number" placeholder="% wt" name="weight" value="@component.Weight" />
-                            <input placeholder="Component Name" name="componentName" value="@component.Title" />
+                            <input type="number" placeholder="% wt" name="weight" required value="@component.Weight" />
+                            <input placeholder="Component Name" name="componentName" required value="@component.Title" />
+                            <input type="number" placeholder="% pass" name="passMark" value="@component.PassMark" />
                             <input type="hidden" name="courseNumber" value="@row.Number" />
                             <input type="submit" name="editComponent" value="Update" />
                         </form>
@@ -62,6 +72,7 @@
                     <form method="post">
                         <input type="number" placeholder="% wt" name="weight" />
                         <input placeholder="Component Name" name="componentName" />
+                        <input type="number" placeholder="% pass" name="passMark" />
                         <input type="hidden" name="courseNumber" value="@row.Number" />
                         <input type="submit" name="addComponent" value="Add" />
                     </form>
@@ -72,8 +83,3 @@
         <br />
     }
 </div>
-<form method="post">
-    <input placeholder="Course Number" name="courseNumber" required />
-    <input placeholder="Course Name" name="courseName" required />
-    <input type="submit" name="addCourse" value="Add Course" />
-</form>
