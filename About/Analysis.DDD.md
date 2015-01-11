@@ -58,6 +58,7 @@ Some of the rules around setting up **Courses** and their **Evaluation Component
 
 #### User Stories
 
+* Actor: As a **Course Developer**...
 * *Configure Course Evaluations*
   * **I Want** to *set the evaluation components* for a course
   * **So That** I have a basic framework to enter student marks
@@ -79,6 +80,7 @@ In this context, the **CourseOffering** is the aggregate root.
 
 #### User Stories
 
+* Actor: As an **Instructor**...
 * *Create Course Offering Sections*
   * **I Want** to *create course offering sections*
   * **So That** instructors can enter marks for students
@@ -102,6 +104,7 @@ In this context, the **Section** is the aggregate root.
 
 #### User Stories
 
+* Actor: As an **Administrator/Registrar**...
 * *Set up initial class list*
   * **I Want** to *enter my students in my section*
   * **So That** I am ready to enter marks for my students
@@ -127,6 +130,7 @@ In this context, the **Section** is the aggregate root.
 
 #### User Stories
 
+* Actor: As an **Instructor**...
 * *Bulk enter student marks*
   * **I Want** to *enter marks for multiple students* for a given evaluation
   * **So That** I can simply the recording of my marks
@@ -136,6 +140,15 @@ In this context, the **Section** is the aggregate root.
   * **So That** I can make additions and corrections to student marks
     * *Scenario*
 
+### Mark Analysis Bounded Context
+
+**Students** and **Instructors** need to see the marks for a given course. This context is primarily a reporting context; no data entry occurs here.
+
+#### User Stories
+
+* Actor: As an **Instructor**...
+
+* Actor: As a **Student**...
 
 ----
 
