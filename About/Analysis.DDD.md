@@ -6,6 +6,19 @@ Instructors need a system to better track the marks that they assign to students
 
 This flexibility in granular tracking of marks and setup of weighted evaluations is a desired aspect in the new system.
 
+Here is how an Instructor would use the system:
+
+> At the start of a term, I need to set up my marking sheet for the courses I teach. The first thing I do is set up the evaluation criteria for a given course. If I already have existing evaluation components set up from a previous course, I'll just use those for my current course offering. I may also need to adjust those components for my current course offering. Generally, those adjustments are made at the start of the course, before I begin entering marks, but sometimes they are made part way through the semester (such as when we find we won't have time to fit in a particular assessment or exercise). I will never discard an evaluation component if I have already entered student marks in it, but I might adjust the component's overall weight to make up for other dropped components. At the end, however, the weights of all my components should be adding up to 100% before I can record my final marks for my students.
+> I also have to add students to the course offering, so that I can assign marks to them. Usually, I do the initial adding of students in bulk. Later I may need to add another student or remove a student from my class list. If a student has been transferred to another section, then their marks are also transferred. Sometimes I need to correct information about a student (I may have entered their name or student number incorrectly). Students are distinguished by their school ID, which is unique. Occassionally, I will have students in a course that I've had in previous courses (their name and school id should match).
+> When all this is set up, I then enter student marks (individually or in bulk). Sometimes I will need to change a mark, as a correction to a previous entry. Other times I may need to delete a mark, because it was incorrectly entered and there is no mark for the student yet.
+> Sometimes I want to allow bonus marks for evaluation components, and even allow them to produce a weighted mark that is over 100% (even though the final total for a student can never be more than 100%). Other times, I want to override an earned mark with an assigned mark, perhaps because of exceptional cirumstances (their quiz was missing a page, or their lab had exceptional work). And yet other times I need to adjust the mark or assign a mark because of academic dishonesty.
+> Finally, when all the individual marks have been entered, I need to have the final marks entered for the students. Usually it's rounded up to the nearest whole percent. Sometimes I will want to override the calculated final mark to give an assigned mark (bumping someone up for a pass, for example). After all my marks are finished, I need to lock in the final student marks so that they cannot be changed later except as individual mark corrections (which must always be accompanied with a reason for the correction).
+
+Students could also use the system:
+
+> As a student, I want to see what my marks are, and how much I need to earn to pass or get a specific mark. I want to see what items still don't have marks, and how much I will need on them to pass.
+
+
 ----
 
 ## Technical Guidance
