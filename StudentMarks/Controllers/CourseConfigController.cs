@@ -93,7 +93,7 @@ namespace StudentMarks.Controllers
         // POST api/CourseConfig/SaveEvaluationComponents
         [HttpPost]
         [Route("SaveEvaluationComponents")]
-        public void SaveEvaluationComponents([FromBody]EvaluationComponent dto)
+        public void SaveEvaluationComponents([FromBody]Course_Specific_EvaluationComponent dto)
         {
             using (var db = AppContext.Create())
             {
@@ -188,7 +188,7 @@ namespace StudentMarks.Controllers
         // GET api/CourseConfig/GetEvaluationComponents
         [HttpGet]
         [Route("GetEvaluationComponents")]
-        public EvaluationComponent GetEvaluationComponents()
+        public Course_Specific_EvaluationComponent GetEvaluationComponents()
         {
             using (var db = AppContext.Create())
             {
@@ -202,7 +202,7 @@ namespace StudentMarks.Controllers
                 if (config != null)
                     bucketWeight = config.BucketWeight;
 
-                return new EvaluationComponent()
+                return new Course_Specific_EvaluationComponent()
                     {
                         MarkableItems = components.OrderBy(x => x.DisplayOrder).ToList(),
                         BucketTopics = db.Topics.ToList(),

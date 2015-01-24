@@ -104,13 +104,17 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DomainLanguage\CourseEvaluationBoundary.cs" />
     <Compile Include="Helpers\Constants.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TestData\Class1.cs" />
+    <Compile Include="TestData\EvaluationComponent.cs" />
     <Compile Include="TestData\StudentBuilder.cs" />
     <Compile Include="UserStories\EnterStudentMarks.cs" />
     <Compile Include="UserStories\InitializeCourseInformation.cs" />
     <Compile Include="UserStories\ManageClassLists.cs" />
     <Compile Include="UserStories\ViewClassMarks.cs" />
+    <Compile Include="_migrate_\Identity.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -118,6 +122,9 @@
     <Content Include="UI\Angular\describe.App_Controllers.as_AngularModule.js" />
     <Content Include="UI\Angular\describe.App_Services.as_AngularModule.js" />
     <Content Include="UI\Angular\describe.App_Services.urlService.js" />
+    <None Include="TestData\Json\ComplexCourseEvaluation.json" />
+    <None Include="TestData\Json\PartialCourseEvaluation.json" />
+    <None Include="TestData\Json\SimpleCourseEvaluation.json" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />

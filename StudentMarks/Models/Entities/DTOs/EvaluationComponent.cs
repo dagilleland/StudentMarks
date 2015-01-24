@@ -5,7 +5,8 @@ using System.Web;
 
 namespace StudentMarks.Models.Entities.DTOs
 {
-    public class EvaluationComponent
+    [Obsolete("")]
+    public class Course_Specific_EvaluationComponent
     {
         public List<Component> MarkableItems { get; set; }
         public List<Topic> BucketTopics { get; set; }
