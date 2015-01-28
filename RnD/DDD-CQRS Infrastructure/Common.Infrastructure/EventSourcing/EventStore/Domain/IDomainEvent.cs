@@ -8,4 +8,5 @@ namespace Common.Infrastructure.EventSourcing.EventStore.Domain
         Guid AggregateId { get; set; }
         int Version { get; set; }
     }
+
 }

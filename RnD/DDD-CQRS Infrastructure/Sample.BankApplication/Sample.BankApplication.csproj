@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{A5E4CE41-3E77-4F92-8881-3FF2E912DE31}</ProjectGuid>
+    <ProjectGuid>{5FE6A925-E304-4BDE-9BED-818B5B016AAD}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Common.Infrastructure</RootNamespace>
-    <AssemblyName>Common.Infrastructure</AssemblyName>
+    <RootNamespace>BankApplication</RootNamespace>
+    <AssemblyName>Sample.BankApplication</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -39,29 +39,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CQRS\CommandHandlers\ICommandHandler.cs" />
-    <Compile Include="CQRS\Commands\Command.cs" />
-    <Compile Include="CQRS\Commands\ICommand.cs" />
-    <Compile Include="EventSourcing\EventStore\BaseAggregateRoot.cs" />
-    <Compile Include="EventSourcing\EventStore\Domain\IDomainEventStorage.cs" />
-    <Compile Include="EventSourcing\EventStore\Domain\IDomainRepository.cs" />
-    <Compile Include="EventSourcing\EventStore\Domain\IDomainEvent.cs" />
-    <Compile Include="EventSourcing\EventStore\Domain\IEventProvider.cs" />
-    <Compile Include="EventSourcing\EventStore\Domain\ISnapShot.cs" />
-    <Compile Include="EventSourcing\EventStore\Domain\ISnapShotStorage.cs" />
-    <Compile Include="EventSourcing\EventStore\IEntityEventProvider.cs" />
-    <Compile Include="EventSourcing\EventStore\IEventProvider.cs" />
-    <Compile Include="EventSourcing\EventStore\IRegisterChildEntities.cs" />
-    <Compile Include="EventSourcing\EventStore\ITransactional.cs" />
-    <Compile Include="EventSourcing\EventStore\IUnitOfWork.cs" />
-    <Compile Include="EventSourcing\EventStore\Memento\IMemento.cs" />
-    <Compile Include="EventSourcing\EventStore\Memento\IOrginator.cs" />
+    <Compile Include="Domain\Class1.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="ReadMe.md" />
+    <ProjectReference Include="..\Common.Infrastructure\Common.Infrastructure.csproj">
+      <Project>{a5e4ce41-3e77-4f92-8881-3ff2e912de31}</Project>
+      <Name>Common.Infrastructure</Name>
+    </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
