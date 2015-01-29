@@ -12,45 +12,192 @@
         <ul class="nav nav-pills nav-stacked">
             <li><a href="#">COMP-1517 - Sec A02</a></li>
             <li><a href="#">COMP-1517 - Sec A03</a></li>
-            <li class="active"><a href="#">COMP-2504 - Sec A02</a></li>
+            <li class="active"><a href="#">PROG-2504 - Sec A02</a></li>
         </ul>
-        <br />
-        <form method="post" class="well">
-            <fieldset>
-                <legend>New Course</legend>
-                <div class="form-group">
-                    <label class="sr-only" for="courseNumber">Course Number</label>
-                    <input type="text" class="form-control input-sm" name="courseNumber" placeholder="Number" />
-                </div>
-                <div class="form-group">
-                    <label class="sr-only" for="courseName">Course Name</label>
-                    <input type="text" class="form-control input-sm" name="courseName" placeholder="Name" />
-                </div>
-                <input type="submit" value="Add Course" class="btn btn-default btn-sm" />
-            </fieldset>
-        </form>
         <hr />
-        <h4>Past <small>&ndash; Jan-Apr 2015</small></h4>
+        <h4>Past <small>&ndash; Sep-Dec 2014</small></h4>
         <ul class="nav nav-pills nav-stacked">
             <li><a href="#">PROG-2018 - Sec A01</a></li>
             <li><a href="#">PROG-2018 - Sec A04</a></li>
-            <li><a href="#">COMP-1508 - Sec A02</a></li>
+            <li><a href="#">PROG-1508 - Sec A02</a></li>
         </ul>
     </div>
 
     <div class="col-md-10">
-        <h2>Current Marks</h2>
-        @{
-            
+        <h2>Current Marks <small>PROG-2504 - Beginning Android Deveopment <a href="~/courseSettings.cshtml" title="Edit Course Settings"><span class="fa fa-gear"></span></a></small></h2>
+        @functions{
+            public IEnumerable<IEnumerable<string>> GetCourseMarks()
+            {
+                yield return new string[] { "Student Name", "Lab 1", "Quiz 1", "Buckets", "Lab 2", "Quiz 2", "Project" };
+                yield return new string[] { "", "", "", "", "", "", "" };
+                yield return new string[] { "", "", "", "", "", "", "" };
+                yield return new string[] { "", "", "", "", "", "", "" };
+                yield return new string[] { "", "", "", "", "", "", "" };
+                yield return new string[] { "", "", "", "", "", "", "" };
+            }
         }
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th class="col-md-1"></th>
+                    <th>
+                        Student
+                    </th>
+                    <th>
+                        Lab 1
+                        <span class="btn btn-xs btn-info fa fa-pencil"> Edit</span>
+                    </th>
+                    <th>
+                        Quiz 1
+                        <span class="btn btn-xs btn-info fa fa-pencil"> Edit</span>
+                    </th>
+                    <th>
+                        Buckets &hellip;
+                        <span class="btn btn-xs btn-info fa fa-pencil"> Edit</span>
+                    </th>
+                    <th>
+                        Lab 2
+                        <span class="btn btn-xs btn-info fa fa-pencil"> Edit</span>
+                    </th>
+                    <th>
+                        Quiz 2
+                        <span class="btn btn-xs btn-info fa fa-pencil"> Edit</span>
+                    </th>
+                    <th>
+                        Project &hellip;
+                        <span class="btn btn-xs btn-info fa fa-pencil"> Edit</span>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><span class="fa fa-pencil"> Edit</span></td>
+                    <td>
+                        Chester Cavey <span class="badge">1062</span>
+                    </td>
+                    <td>
+                        <b>75 %</b>
+                        &nbsp;
+                        (15/20)
+                    </td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td><span class="fa fa-pencil"> Edit</span></td>
+                    <td>
+                        Fred Flintstone <span class="badge">0952</span>
+                    </td>
+                    <td>
+                        <b>75 %</b>
+                        &nbsp;
+                        (15/20)
+                    </td>
+                    <td></td>
+                    <td>
+                        <b>25 %</b>
+                        (3/12)
+                    </td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td><span class="fa fa-pencil"> Edit</span></td>
+                    <td>
+                        Louie Granite <span class="badge">0873</span>
+                    </td>
+                    <td>
+                        <b>75 %</b>
+                        &nbsp;
+                        (15/20)
+                    </td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td><span class="fa fa-pencil"> Edit</span></td>
+                    <td>
+                        Betty McBricker <span class="badge">0955</span>
+                    </td>
+                    <td>
+                        <b>77.5 %</b>
+                        &nbsp;
+                        (15.5/20)
+                    </td>
+                    <td></td>
+                    <td>
+                        <b>0 %</b>
+                        (0/12)
+                    </td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td><span class="fa fa-pencil"> Edit</span></td>
+                    <td>
+                        Barney Rubble <span class="badge">0949</span>
+                    </td>
+                    <td>
+                        <b>80 %</b>
+                        &nbsp;
+                        (16/20)
+                    </td>
+                    <td></td>
+                    <td>
+                        <b>25 %</b>
+                        (3/12)
+                    </td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td><span class="fa fa-pencil"> Edit</span></td>
+                    <td>
+                        Wilma Slaghoople <span class="badge">0964</span>
+                    </td>
+                    <td>
+                        <b>85 %</b>
+                        &nbsp;
+                        (17/20)
+                    </td>
+                    <td></td>
+                    <td>
+                        <b>25 %</b>
+                        (3/12)
+                    </td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td><span class="fa fa-pencil"> Edit</span></td>
+                    <td>
+                        Rodney Whetstone <span class="badge">0982</span>
+                    </td>
+                    <td>
+                        <b>75 %</b>
+                        &nbsp;
+                        (15/20)
+                    </td>
+                    <td></td>
+                    <td>
+                        <b>25 %</b>
+                        (3/12)
+                    </td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+            </tbody>
+        </table>
     </div>
-</div>
-
-
-<div class="row col-md-12">
-    <h1>Edit Course</h1>
-</div>
-
-<div class="row col-md-12">
-
 </div>

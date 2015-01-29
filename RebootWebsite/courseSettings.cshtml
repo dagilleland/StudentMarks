@@ -1,0 +1,167 @@
+﻿@{
+    Page.Title = "Course Offering Settings";
+    Layout = "~/_Layout.cshtml";
+}
+
+<div class="row">
+    <div class="col-md-12 page-header">
+        <h1>Course Settings <small>PROG-2504 - Beginning Android Deveopment</small></h1>
+    </div>
+    <div class="col-md-2">
+        <h3>Current <small>&ndash; Jan-Apr 2015</small></h3>
+        <ul class="nav nav-pills nav-stacked">
+            <li><a href="#">COMP-1517 - Sec A02</a></li>
+            <li><a href="#">COMP-1517 - Sec A03</a></li>
+            <li class="active"><a href="#">PROG-2504 - Sec A02</a></li>
+        </ul>
+    </div>
+
+        <div class="col-md-5">
+            <h2>Class List</h2>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>First Name</th>
+                        <th>Last Name</th>
+                        <th>School ID</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><span class="fa fa-pencil"></span></td>
+                        <td>Chester</td>
+                        <td>Cavey</td>
+                        <td>11062</td>
+                    </tr>
+                    <tr>
+                        <td><span class="fa fa-pencil"></span></td>
+                        <td>Fred</td>
+                        <td>Flintstone</td>
+                        <td>10952</td>
+                    </tr>
+                    <tr>
+                        <td><span class="fa fa-pencil"></span></td>
+                        <td>Louie</td>
+                        <td>Granite</td>
+                        <td>10873</td>
+                    </tr>
+                    <tr>
+                        <td><span class="fa fa-pencil"></span></td>
+                        <td>Betty</td>
+                        <td>McBricker</td>
+                        <td>10955</td>
+                    </tr>
+                    <tr>
+                        <td><span class="fa fa-pencil"></span></td>
+                        <td>Barney</td>
+                        <td>Rubble</td>
+                        <td>10949</td>
+                    </tr>
+                    <tr>
+                        <td><span class="fa fa-pencil"></span></td>
+                        <td>Wilma</td>
+                        <td>Slaghoople</td>
+                        <td>10964</td>
+                    </tr>
+                    <tr>
+                        <td><span class="fa fa-pencil"></span></td>
+                        <td>Rodney</td>
+                        <td>Whetstone</td>
+                        <td>10982</td>
+                    </tr>
+                </tbody>
+            </table>
+
+
+            <form method="post" class="panel panel-info">
+                <legend class="panel-heading">Add Students (Bulk)</legend>
+                @{
+                    var values = "Chester,Cavey,11062"
+                               + "\n" + "Fred,Flintstone,10952"
+                               + "\n" + "Louie,Granite,10873"
+                               + "\n" + "Betty,McBricker,10955"
+                               + "\n" + "Barney,Rubble,10949"
+                               + "\n" + "Wilma,Slaghoople,10964"
+                               + "\n" + "Rodney,Whetstone,10982";
+                }
+                <div class="panel-body">
+                    <label for="bulkNames">Students (First, Last, School ID)</label>
+                    <input type="submit" value="Add Students" class="btn btn-default" />
+                    <br />
+                    <textarea name="bulkNames" rows="5" class="form-control">@values</textarea>
+                </div>
+            </form>
+        </div>
+
+        <div class="col-md-5">
+            <h2>Mark Breakdown</h2>
+            "Lab 1", "Quiz 1", "Buckets", "Lab 2", "Quiz 2", "Project"
+
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>%</th>
+                        <th>Evaluation Component / Sub-Components</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><span class="fa fa-pencil"></span></td>
+                        <td>10</td>
+                        <td>
+                            <b>Lab 1</b>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><span class="fa fa-pencil"></span></td>
+                        <td>15</td>
+                        <td>
+                            <b>Quiz 1</b>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><span class="fa fa-pencil"></span></td>
+                        <td>20</td>
+                        <td>
+                            <b>Buckets</b>
+                            <blockquote>
+                                <i>Pass/Fail</i>
+                                <span>12 Assignments</span>
+                            </blockquote>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><span class="fa fa-pencil"></span></td>
+                        <td>10</td>
+                        <td>
+                            <b>Lab 2</b>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><span class="fa fa-pencil"></span></td>
+                        <td>15</td>
+                        <td>
+                            <b>Quiz 2</b>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><span class="fa fa-pencil"></span></td>
+                        <td>30</td>
+                        <td>
+                            <b>Project</b>
+                            <blockquote>
+                                <ul>
+                                    <li><span class="badge">5 %</span> Documentation</li>
+                                    <li><span class="badge">5 %</span> UI Mockups</li>
+                                    <li><span class="badge">10 %</span> Automated Tests</li>
+                                    <li><span class="badge">10 %</span> App Functionality</li>
+                                </ul>
+                            </blockquote>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+</div>

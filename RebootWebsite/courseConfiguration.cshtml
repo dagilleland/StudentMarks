@@ -1,0 +1,106 @@
+﻿@{
+    Page.Title = "Course Listings";
+    Layout = "~/_Layout.cshtml";
+}
+
+<div class="row">
+    <div class="col-md-12 page-header">
+        <h1>Course Listings</h1>
+    </div>
+
+    <div class="col-md-3">
+        <h3>Courses</h3>
+        <ul class="nav nav-pills nav-stacked">
+            <li><a href="#">PROG-1508 - Database Fundamentals</a></li>
+            <li><a href="#">COMP-1517 - Client/Server Architecture</a></li>
+            <li><a href="#">PROG-2018 - Domain Driven Design</a></li>
+            <li class="active"><a href="#">PROG-2504 - Beginning Android Deveopment</a></li>
+        </ul>
+        <br />
+        <form method="post" class="well">
+            <fieldset>
+                <legend>New Course</legend>
+                <div class="form-group">
+                    <label class="sr-only" for="courseNumber">Course Number</label>
+                    <input type="text" class="form-control input-sm" name="courseNumber" placeholder="Number" />
+                </div>
+                <div class="form-group">
+                    <label class="sr-only" for="courseName">Course Name</label>
+                    <input type="text" class="form-control input-sm" name="courseName" placeholder="Name" />
+                </div>
+                <input type="submit" value="Add Course" class="btn btn-default btn-sm" />
+            </fieldset>
+        </form>
+    </div>
+
+    <div class="col-md-9">
+        <h2>Course Configuration <small>PROG-2504 - Beginning Android Deveopment</small></h2>
+        <p>Pass Mark: <b>50 %</b> <span class="fa fa-pencil"></span></p>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th></th>
+                    <th>%</th>
+                    <th>Evaluation Component</th>
+                    <th>Controlled</th>
+                    <th>Required Pass</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><span class="fa fa-pencil"></span></td>
+                    <td>10</td>
+                    <td>
+                        <b>Lab 1</b>
+                    </td>
+                    <td><input type="checkbox" disabled="disabled" checked="checked" /></td>
+                    <td><input type="checkbox" disabled="disabled" checked="checked" /></td>
+                </tr>
+                <tr>
+                    <td><span class="fa fa-pencil"></span></td>
+                    <td>15</td>
+                    <td>
+                        <b>Quiz 1</b>
+                    </td>
+                    <td><input type="checkbox" disabled="disabled" checked="checked" /></td>
+                    <td><input type="checkbox" disabled="disabled" checked="checked" /></td>
+                </tr>
+                <tr>
+                    <td><span class="fa fa-pencil"></span></td>
+                    <td>20</td>
+                    <td>
+                        <b>Buckets</b>
+                    </td>
+                    <td><input type="checkbox" disabled="disabled" checked="checked" /></td>
+                    <td><input type="checkbox" disabled="disabled" checked="checked" /></td>
+                </tr>
+                <tr>
+                    <td><span class="fa fa-pencil"></span></td>
+                    <td>10</td>
+                    <td>
+                        <b>Lab 2</b>
+                    </td>
+                    <td><input type="checkbox" disabled="disabled" checked="checked" /></td>
+                    <td><input type="checkbox" disabled="disabled" checked="checked" /></td>
+                </tr>
+                <tr>
+                    <td><span class="fa fa-pencil"></span></td>
+                    <td>15</td>
+                    <td>
+                        <b>Quiz 2</b>
+                    </td>
+                    <td><input type="checkbox" disabled="disabled" checked="checked" /></td>
+                    <td><input type="checkbox" disabled="disabled" checked="checked" /></td>
+                </tr>
+                <tr>
+                    <td><span class="fa fa-pencil"></span></td>
+                    <td>30</td>
+                    <td>
+                        <b>Project</b>
+                    </td>
+                    <td><input type="checkbox" disabled="disabled" checked="checked" /></td>
+                    <td><input type="checkbox" disabled="disabled" checked="checked" /></td>
+                </tr>
+            </tbody>
+        </table>
+    </div></div>

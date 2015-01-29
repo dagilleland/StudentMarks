@@ -1,4 +1,5 @@
-﻿using Common.Infrastructure.EventSourcing.EventStore.Domain;
+﻿using Common.Infrastructure.EventSourcing.EventStore.Aggregate;
+using Common.Infrastructure.EventSourcing.EventStore.Domain;
 using Common.Infrastructure.EventSourcing.EventStore.Memento;
 using System;
 using System.Collections.Generic;
@@ -8,6 +9,151 @@ using System.Threading.Tasks;
 
 namespace BankApplication.Domain
 {
+    public class AccountName
+    {
+        public string Name { get; private set; }
+
+        public AccountName(string name)
+        {
+            Name = name;
+        }
+
+        public override string ToString()
+        {
+            return Name;
+        }
+    }
+    public class AccountNumber
+    {
+        public string Number { get; private set; }
+
+        public AccountNumber(string number)
+        {
+            Number = number;
+        }
+
+        public override string ToString()
+        {
+            return Number;
+        }
+    }
+    public class Balance
+    {
+        private readonly Amount _amount;
+
+        public Balance()
+        {
+            _amount = new Amount(0);
+        }
+
+        private Balance(decimal decimalAmount)
+        {
+            _amount = new Amount(decimalAmount);
+        }
+
+        public Balance Withdrawl(Amount amount)
+        {
+            return new Balance(_amount.Substract(amount));
+        }
+
+        public Balance Deposite(Amount amount)
+        {
+            return new Balance(_amount.Add(amount));
+        }
+
+        public bool WithdrawlWillResultInNegativeBalance(Amount amount)
+        {
+            return new Amount(_amount).Substract(amount).IsNegative();
+        }
+
+        public static implicit operator decimal(Balance balance)
+        {
+            return balance._amount;
+        }
+
+        public static implicit operator Balance(decimal decimalAmount)
+        {
+            return new Balance(decimalAmount);
+        }
+    }
+    public class Amount
+    {
+        private readonly decimal _decimalAmount;
+
+        public Amount(decimal decimalAmount)
+        {
+            _decimalAmount = decimalAmount;
+        }
+
+        public Amount Substract(Amount amount)
+        {
+            var newDecimalAmount = _decimalAmount - amount._decimalAmount;
+            return new Amount(newDecimalAmount);
+        }
+
+        public Amount Add(Amount amount)
+        {
+            var newDecimalAmount = _decimalAmount + amount._decimalAmount;
+            return new Amount(newDecimalAmount);
+        }
+
+        public bool IsNegative()
+        {
+            return _decimalAmount < 0;
+        }
+
+        public static implicit operator decimal(Amount amount)
+        {
+            return amount._decimalAmount;
+        }
+
+        public static implicit operator Amount(decimal decimalAmount)
+        {
+            return new Amount(decimalAmount);
+        }
+    }
+    public abstract class Ledger
+    {
+        public Amount Amount { get; private set; }
+        public AccountNumber Account { get; private set; }
+
+        protected Ledger(Amount amount, AccountNumber account)
+        {
+            Amount = amount;
+            Account = account;
+        }
+
+        public override string ToString()
+        {
+            return string.Format("{0} - {1} - {2}", GetType().Name, Account.Number, (decimal)Amount);
+        }
+    }
+
+    public class CreditMutation : Ledger
+    {
+        public CreditMutation(Amount amount, AccountNumber account) : base(amount, account) { }
+    }
+
+    public class DebitMutation : Ledger
+    {
+        public DebitMutation(Amount amount, AccountNumber account) : base(amount, account) { }
+    }
+
+    public class CreditTransfer : Ledger
+    {
+        public CreditTransfer(Amount amount, AccountNumber account) : base(amount, account) { }
+    }
+
+    public class DebitTransfer : Ledger
+    {
+        public DebitTransfer(Amount amount, AccountNumber account) : base(amount, account) { }
+    }
+
+    public class DebitTransferFailed : Ledger
+    {
+        public DebitTransferFailed(Amount amount, AccountNumber account) : base(amount, account) { }
+    }
+
     public class ActiveAccount : BaseAggregateRoot<IDomainEvent>, IOrginator
     {
         private Guid _clientId;

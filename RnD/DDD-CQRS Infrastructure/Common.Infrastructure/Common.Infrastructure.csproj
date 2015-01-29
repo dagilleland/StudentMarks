@@ -42,7 +42,12 @@
     <Compile Include="CQRS\CommandHandlers\ICommandHandler.cs" />
     <Compile Include="CQRS\Commands\Command.cs" />
     <Compile Include="CQRS\Commands\ICommand.cs" />
-    <Compile Include="EventSourcing\EventStore\BaseAggregateRoot.cs" />
+    <Compile Include="EventSourcing\EventStore\Aggregate\BaseAggregateRoot.cs" />
+    <Compile Include="EventSourcing\EventStore\Aggregate\BaseEntity.cs" />
+    <Compile Include="EventSourcing\EventStore\Aggregate\EntityList.cs" />
+    <Compile Include="EventSourcing\EventStore\Aggregate\BaseEntityExtensions.cs" />
+    <Compile Include="EventSourcing\EventStore\Aggregate\UnregisteredDomainEventException.cs" />
+    <Compile Include="EventSourcing\EventStore\Domain\DomainEvent.cs" />
     <Compile Include="EventSourcing\EventStore\Domain\IDomainEventStorage.cs" />
     <Compile Include="EventSourcing\EventStore\Domain\IDomainRepository.cs" />
     <Compile Include="EventSourcing\EventStore\Domain\IDomainEvent.cs" />
