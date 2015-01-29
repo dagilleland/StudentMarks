@@ -46,8 +46,8 @@
                     </select>
                 </div>
                 <div class="form-group">
-                    <label class="sr-only" for="sectionName">Section</label>
-                    <input type="text" class="form-control input-sm" name="sectionName" placeholder="Section" />
+                    <label class="sr-only" for="sectionName">Sections</label>
+                    <input type="text" class="form-control input-sm" name="sectionName" placeholder="Sections (e.g.: A01, A02)" />
                 </div>
                 <input type="submit" value="Create Course Offering" class="btn btn-default btn-sm" />
             </fieldset>
@@ -68,8 +68,8 @@
                     New Offering <small>PROG-2504 - Beginning Android Deveopment</small>
                 </h2>
                 <div class="form-inline">
-                    <label for="sectionName">Section</label>
-                    <input type="text" class="form-control input-sm" name="sectionName" placeholder="Section" value="A02" />
+                    <label for="sectionName">Sections</label>
+                    <input type="text" class="form-control input-sm" name="sectionName" placeholder="Sectiosn" value="A02, A03" />
 
                     <label for="passMark">Pass</label>
                     <input type="number" class="form-control input-sm" name="passMark" placeholder="Pass Mark" value="50" />
@@ -164,11 +164,26 @@
             </fieldset>
 
             <fieldset class="col-md-6">
-                <legend class="h3">Prior Terms</legend>
+                <legend class="h3 form-inline">
+                    Prior Terms
+                    &nbsp;
+                    <label class="sr-only" for="courseNumber">Course to Offer</label>
+                    <select class="form-control input-sm" name="courseNumber">
+                        <option value='' disabled style='display:none;'>Choose Term</option>
+                        <option>PROG-2504 - Sep-Dec 2014</option>
+                        <option selected>PROG-2504 - Jan-Apr 2014</option>
+                        <option>PROG-2504 - Jan-Apr 2013</option>
+                    </select>
+                </legend>
                 <table class="table">
                     <thead>
                         <tr>
-                            <th></th>
+                            <th>
+                                <div class="btn btn-xs btn-info">
+                                    <span class="fa fa-angle-left"> Apply</span>
+                                    <span class="fa fa-angle-double-left"></span>
+                                </div>
+                            </th>
                             <th>%</th>
                             <th>Evaluation Component / Sub-Components</th>
                         </tr>
