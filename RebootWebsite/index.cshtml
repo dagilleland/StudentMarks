@@ -21,21 +21,17 @@
             <li><a href="#">PROG-2018 - Sec A04</a></li>
             <li><a href="#">PROG-1508 - Sec A02</a></li>
         </ul>
+        <hr />
+        <h5>Future <small>&ndash; Sep-Dec 2015</small></h5>
+        <ul class="nav nav-pills nav-stacked">
+            <li><a href="#">PROG-2018 - Sec A01</a></li>
+            <li><a href="#">PROG-1508 - Sec ???</a></li>
+            <li><a href="#">PROG-1508 - Sec A02</a></li>
+        </ul>
     </div>
 
     <div class="col-md-10">
         <h2>Current Marks <small>PROG-2504 - Beginning Android Deveopment <a href="~/courseSettings.cshtml" title="Edit Course Settings"><span class="fa fa-gear"></span></a></small></h2>
-        @functions{
-            public IEnumerable<IEnumerable<string>> GetCourseMarks()
-            {
-                yield return new string[] { "Student Name", "Lab 1", "Quiz 1", "Buckets", "Lab 2", "Quiz 2", "Project" };
-                yield return new string[] { "", "", "", "", "", "", "" };
-                yield return new string[] { "", "", "", "", "", "", "" };
-                yield return new string[] { "", "", "", "", "", "", "" };
-                yield return new string[] { "", "", "", "", "", "", "" };
-                yield return new string[] { "", "", "", "", "", "", "" };
-            }
-        }
         <table class="table table-hover">
             <thead>
                 <tr>

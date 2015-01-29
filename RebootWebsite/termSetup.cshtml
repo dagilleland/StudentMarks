@@ -1,10 +1,236 @@
 ﻿@{
-    Page.Title = "Student Marks";
+    Page.Title = "Term Setup";
     Layout = "~/_Layout.cshtml";
 }
 
 <div class="row">
     <div class="col-md-12 page-header">
-        <h1>Student Marks</h1>
+        <h1>Term Setup</h1>
+    </div>
+
+    <div class="col-md-2">
+        <h3>Current <small>&ndash; Jan-Apr 2015</small></h3>
+        <ul class="nav nav-pills nav-stacked">
+            <li><a href="#">COMP-1517 - Sec A02</a></li>
+            <li><a href="#">COMP-1517 - Sec A03</a></li>
+        </ul>
+        <br />
+        <form method="post" class="well">
+            <fieldset>
+                <legend>New Offering</legend>
+                <div class="form-group">
+                    <label class="sr-only" for="courseNumber">Course to Offer</label>
+                    <select class="form-control" name="courseNumber">
+                        <option value='' disabled selected style='display:none;'>Choose Course</option>
+                        <option>PROG-1014 - Programming Fundamentals</option>
+                        <option>PROG-1508 - Database Fundamentals</option>
+                        <option>COMP-1517 - Client/Server Architecture</option>
+                        <option>PROG-2018 - Domain Driven Design</option>
+                        <option>PROG-2504 - Beginning Android Deveopment</option>
+                        <option>COMP-2545 - Enterprise Systems Security</option>
+                    </select>
+                    <label class="sr-only" for="schoolTerm">Choose School Term</label>
+                    <select class="form-control" name="schoolTerm">
+                        <option value='' disabled selected style='display:none;'>School Term</option>
+                        <optgroup label="2015">
+                            <option>Jan-Apr 2015</option>
+                            <option>May-Aug 2015</option>
+                            <option>Sep-Dec 2015</option>
+                        </optgroup>
+                        <option disabled>──────────</option>
+                        <optgroup label="2016">
+                            <option>Jan-Apr 2016</option>
+                            <option>May-Aug 2016</option>
+                            <option>Sep-Dec 2016</option>
+                        </optgroup>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="sr-only" for="sectionName">Section</label>
+                    <input type="text" class="form-control input-sm" name="sectionName" placeholder="Section" />
+                </div>
+                <input type="submit" value="Create Course Offering" class="btn btn-default btn-sm" />
+            </fieldset>
+        </form>
+        <hr />
+        <h4>Future <small>&ndash; Sep-Dec 2015</small></h4>
+        <ul class="nav nav-pills nav-stacked">
+            <li><a href="#">PROG-2018 - Sec A01</a></li>
+            <li><a href="#">PROG-1508 - Sec ???</a></li>
+            <li><a href="#">PROG-1508 - Sec A02</a></li>
+        </ul>
+    </div>
+
+    <div class="col-md-10">
+        <form method="post">
+            <header>
+                <h2>
+                    New Offering <small>PROG-2504 - Beginning Android Deveopment</small>
+                </h2>
+                <div class="form-inline">
+                    <label for="sectionName">Section</label>
+                    <input type="text" class="form-control input-sm" name="sectionName" placeholder="Section" value="A02" />
+
+                    <label for="passMark">Pass</label>
+                    <input type="number" class="form-control input-sm" name="passMark" placeholder="Pass Mark" value="50" />
+
+                    <label for="schoolTerm">School Term</label>
+                    <select class="form-control" name="schoolTerm">
+                        <option value='' disabled style='display:none;'>School Term</option>
+                        <optgroup label="2015">
+                            <option selected>Jan-Apr 2015</option>
+                            <option>May-Aug 2015</option>
+                            <option>Sep-Dec 2015</option>
+                        </optgroup>
+                        <option disabled>──────────</option>
+                        <optgroup label="2016">
+                            <option>Jan-Apr 2016</option>
+                            <option>May-Aug 2016</option>
+                            <option>Sep-Dec 2016</option>
+                        </optgroup>
+                    </select>
+                </div>
+            </header>
+
+            <hr />
+
+            <fieldset class="col-md-6">
+                <legend class="h3">Mark Breakdown</legend>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th>%</th>
+                            <th>Evaluation Component / Sub-Components</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><span class="fa fa-pencil"></span></td>
+                            <td>10</td>
+                            <td>
+                                <b>Lab 1</b>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><span class="fa fa-pencil"></span></td>
+                            <td>15</td>
+                            <td>
+                                <b>Quiz 1</b>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><span class="fa fa-pencil"></span></td>
+                            <td>20</td>
+                            <td>
+                                <b>Buckets</b>
+                                <blockquote>
+                                    <i>Pass/Fail</i>
+                                    <span>12 Assignments</span>
+                                </blockquote>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><span class="fa fa-pencil"></span></td>
+                            <td>10</td>
+                            <td>
+                                <b>Lab 2</b>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><span class="fa fa-pencil"></span></td>
+                            <td>15</td>
+                            <td>
+                                <b>Quiz 2</b>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><span class="fa fa-pencil"></span></td>
+                            <td>30</td>
+                            <td>
+                                <b>Project</b>
+                                <blockquote>
+                                    <ul>
+                                        <li><span class="badge">5 %</span> Documentation</li>
+                                        <li><span class="badge">5 %</span> UI Mockups</li>
+                                        <li><span class="badge">10 %</span> Automated Tests</li>
+                                        <li><span class="badge">10 %</span> App Functionality</li>
+                                    </ul>
+                                </blockquote>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </fieldset>
+
+            <fieldset class="col-md-6">
+                <legend class="h3">Prior Terms</legend>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th>%</th>
+                            <th>Evaluation Component / Sub-Components</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><span class="fa fa-pencil"></span></td>
+                            <td>10</td>
+                            <td>
+                                <b>Lab 1</b>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><span class="fa fa-pencil"></span></td>
+                            <td>15</td>
+                            <td>
+                                <b>Quiz 1</b>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><span class="fa fa-pencil"></span></td>
+                            <td>20</td>
+                            <td>
+                                <b>Buckets</b>
+                                <blockquote>
+                                    <i>Pass/Fail</i>
+                                    <span>12 Assignments</span>
+                                </blockquote>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><span class="fa fa-pencil"></span></td>
+                            <td>10</td>
+                            <td>
+                                <b>Lab 2</b>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><span class="fa fa-pencil"></span></td>
+                            <td>15</td>
+                            <td>
+                                <b>Quiz 2</b>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><span class="fa fa-pencil"></span></td>
+                            <td>30</td>
+                            <td>
+                                <b>Project</b>
+                                <blockquote>
+                                    <ul>
+                                        <li><span class="badge">5 %</span> Documentation</li>
+                                        <li><span class="badge">5 %</span> UI Mockups</li>
+                                        <li><span class="badge">10 %</span> Automated Tests</li>
+                                        <li><span class="badge">10 %</span> App Functionality</li>
+                                    </ul>
+                                </blockquote>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </fieldset>
+        </form>
     </div>
 </div>
