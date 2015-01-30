@@ -21,7 +21,7 @@
                 <div class="form-group">
                     <label class="sr-only" for="courseNumber">Course to Offer</label>
                     <select class="form-control" name="courseNumber">
-                        <option value='' disabled selected style='display:none;'>Choose Course</option>
+                        <option value='' disabled selected style='display:none;'>Choose Course *</option>
                         <option>PROG-1014 - Programming Fundamentals</option>
                         <option>PROG-1508 - Database Fundamentals</option>
                         <option>COMP-1517 - Client/Server Architecture</option>
@@ -49,7 +49,7 @@
                     <label class="sr-only" for="sectionName">Sections</label>
                     <input type="text" class="form-control input-sm" name="sectionName" placeholder="Sections (e.g.: A01, A02)" />
                 </div>
-                <input type="submit" value="Create Course Offering" class="btn btn-default btn-sm" />
+                <input type="submit" value="Create Course Offering" class="btn btn-info btn-sm" />
             </fieldset>
         </form>
         <hr />
@@ -95,32 +95,41 @@
             <hr />
 
             <fieldset class="col-md-6">
-                <legend class="h3">Mark Breakdown</legend>
+                <legend class="h3">
+                    Mark Breakdown
+                    &nbsp;
+                    <div class="btn btn-xs btn-info" title="Reset to Course Defaults">
+                        Reset
+                        <span class="fa fa-refresh"></span>
+                    </div>
+                </legend>
                 <table class="table">
                     <thead>
                         <tr>
-                            <th></th>
                             <th>%</th>
                             <th>Evaluation Component / Sub-Components</th>
+                            <th>Controlled</th>
+                            <th>Required</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
-                            <td><span class="fa fa-pencil"></span></td>
                             <td>10</td>
                             <td>
                                 <b>Lab 1</b>
                             </td>
+                            <td><span class="fa fa-square-o"></span></td>
+                            <td><span class="fa fa-square-o"></span></td>
                         </tr>
                         <tr>
-                            <td><span class="fa fa-pencil"></span></td>
                             <td>15</td>
                             <td>
                                 <b>Quiz 1</b>
                             </td>
+                            <td><span class="fa fa-check-square-o"></span></td>
+                            <td><span class="fa fa-check-square-o"></span></td>
                         </tr>
                         <tr>
-                            <td><span class="fa fa-pencil"></span></td>
                             <td>20</td>
                             <td>
                                 <b>Buckets</b>
@@ -129,23 +138,26 @@
                                     <span>12 Assignments</span>
                                 </blockquote>
                             </td>
+                            <td><span class="fa fa-square-o"></span></td>
+                            <td><span class="fa fa-square-o"></span></td>
                         </tr>
                         <tr>
-                            <td><span class="fa fa-pencil"></span></td>
                             <td>10</td>
                             <td>
                                 <b>Lab 2</b>
                             </td>
+                            <td><span class="fa fa-square-o"></span></td>
+                            <td><span class="fa fa-square-o"></span></td>
                         </tr>
                         <tr>
-                            <td><span class="fa fa-pencil"></span></td>
                             <td>15</td>
                             <td>
                                 <b>Quiz 2</b>
                             </td>
+                            <td><span class="fa fa-check-square-o"></span></td>
+                            <td><span class="fa fa-check-square-o"></span></td>
                         </tr>
                         <tr>
-                            <td><span class="fa fa-pencil"></span></td>
                             <td>30</td>
                             <td>
                                 <b>Project</b>
@@ -158,6 +170,8 @@
                                     </ul>
                                 </blockquote>
                             </td>
+                            <td><span class="fa fa-square-o"></span></td>
+                            <td><span class="fa fa-check-square-o"></span></td>
                         </tr>
                     </tbody>
                 </table>
@@ -166,6 +180,11 @@
             <fieldset class="col-md-6">
                 <legend class="h3 form-inline">
                     Prior Terms
+                    &nbsp;
+                    <div class="btn btn-xs btn-info" title="Copy sub-components to new offering">
+                        <span class="fa fa-angle-left"> Apply</span>
+                        <span class="fa fa-angle-double-left"></span>
+                    </div>
                     &nbsp;
                     <label class="sr-only" for="courseNumber">Course to Offer</label>
                     <select class="form-control input-sm" name="courseNumber">
@@ -178,33 +197,30 @@
                 <table class="table">
                     <thead>
                         <tr>
-                            <th>
-                                <div class="btn btn-xs btn-info">
-                                    <span class="fa fa-angle-left"> Apply</span>
-                                    <span class="fa fa-angle-double-left"></span>
-                                </div>
-                            </th>
                             <th>%</th>
                             <th>Evaluation Component / Sub-Components</th>
+                            <th>Controlled</th>
+                            <th>Required</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
-                            <td><span class="fa fa-pencil"></span></td>
                             <td>10</td>
                             <td>
                                 <b>Lab 1</b>
                             </td>
+                            <td><span class="fa fa-square-o"></span></td>
+                            <td><span class="fa fa-square-o"></span></td>
                         </tr>
                         <tr>
-                            <td><span class="fa fa-pencil"></span></td>
                             <td>15</td>
                             <td>
                                 <b>Quiz 1</b>
                             </td>
+                            <td><span class="fa fa-check-square-o"></span></td>
+                            <td><span class="fa fa-check-square-o"></span></td>
                         </tr>
                         <tr>
-                            <td><span class="fa fa-pencil"></span></td>
                             <td>20</td>
                             <td>
                                 <b>Buckets</b>
@@ -213,23 +229,26 @@
                                     <span>12 Assignments</span>
                                 </blockquote>
                             </td>
+                            <td><span class="fa fa-square-o"></span></td>
+                            <td><span class="fa fa-square-o"></span></td>
                         </tr>
                         <tr>
-                            <td><span class="fa fa-pencil"></span></td>
                             <td>10</td>
                             <td>
                                 <b>Lab 2</b>
                             </td>
+                            <td><span class="fa fa-square-o"></span></td>
+                            <td><span class="fa fa-square-o"></span></td>
                         </tr>
                         <tr>
-                            <td><span class="fa fa-pencil"></span></td>
                             <td>15</td>
                             <td>
                                 <b>Quiz 2</b>
                             </td>
+                            <td><span class="fa fa-check-square-o"></span></td>
+                            <td><span class="fa fa-check-square-o"></span></td>
                         </tr>
                         <tr>
-                            <td><span class="fa fa-pencil"></span></td>
                             <td>30</td>
                             <td>
                                 <b>Project</b>
@@ -242,6 +261,8 @@
                                     </ul>
                                 </blockquote>
                             </td>
+                            <td><span class="fa fa-square-o"></span></td>
+                            <td><span class="fa fa-check-square-o"></span></td>
                         </tr>
                     </tbody>
                 </table>
