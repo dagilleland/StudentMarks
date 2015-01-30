@@ -5,7 +5,18 @@
 
 <div class="row">
     <div class="col-md-12 page-header">
-        <h1>Course Listings</h1>
+        <h1 class="pull-left">Course Listings</h1>
+        <div class="pull-right well col-md-4">
+            <h4>Commands: </h4>
+            <span class="badge">CreateCourse</span>
+            <span class="badge">UpdatePassMark</span>
+            <span class="badge">SaveEvaluationComponents</span>
+        </div>
+        <div class="pull-right well col-md-4">
+            <h4>Queries: </h4>
+            <span class="badge">ListCourses()</span>
+            <span class="badge">ListEvaluationComponents(CourseNumber)</span>
+        </div>
     </div>
 
     <div class="col-md-3">
@@ -30,6 +41,12 @@
                     <label class="sr-only" for="courseName">Course Name</label>
                     <input type="text" class="form-control input-sm" name="courseName" placeholder="Name" />
                 </div>
+                <div class="input-group">
+                    <label class="sr-only" for="passMark">Pass Mark</label>
+                    <input type="number" class="form-control input-sm" name="passMark" placeholder="Pass Mark" value="50" />
+                    <label class="input-group-addon input-sm">%</label>
+                </div>
+                <br />
                 <input type="submit" value="Add Course" class="btn btn-default btn-sm" />
             </fieldset>
         </form>
