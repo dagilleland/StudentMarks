@@ -3,16 +3,32 @@
     Layout = "~/_Layout.cshtml";
 }
 
+<style type="text/css">
+    input.percent::after {
+        content: ' %'
+    }
+</style>
 <div class="row">
     <div class="col-md-12 page-header">
-        <h1>Term Setup</h1>
+        <h1 class="pull-left">Term Setup</h1>
+        <div class="pull-right well">
+            <h4>Commands: </h4>
+            <span class="badge">CreateCourseOffering</span>
+            <span class="badge">UpdateCourseOffering</span>
+            <span class="badge">SaveMarkBreakdown</span>
+        </div>
+        <div class="pull-right well">
+            <h4>Queries: </h4>
+            <span class="badge">ListTermOfferings(Current+Future)</span>
+            <span class="badge">ListEvaluationComponents(CourseNumber)</span>
+            <span class="badge">ListPriorTerms(CourseNumber)</span>
+        </div>
     </div>
 
     <div class="col-md-2">
         <h3>Current <small>&ndash; Jan-Apr 2015</small></h3>
         <ul class="nav nav-pills nav-stacked">
-            <li><a href="#">COMP-1517 - Sec A02</a></li>
-            <li><a href="#">COMP-1517 - Sec A03</a></li>
+            <li><a href="#">COMP-1517 - A02, A03</a></li>
         </ul>
         <br />
         <form method="post" class="well">
@@ -56,8 +72,7 @@
         <h4>Future <small>&ndash; Sep-Dec 2015</small></h4>
         <ul class="nav nav-pills nav-stacked">
             <li><a href="#">PROG-2018 - Sec A01</a></li>
-            <li><a href="#">PROG-1508 - Sec ???</a></li>
-            <li><a href="#">PROG-1508 - Sec A02</a></li>
+            <li><a href="#">PROG-1508 - A02</a></li>
         </ul>
     </div>
 
@@ -65,7 +80,7 @@
         <form method="post">
             <header>
                 <h2>
-                    New Offering <small>PROG-2504 - Beginning Android Deveopment</small>
+                    New Offerings <small>PROG-2504 - Beginning Android Deveopment</small>
                 </h2>
                 <div class="form-inline">
                     <label for="sectionName">Sections</label>
@@ -102,6 +117,11 @@
                         Reset
                         <span class="fa fa-refresh"></span>
                     </div>
+                    &nbsp;
+                    <div class="btn btn-xs btn-info" title="Save Mark Breakdown">
+                        Save
+                        <span class="fa fa-save"></span>
+                    </div>
                 </legend>
                 <table class="table">
                     <thead>
@@ -116,7 +136,14 @@
                         <tr>
                             <td>10</td>
                             <td>
-                                <b>Lab 1</b>
+                                <div class="form-inline">
+                                    <label>Lab 1</label>
+                                    <select class="pull-right form-control input-sm">
+                                        <option selected>-no sub-components-</option>
+                                        <option>Pass/Fail Assessments</option>
+                                        <option>Weighted Sub-Components</option>
+                                    </select>
+                                </div>
                             </td>
                             <td><span class="fa fa-square-o"></span></td>
                             <td><span class="fa fa-square-o"></span></td>
@@ -124,7 +151,14 @@
                         <tr>
                             <td>15</td>
                             <td>
-                                <b>Quiz 1</b>
+                                <div class="form-inline">
+                                    <label>Quiz 1</label>
+                                    <select class="pull-right form-control input-sm">
+                                        <option selected>-no sub-components-</option>
+                                        <option>Pass/Fail Assessments</option>
+                                        <option>Weighted Sub-Components</option>
+                                    </select>
+                                </div>
                             </td>
                             <td><span class="fa fa-check-square-o"></span></td>
                             <td><span class="fa fa-check-square-o"></span></td>
@@ -132,11 +166,23 @@
                         <tr>
                             <td>20</td>
                             <td>
-                                <b>Buckets</b>
-                                <blockquote>
-                                    <i>Pass/Fail</i>
-                                    <span>12 Assignments</span>
-                                </blockquote>
+                                <div class="form-inline">
+                                    <label>Buckets</label>
+                                    <select class="pull-right form-control input-sm">
+                                        <option>-no sub-components-</option>
+                                        <option selected>Pass/Fail Assessments</option>
+                                        <option>Weighted Sub-Components</option>
+                                    </select>
+                                </div>
+                                <br />
+                                <div class="well">
+                                    <label>Quantity: </label>
+                                    <input value="9" type="number" />
+                                    <br />
+                                    <label>Names (comma-separated): </label>
+                                    <br />
+                                    <textarea class="form-control" rows="3">Single Activity, Toast, Multiple Activities, ListView, WebService, Menu, Preferences, Threads, SqlLite</textarea>
+                                </div>
                             </td>
                             <td><span class="fa fa-square-o"></span></td>
                             <td><span class="fa fa-square-o"></span></td>
@@ -144,7 +190,14 @@
                         <tr>
                             <td>10</td>
                             <td>
-                                <b>Lab 2</b>
+                                <div class="form-inline">
+                                    <label>Lab 2</label>
+                                    <select class="pull-right form-control input-sm">
+                                        <option selected>-no sub-components-</option>
+                                        <option>Pass/Fail Assessments</option>
+                                        <option>Weighted Sub-Components</option>
+                                    </select>
+                                </div>
                             </td>
                             <td><span class="fa fa-square-o"></span></td>
                             <td><span class="fa fa-square-o"></span></td>
@@ -152,7 +205,14 @@
                         <tr>
                             <td>15</td>
                             <td>
-                                <b>Quiz 2</b>
+                                <div class="form-inline">
+                                    <label>Quiz 2</label>
+                                    <select class="pull-right form-control input-sm">
+                                        <option selected>-no sub-components-</option>
+                                        <option>Pass/Fail Assessments</option>
+                                        <option>Weighted Sub-Components</option>
+                                    </select>
+                                </div>
                             </td>
                             <td><span class="fa fa-check-square-o"></span></td>
                             <td><span class="fa fa-check-square-o"></span></td>
@@ -160,15 +220,37 @@
                         <tr>
                             <td>30</td>
                             <td>
-                                <b>Project</b>
-                                <blockquote>
-                                    <ul>
-                                        <li><span class="badge">5 %</span> Documentation</li>
-                                        <li><span class="badge">5 %</span> UI Mockups</li>
-                                        <li><span class="badge">10 %</span> Automated Tests</li>
-                                        <li><span class="badge">10 %</span> App Functionality</li>
-                                    </ul>
-                                </blockquote>
+                                <div class="form-inline">
+                                    <label>Project</label>
+                                    <select class="pull-right form-control input-sm">
+                                        <option>-no sub-components-</option>
+                                        <option>Pass/Fail Assessments</option>
+                                        <option selected>Weighted Sub-Components</option>
+                                    </select>
+                                </div>
+                                <br />
+                                <div class="well">
+                                    <div class="input-group">
+                                        <input class="form-control percent" type="number" value="5">
+                                        <span class="input-group-addon">%</span>
+                                        <input class="form-control" type="text" value="Documentation" />
+                                    </div>
+                                    <div class="input-group">
+                                        <input class="form-control percent" type="number" value="5">
+                                        <span class="input-group-addon">%</span>
+                                        <input class="form-control" type="text" value="UI Mockups" />
+                                    </div>
+                                    <div class="input-group">
+                                        <input class="form-control percent" type="number" value="10">
+                                        <span class="input-group-addon">%</span>
+                                        <input class="form-control" type="text" value="Automated Tests" />
+                                    </div>
+                                    <div class="input-group">
+                                        <input class="form-control percent" type="number" value="10">
+                                        <span class="input-group-addon">%</span>
+                                        <input class="form-control" type="text" value="App Functionality" />
+                                    </div>
+                                </div>
                             </td>
                             <td><span class="fa fa-square-o"></span></td>
                             <td><span class="fa fa-check-square-o"></span></td>
