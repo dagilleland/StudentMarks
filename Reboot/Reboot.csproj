@@ -59,8 +59,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Commands\AddCourseCommand.cs" />
     <Compile Include="CourseEvaluation\EvaluationComponent.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Specifications\CommandStories.cs" />
     <Compile Include="Specifications\CourseEvaluation\Class1.cs" />
     <Compile Include="Specifications\CourseEvaluation\UnitTest\CourseEvaluationDomain.cs" />
   </ItemGroup>
