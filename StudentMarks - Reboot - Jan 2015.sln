@@ -33,6 +33,8 @@ Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "RebootWebsite", "http://loc
 		DefaultWebSiteLanguage = "Visual C#"
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Edument.CQRS", "Edument.CQRS\Edument.CQRS.csproj", "{D2BAB57D-225D-4F4C-9410-ED39495A8FE0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -47,6 +49,10 @@ Global
 		{B1EA5FB5-6D59-4747-A8AC-707C2C9622DC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B1EA5FB5-6D59-4747-A8AC-707C2C9622DC}.Release|Any CPU.ActiveCfg = Debug|Any CPU
 		{B1EA5FB5-6D59-4747-A8AC-707C2C9622DC}.Release|Any CPU.Build.0 = Debug|Any CPU
+		{D2BAB57D-225D-4F4C-9410-ED39495A8FE0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D2BAB57D-225D-4F4C-9410-ED39495A8FE0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D2BAB57D-225D-4F4C-9410-ED39495A8FE0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D2BAB57D-225D-4F4C-9410-ED39495A8FE0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

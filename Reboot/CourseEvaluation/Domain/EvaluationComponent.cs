@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace StudentMarks.Framework.CourseEvaluation
+namespace StudentMarks.Framework.CourseEvaluation.Domain
 {
     public class EvaluationComponent
     {
