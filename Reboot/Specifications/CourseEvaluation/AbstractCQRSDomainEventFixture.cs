@@ -7,22 +7,28 @@ using Xunit;
 
 namespace StudentMarks.Framework.Specifications.CourseEvaluation
 {
-    public class AbstractCQRSDomainEventFixture<TDomain> where TDomain : Aggregate
+    public class AbstractCQRSDomainEventFixture<TDomain> where TDomain : Aggregate, new()
     {
-        protected void GivenPriorEvents(TDomain givenSut, object[] givenPriorEvents)
+        #region Constructor/Properties - Setup
+        protected TDomain SUT_ActualDomain { get; private set; }
+        public AbstractCQRSDomainEventFixture()
         {
-            givenSut.ApplyEvents(givenPriorEvents);
+            SUT_ActualDomain = new TDomain();
         }
-        protected void WhenDispatchingCommand<TCommand>(TDomain givenSut, TCommand whenCommand, out IEnumerable<object> actualEvents)
+        #endregion
+
+        #region Common Given/When/Then Methods
+        protected void GivenPriorEvents(object[] givenPriorEvents)
         {
-            var handler = givenSut as IHandleCommand<TCommand>;
-            if (handler == null)
-                throw new CommandHandlerNotDefinedException(string.Format(
-                    "Aggregate {0} does not yet handle command {1}",
-                    givenSut.GetType().Name, whenCommand.GetType().Name));
-            IEnumerable<object> actual = null;
+            SUT_ActualDomain.ApplyEvents(givenPriorEvents);
+        }
+
+        protected void WhenDispatchingCommand<TCommand>(TCommand whenCommand, out IEnumerable<object> actualEvents)
+        {
+            IHandleCommand<TCommand> handler = GetHandler<TCommand>(whenCommand);
 
             // Expected events, but got exception {0}
+            IEnumerable<object> actual = null;
             Assert.DoesNotThrow(() =>
             {
                 actual = handler.Handle(whenCommand).Cast<object>();
@@ -30,6 +36,17 @@ namespace StudentMarks.Framework.Specifications.CourseEvaluation
 
             actualEvents = actual;
         }
+
+        protected void FailWhenDispatchingCommand<TCommand, TException>(TCommand whenCommand, out TException actualException) where TException : Exception
+        {
+            IHandleCommand<TCommand> handler = GetHandler<TCommand>(whenCommand);
+
+            actualException = Assert.Throws<TException>(() =>
+            {
+                handler.Handle(whenCommand).Cast<object>();
+            });
+        }
+
         protected void ThenExpectedEventsAreGenerated(IEnumerable<object> expectedEvents, IEnumerable<object> gotEvents)
         {
             if (gotEvents != null)
@@ -62,21 +79,20 @@ namespace StudentMarks.Framework.Specifications.CourseEvaluation
                                 pair.Expected.GetType().Name, pair.Actual.GetType().Name));
                     }
                 }
-                //for (var i = 0; i < gotEvents.Count(); i++)
-                //    if (gotEvents[i].GetType() == expectedEvents[i].GetType())
-                //        Assert.Equal(Serialize(expectedEvents[i]), Serialize(gotEvents[i]));
-                //    else
-                //        Assert.True(false, string.Format(
-                //            "Incorrect event in results; expected a {0} but got a {1}",
-                //            expectedEvents[i].GetType().Name, gotEvents[i].GetType().Name));
             }
-            //else if (got is CommandHandlerNotDefinedException)
-            //    Assert.True(false, (got as Exception).Message);
-            //else
-            //    Assert.True(false, string.Format(,
-            //        got.GetType().Name));
         }
+        #endregion
 
+        #region Private helper methods
+        private IHandleCommand<TCommand> GetHandler<TCommand>(TCommand whenCommand)
+        {
+            var handler = SUT_ActualDomain as IHandleCommand<TCommand>;
+            if (handler == null)
+                throw new CommandHandlerNotDefinedException(string.Format(
+                    "Aggregate {0} does not yet handle command {1}",
+                    SUT_ActualDomain.GetType().Name, whenCommand.GetType().Name));
+            return handler;
+        }
         private string Serialize(object obj)
         {
             return JsonConvert.SerializeObject(obj);
@@ -89,10 +105,13 @@ namespace StudentMarks.Framework.Specifications.CourseEvaluation
                 diff.Remove(remove);
             return diff.ToArray();
         }
+        #endregion
 
+        #region Exceptions
         private class CommandHandlerNotDefinedException : Exception
         {
             public CommandHandlerNotDefinedException(string msg) : base(msg) { }
         }
+        #endregion
     }
 }

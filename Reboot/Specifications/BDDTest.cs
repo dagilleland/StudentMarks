@@ -20,6 +20,7 @@ namespace Edument.CQRS
     /// Provides infrastructure for a set of tests on a given aggregate.
     /// </summary>
     /// <typeparam name="TAggregate"></typeparam>
+    [Obsolete("remove eventually", true)]
     public class BDDTest<TAggregate>
         where TAggregate : Aggregate, new()
     {

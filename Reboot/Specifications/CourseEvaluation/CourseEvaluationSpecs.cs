@@ -20,63 +20,60 @@ namespace StudentMarks.Framework.Specifications.CourseEvaluation
     [Story()]
     public class CourseEvaluationSpecs_2 : AbstractCQRSDomainEventFixture<Course>
     {
-        [Fact]
-        public void Should_Handle_AssignCourse()
+        public Guid AggregateId { get; set; }
+        public CourseEvaluationSpecs_2()
         {
-            Guid aggregateId = Guid.NewGuid();
-            object[] givenPriorEvents = new object[0];
-            var givenSut = new Course();
-            var whenCommand = new AssignCourse(aggregateId, "PROG 1001", "Programming Fundamentals", 50);
-            var expectedEvents = new object[] {new CourseAssigned(aggregateId, "PROG 1001", "Programming Fundamentals", 50)};
-            var expectedSut = new Course() { Number = "PROG 1001", Name = "Programming Fundamentals", PassMark = 50 };
-            IEnumerable<object> actualEvents = null;
-
-            this.Given(_ => GivenPriorEvents(givenSut, givenPriorEvents), false)
-                .When(_ => WhenDispatchingCommand<AssignCourse>(givenSut, whenCommand, out actualEvents))
-                .Then(_ => ThenExpectedEventsAreGenerated(expectedEvents, actualEvents))
-                .BDDfy();
+            AggregateId = Guid.NewGuid();
         }
-    }
 
-    public class CourseEvaluationSpecs : BDDTest<Course>
-    {
         #region Primary Domain Scenario
         [Theory]
         [InlineData("PROG 1001", "Programming Fundamentals", 50)]
         [InlineData("COMP 2018", "Application Development", 70)]
-        public void Handles_AssignCourse(string number, string name, int passMark)
+        public void Should_Handle_AssignCourse(string number, string name, int passMark)
         {
-            Guid aggregateId = Guid.NewGuid();
-            Test(
-                Given(),
-                When(new AssignCourse(aggregateId, number, name, passMark)),
-                Then(new CourseAssigned(aggregateId, number, name, passMark)));
+            object[] givenPriorEvents = new object[0];
+            var whenCommand = new AssignCourse(AggregateId, number, name, passMark);
+            var expectedEvents = new object[] { new CourseAssigned(AggregateId, number, name, passMark) };
+            var expectedSut = new Course() { Number = number, Name = name, PassMark = passMark };
+            IEnumerable<object> actualEvents = null;
+
+            this.Given(_ => GivenPriorEvents(givenPriorEvents), false)
+                .When(_ => WhenDispatchingCommand<AssignCourse>(whenCommand, out actualEvents))
+                .Then(_ => ThenExpectedEventsAreGenerated(expectedEvents, actualEvents))
+                .BDDfy();
         }
         #endregion
 
-        #region Secondary Domain Scenarios
+        #region Alternate Scenarios for Domain
         [Theory]
-        [InlineData("PROG 1001", "Programming Fundamentals")]
-        [InlineData("COMP 2018", "Application Development")]
-        public void Rejects_AssignCourse_With_Duplicate_Name(string number, string name)
+        [InlineData("PROG 1001", "Programming Fundamentals", 50)]
+        [InlineData("COMP 2018", "Application Development", 70)]
+        public void Rejects_AssignCourse_With_Duplicate_Name(string number, string name, int passMark)
         {
             // TODO: Build exception environment
-            Test(
-                Given(),
-                When(new AssignCourse(Guid.Empty, number, name, 0)),
-                ThenFailWith<CourseDuplication>());
+            object[] givenPriorEvents = new object[] { new CourseAssigned(AggregateId, number + "A", name, passMark) };
+            var whenCommand = new AssignCourse(AggregateId, number, name, passMark);
+
+            CourseDuplication actualEvents;
+            this.Given(_ => GivenPriorEvents(givenPriorEvents), false)
+                .When(_ => FailWhenDispatchingCommand<AssignCourse, CourseDuplication>(whenCommand, out actualEvents))
+                .BDDfy();
         }
 
         [Theory]
-        [InlineData("PROG 1001", "Programming Fundamentals")]
-        [InlineData("COMP 2018", "Application Development")]
-        public void Rejects_AssignCourse_With_Duplicate_Number(string number, string name)
+        [InlineData("PROG 1001", "Programming Fundamentals", 50)]
+        [InlineData("COMP 2018", "Application Development", 70)]
+        public void Rejects_AssignCourse_With_Duplicate_Number(string number, string name, int passMark)
         {
             // TODO: Build exception environment
-            Test(
-                Given(),
-                When(new AssignCourse(Guid.Empty, number, name, 0)),
-                ThenFailWith<CourseDuplication>());
+            object[] givenPriorEvents = new object[] { new CourseAssigned(AggregateId, number, name + " Alt", passMark) };
+            var whenCommand = new AssignCourse(AggregateId, number, name, passMark);
+
+            CourseDuplication actualEvents;
+            this.Given(_ => GivenPriorEvents(givenPriorEvents), false)
+                .When(_ => FailWhenDispatchingCommand<AssignCourse, CourseDuplication>(whenCommand, out actualEvents))
+                .BDDfy();
         }
 
         [Theory]
@@ -87,10 +84,13 @@ namespace StudentMarks.Framework.Specifications.CourseEvaluation
         [InlineData("\n")]
         public void Rejects_AssignCourse_With_Invalid_Name(string name)
         {
-            Test(
-                Given(),
-                When(new AssignCourse(Guid.Empty, "PROG 1001", name, 0)),
-                ThenFailWith<CourseNameInvalid>());
+            object[] givenPriorEvents = new object[0];
+            var whenCommand = new AssignCourse(AggregateId, "PROG 1001", name, 50);
+
+            CourseNameInvalid actualEvents;
+            this.Given(_ => GivenPriorEvents(givenPriorEvents), false)
+                .When(_ => FailWhenDispatchingCommand<AssignCourse, CourseNameInvalid>(whenCommand, out actualEvents))
+                .BDDfy();
         }
 
         [Theory]
@@ -101,11 +101,29 @@ namespace StudentMarks.Framework.Specifications.CourseEvaluation
         [InlineData("\n")]
         public void Rejects_AssignCourse_With_Invalid_Number(string number)
         {
-            // TODO: Build exception environment
-            Test(
-                Given(),
-                When(new AssignCourse(Guid.Empty, number, "Programming Fundamentals", 0)),
-                ThenFailWith<CourseNumberInvalid>());
+            object[] givenPriorEvents = new object[0];
+            var whenCommand = new AssignCourse(AggregateId, number, "Programming Fundamentals", 50);
+
+            CourseNumberInvalid actualEvents;
+            this.Given(_ => GivenPriorEvents(givenPriorEvents), false)
+                .When(_ => FailWhenDispatchingCommand<AssignCourse, CourseNumberInvalid>(whenCommand, out actualEvents))
+                .BDDfy();
+        }
+
+        [Theory]
+        [InlineData(0)]
+        [InlineData(49)]
+        [InlineData(76)]
+        [InlineData(100)]
+        public void Rejects_AssignCourse_With_Invalid_PassMark(int passMark)
+        {
+            object[] givenPriorEvents = new object[0];
+            var whenCommand = new AssignCourse(AggregateId, "PROG 1001", "Programming Fundamentals", passMark);
+
+            PassMarkIsInvalid actualEvents;
+            this.Given(_ => GivenPriorEvents(givenPriorEvents), false)
+                .When(_ => FailWhenDispatchingCommand<AssignCourse, PassMarkIsInvalid>(whenCommand, out actualEvents))
+                .BDDfy();
         }
         #endregion
     }
