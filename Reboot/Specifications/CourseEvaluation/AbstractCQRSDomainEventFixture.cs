@@ -25,7 +25,7 @@ namespace StudentMarks.Framework.Specifications.CourseEvaluation
 
         protected void WhenDispatchingCommand<TCommand>(TCommand whenCommand, out IEnumerable<object> actualEvents)
         {
-            IHandleCommand<TCommand> handler = GetHandler<TCommand>(whenCommand);
+            IHandleCommand<TCommand> handler = GetHandler<TCommand>();
 
             // Expected events, but got exception {0}
             IEnumerable<object> actual = null;
@@ -39,11 +39,13 @@ namespace StudentMarks.Framework.Specifications.CourseEvaluation
 
         protected void FailWhenDispatchingCommand<TCommand, TException>(TCommand whenCommand, out TException actualException) where TException : Exception
         {
-            IHandleCommand<TCommand> handler = GetHandler<TCommand>(whenCommand);
+            IHandleCommand<TCommand> handler = GetHandler<TCommand>();
 
             actualException = Assert.Throws<TException>(() =>
             {
-                handler.Handle(whenCommand).Cast<object>();
+                // Note: In case the Handle just yields an enumerator, I must invoke the enumerator to ensure any internal validation checks actually pass. See http://jason.diamond.name/weblog/2010/10/27/why-wont-my-iterator-throw/
+                var result = handler.Handle(whenCommand);
+                result.GetEnumerator().MoveNext(); // The "guard" is done by MoveNext()
             });
         }
 
@@ -84,13 +86,13 @@ namespace StudentMarks.Framework.Specifications.CourseEvaluation
         #endregion
 
         #region Private helper methods
-        private IHandleCommand<TCommand> GetHandler<TCommand>(TCommand whenCommand)
+        private IHandleCommand<TCommand> GetHandler<TCommand>()
         {
             var handler = SUT_ActualDomain as IHandleCommand<TCommand>;
             if (handler == null)
                 throw new CommandHandlerNotDefinedException(string.Format(
                     "Aggregate {0} does not yet handle command {1}",
-                    SUT_ActualDomain.GetType().Name, whenCommand.GetType().Name));
+                    SUT_ActualDomain.GetType().Name, typeof(TCommand).Name));
             return handler;
         }
         private string Serialize(object obj)
