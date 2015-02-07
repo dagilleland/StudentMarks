@@ -5,6 +5,7 @@ using System.Threading;
 
 namespace Edument.CQRS
 {
+    [Obsolete("The InMemoryEventStore should only be used for testing - use SqlEventStore or another IEventStore for production environments", false)]
     public class InMemoryEventStore : IEventStore
     {
         private class Stream

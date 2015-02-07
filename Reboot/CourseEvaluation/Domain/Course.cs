@@ -10,8 +10,10 @@ namespace StudentMarks.Framework.CourseEvaluation.Domain
 {
     public class Course : Aggregate, IHandleCommand<AssignCourse>
     {
-        //public string Number { get; set; }
-        //public string Name { get; set; }
+        public string Number { get; set; }
+        public string Name { get; set; }
+        public int PassMark { get; set; }
+
         //public Course()
         //{
         //}
@@ -28,7 +30,10 @@ namespace StudentMarks.Framework.CourseEvaluation.Domain
 
         public IEnumerable Handle(AssignCourse course)
         {
-            yield return new CourseAssigned(course.CourseNumber, course.CourseName);
+            if (string.IsNullOrWhiteSpace(course.CourseName)) throw new CourseNameInvalid();
+            if (string.IsNullOrWhiteSpace(course.CourseNumber)) throw new CourseNumberInvalid();
+
+            yield return new CourseAssigned(Guid.Empty, course.CourseNumber, course.CourseName, 0);
         }
     }
 }

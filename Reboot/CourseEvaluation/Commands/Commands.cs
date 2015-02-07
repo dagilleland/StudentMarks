@@ -1,45 +1,64 @@
-﻿using System;
+﻿using StudentMarks.Framework.CourseEvaluation.Domain;
+using System;
 
 namespace StudentMarks.Framework.CourseEvaluation.Commands
 {
-    public class AssignCourse
+    public class AssignCourse : AbstractCommand
     {
         public string CourseNumber { get; private set; }
         public string CourseName { get; private set; }
-        /// <summary>
-        /// Initializes a new instance of the <see cref="AssignCourse"/> class.
-        /// </summary>
-        /// <param name="courseNumber"></param>
-        /// <param name="courseName"></param>
-        public AssignCourse(string courseNumber, string courseName)
+        public int PassMark { get; private set; }
+
+        public AssignCourse(Guid aggregateId, string courseNumber, string courseName, int passMark)
+            : base(aggregateId)
         {
             CourseNumber = courseNumber;
             CourseName = courseName;
+            PassMark = passMark;
         }
     }
-    public class FixPassMark
+    public class FixPassMark : AbstractCommand
     {
-        public Guid Id { get; private set; }
         public int PassMark { get; private set; }
+        public FixPassMark(Guid aggregateId, int passMark)
+            : base(aggregateId)
+        {
+            PassMark = passMark;
+        }
     }
-    public class SetEvalutionComponents
+    public class SetEvalutionComponents : AbstractCommand
     {
-        public Guid Id { get; private set; }
+        public SetEvalutionComponents(Guid aggregateId)
+            : base(aggregateId)
+        {
+        }
     }
-    public class MakeCourseAvailable
+    public class MakeCourseAvailable : AbstractCommand
     {
-        public Guid Id { get; private set; }
+        public MakeCourseAvailable(Guid aggregateId)
+            : base(aggregateId)
+        {
+        }
     }
-    public class ReevaluateCourse
+    public class ReevaluateCourse : AbstractCommand
     {
-        public Guid Id { get; private set; }
+        public ReevaluateCourse(Guid aggregateId)
+            : base(aggregateId)
+        {
+        }
     }
-    public class RetireCourse
+    public class RetireCourse : AbstractCommand
     {
-        public Guid Id { get; private set; }
+        public RetireCourse(Guid aggregateId)
+            : base(aggregateId)
+        {
+        }
     }
-    public class ScrapCourse
+    public class ScrapCourse : AbstractCommand
     {
-        public Guid Id { get; private set; }
+        public ScrapCourse(Guid aggregateId)
+            : base(aggregateId)
+        {
+        }
     }
 }

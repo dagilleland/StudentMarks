@@ -57,6 +57,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CourseEvaluation\Commands\Commands.cs" />
+    <Compile Include="CourseEvaluation\Commands\FixPassMarkBase.cs" />
     <Compile Include="CourseEvaluation\Commands\Handlers\Handlers.cs" />
     <Compile Include="CourseEvaluation\Domain\Course.cs" />
     <Compile Include="CourseEvaluation\Domain\EvaluationComponent.cs" />

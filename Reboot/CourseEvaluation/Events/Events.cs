@@ -5,42 +5,46 @@ namespace StudentMarks.Framework.CourseEvaluation.Events
 {
     public class CourseAssigned
     {
-        public string CourseNumber { get; private set; }
-        public string CourseName { get; private set; }
+        internal string CourseNumber { get;  set; }
+        internal string CourseName { get; set; }
+        internal int PassMark { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="CourseAssigned"/> class.
         /// </summary>
+        /// <param name="aggregateId"></param>
         /// <param name="courseNumber"></param>
         /// <param name="courseName"></param>
-        public CourseAssigned(string courseNumber, string courseName)
+        /// <param name="passMark"></param>
+        public CourseAssigned(Guid aggregateId, string courseNumber, string courseName, int passMark)
         {
             CourseNumber = courseNumber;
             CourseName = courseName;
         }
+        internal CourseAssigned() { }
     }
     public class PassMarkFixed
     {
-        public Guid Id { get; private set; }
-        public int PassMark { get; private set; }
+        internal Guid Id { get; set; }
+        internal int PassMark { get; set; }
     }
     public class EvaluationComponentsSet
     {
-        public Guid Id { get; private set; }
+        internal Guid Id { get; set; }
     }
     public class CourseMadeAvailable
     {
-        public Guid Id { get; private set; }
+        internal Guid Id { get; set; }
     }
     public class CourseReevaluated
     {
-        public Guid Id { get; private set; }
+        internal Guid Id { get; set; }
     }
     public class CourseRetired
     {
-        public Guid Id { get; private set; }
+        internal Guid Id { get; set; }
     }
     public class CourseScrapped
     {
-        public Guid Id { get; private set; }
+        internal Guid Id { get; set; }
     }
 }

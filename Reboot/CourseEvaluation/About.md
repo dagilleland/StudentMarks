@@ -32,8 +32,9 @@ Commands indicate some kind of *request* to change the information in the domain
 
 Exceptions describe when a command fails, indicating *why* it failed.
 
-* CourseNumberAlreadyExists - for *AssignCourse*
-* CourseNameAlreadyExists - for *AssignCourse*
+* CourseDuplication - for *AssignCourse*
+* CourseNumberInvalid - for *AssignCourse*
+* CourseNameInvalid - for *AssignCourse*
 * CourseNotFound - for *FixPassMark*, *SetEvaluationComponents*, *MakeCourseAvailable*, *ReevaluateCourse*, *RetireCourse*, and *ScrapCourse*
 * PassMarkIsInvalid - for *FixPassMark*
 * InvalidEvaluationComponentWeight - for *SetEvaluationComponets*
