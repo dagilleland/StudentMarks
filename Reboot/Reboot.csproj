@@ -58,17 +58,21 @@
   <ItemGroup>
     <Compile Include="CourseEvaluation\Commands\Commands.cs" />
     <Compile Include="CourseEvaluation\Commands\Handlers\Handlers.cs" />
+    <Compile Include="CourseEvaluation\Domain\Course.cs" />
     <Compile Include="CourseEvaluation\Domain\EvaluationComponent.cs" />
     <Compile Include="CourseEvaluation\Domain\Exceptions.cs" />
     <Compile Include="CourseEvaluation\Events\Events.cs" />
     <Compile Include="CourseEvaluation\Queries\ReadModel\Class1.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Specifications\BDDTest.cs" />
     <Compile Include="Specifications\CommandStories.cs" />
     <Compile Include="Specifications\CourseEvaluation\Class1.cs" />
+    <Compile Include="Specifications\CourseEvaluation\CourseEvaluationSpecs.cs" />
     <Compile Include="Specifications\CourseEvaluation\UnitTest\CourseEvaluationDomain.cs" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+    <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

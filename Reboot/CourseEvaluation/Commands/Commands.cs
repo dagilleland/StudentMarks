@@ -6,6 +6,16 @@ namespace StudentMarks.Framework.CourseEvaluation.Commands
     {
         public string CourseNumber { get; private set; }
         public string CourseName { get; private set; }
+        /// <summary>
+        /// Initializes a new instance of the <see cref="AssignCourse"/> class.
+        /// </summary>
+        /// <param name="courseNumber"></param>
+        /// <param name="courseName"></param>
+        public AssignCourse(string courseNumber, string courseName)
+        {
+            CourseNumber = courseNumber;
+            CourseName = courseName;
+        }
     }
     public class FixPassMark
     {

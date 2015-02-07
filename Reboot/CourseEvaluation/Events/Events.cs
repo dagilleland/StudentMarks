@@ -7,6 +7,16 @@ namespace StudentMarks.Framework.CourseEvaluation.Events
     {
         public string CourseNumber { get; private set; }
         public string CourseName { get; private set; }
+        /// <summary>
+        /// Initializes a new instance of the <see cref="CourseAssigned"/> class.
+        /// </summary>
+        /// <param name="courseNumber"></param>
+        /// <param name="courseName"></param>
+        public CourseAssigned(string courseNumber, string courseName)
+        {
+            CourseNumber = courseNumber;
+            CourseName = courseName;
+        }
     }
     public class PassMarkFixed
     {

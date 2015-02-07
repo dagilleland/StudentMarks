@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Edument.CQRS;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -18,21 +19,5 @@ namespace StudentMarks.Framework.CourseEvaluation.Domain
             Name = name;
             Weight = weight;
         }
-    }
-    public class Course
-    {
-        public string Number { get; set; }
-        public string Name { get; set; }
-        public Course(string number, string name)
-        {
-            if (string.IsNullOrWhiteSpace(number))
-                throw new ArgumentException("A number is required for a course");
-            if (string.IsNullOrWhiteSpace(name))
-                throw new ArgumentException("A name is required for a course");
-            Number = number;
-            Name = name;
-
-        }
-        
     }
 }

@@ -1,4 +1,10 @@
-﻿using System;
+﻿/* Modifications:
+ * - Swapped dependency on NUnit to Xunit
+ * - Replaced Assert.Fail with Assert.True(false ...
+ * - Replaced Assert.Pass with Assert.True(true ...
+ * - Transformed setup method to constructor
+ */
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
@@ -6,7 +12,7 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Xml.Serialization;
-using NUnit.Framework;
+using Xunit;
 
 namespace Edument.CQRS
 {
@@ -19,8 +25,7 @@ namespace Edument.CQRS
     {
         private TAggregate sut;
 
-        [SetUp]
-        public void BDDTestSetup()
+        public BDDTest()
         {
             sut = new TAggregate();
         }
@@ -60,23 +65,23 @@ namespace Edument.CQRS
                     if (gotEvents.Length == expectedEvents.Length)
                         for (var i = 0; i < gotEvents.Length; i++)
                             if (gotEvents[i].GetType() == expectedEvents[i].GetType())
-                                Assert.AreEqual(Serialize(expectedEvents[i]), Serialize(gotEvents[i]));
+                                Assert.Equal(Serialize(expectedEvents[i]), Serialize(gotEvents[i]));
                             else
-                                Assert.Fail(string.Format(
+                                Assert.True(false, string.Format(
                                     "Incorrect event in results; expected a {0} but got a {1}",
                                     expectedEvents[i].GetType().Name, gotEvents[i].GetType().Name));
                     else if (gotEvents.Length < expectedEvents.Length)
-                        Assert.Fail(string.Format("Expected event(s) missing: {0}",
+                        Assert.True(false, string.Format("Expected event(s) missing: {0}",
                             string.Join(", ", EventDiff(expectedEvents, gotEvents))));
                     else
-                        Assert.Fail(string.Format("Unexpected event(s) emitted: {0}",
+                        Assert.True(false, string.Format("Unexpected event(s) emitted: {0}",
                             string.Join(", ", EventDiff(gotEvents, expectedEvents))));
                 }
                 else if (got is CommandHandlerNotDefiendException)
-                    Assert.Fail((got as Exception).Message);
+                    Assert.True(false, (got as Exception).Message);
                 else
-                    Assert.Fail("Expected events, but got exception {0}",
-                        got.GetType().Name);
+                    Assert.True(false, string.Format("Expected events, but got exception {0}",
+                        got.GetType().Name));
             };
         }
 
@@ -93,15 +98,15 @@ namespace Edument.CQRS
             return got =>
             {
                 if (got is TException)
-                    Assert.Pass("Got correct exception type");
+                    Assert.True(true, "Got correct exception type");
                 else if (got is CommandHandlerNotDefiendException)
-                    Assert.Fail((got as Exception).Message);
+                    Assert.True(false, (got as Exception).Message);
                 else if (got is Exception)
-                    Assert.Fail(string.Format(
+                    Assert.True(false, string.Format(
                         "Expected exception {0}, but got exception {1}",
                         typeof(TException).Name, got.GetType().Name));
                 else
-                    Assert.Fail(string.Format(
+                    Assert.True(false, string.Format(
                         "Expected exception {0}, but got event result",
                         typeof(TException).Name));
             };
