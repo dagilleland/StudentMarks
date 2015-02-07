@@ -32,6 +32,7 @@ namespace StudentMarks.Framework.CourseEvaluation.Domain
         {
             if (string.IsNullOrWhiteSpace(course.CourseName)) throw new CourseNameInvalid();
             if (string.IsNullOrWhiteSpace(course.CourseNumber)) throw new CourseNumberInvalid();
+            if (course.PassMark < 50 || course.PassMark > 75) throw new PassMarkIsInvalid();
 
             yield return new CourseAssigned(Guid.Empty, course.CourseNumber, course.CourseName, 0);
         }
