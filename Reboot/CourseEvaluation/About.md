@@ -35,6 +35,7 @@ Exceptions describe when a command fails, indicating *why* it failed.
 * CourseDuplication - for *AssignCourse*
 * CourseNumberInvalid - for *AssignCourse*
 * CourseNameInvalid - for *AssignCourse*
+* IdentityMismatch - for *FixPassMark*, *SetEvaluationComponents*, *MakeCourseAvailable*, *ReevaluateCourse*, *RetireCourse*, and *ScrapCourse*
 * CourseNotFound - for *FixPassMark*, *SetEvaluationComponents*, *MakeCourseAvailable*, *ReevaluateCourse*, *RetireCourse*, and *ScrapCourse*
 * PassMarkIsInvalid - for *FixPassMark* and *AssignCourse*
 * InvalidEvaluationComponentWeight - for *SetEvaluationComponets*

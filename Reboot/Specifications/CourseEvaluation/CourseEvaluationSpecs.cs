@@ -32,7 +32,7 @@ namespace StudentMarks.Framework.Specifications.CourseEvaluation
         [InlineData("COMP 2018", "Application Development", 70)]
         public void Should_Handle_AssignCourse(string number, string name, int passMark)
         {
-            object[] givenPriorEvents = new object[0];
+            object[] givenPriorEvents = new object[] {};
             var whenCommand = new AssignCourse(AggregateId, number, name, passMark);
             var expectedEvents = new object[] { new CourseAssigned(AggregateId, number, name, passMark) };
             var expectedSut = new Course() { Number = number, Name = name, PassMark = passMark };
@@ -84,7 +84,7 @@ namespace StudentMarks.Framework.Specifications.CourseEvaluation
         [InlineData("\n")]
         public void Rejects_AssignCourse_With_Invalid_Name(string name)
         {
-            object[] givenPriorEvents = new object[0];
+            object[] givenPriorEvents = new object[] { };
             var whenCommand = new AssignCourse(AggregateId, "PROG 1001", name, 50);
 
             CourseNameInvalid actualEvents;
@@ -101,7 +101,7 @@ namespace StudentMarks.Framework.Specifications.CourseEvaluation
         [InlineData("\n")]
         public void Rejects_AssignCourse_With_Invalid_Number(string number)
         {
-            object[] givenPriorEvents = new object[0];
+            object[] givenPriorEvents = new object[] { };
             var whenCommand = new AssignCourse(AggregateId, number, "Programming Fundamentals", 50);
 
             CourseNumberInvalid actualEvents;
@@ -117,12 +117,75 @@ namespace StudentMarks.Framework.Specifications.CourseEvaluation
         [InlineData(100)]
         public void Rejects_AssignCourse_With_Invalid_PassMark(int passMark)
         {
-            object[] givenPriorEvents = new object[0];
+            object[] givenPriorEvents = new object[] { };
             var whenCommand = new AssignCourse(AggregateId, "PROG 1001", "Programming Fundamentals", passMark);
 
             PassMarkIsInvalid actualEvents;
             this.Given(_ => GivenPriorEvents(givenPriorEvents), false)
                 .When(_ => FailWhenDispatchingCommand<AssignCourse, PassMarkIsInvalid>(whenCommand, out actualEvents))
+                .BDDfy();
+        }
+        #endregion
+    }
+
+    [Story()]
+    public class CourseEvaluation_FixPassMark : AbstractCQRSDomainEventFixture<Course>
+    {
+        public Guid AggregateId { get; set; }
+        public CourseEvaluation_FixPassMark()
+        {
+            AggregateId = Guid.NewGuid();
+        }
+
+        #region Primary Domain Scenario
+        [Theory]
+        [InlineData("PROG 1001", "Programming Fundamentals", 50)]
+        [InlineData("COMP 2018", "Application Development", 70)]
+        public void Should_Handle_FixPassMark(string number, string name, int passMark)
+        {
+            object[] givenPriorEvents = new object[] { new CourseAssigned(AggregateId, number, name, 60) };
+            var whenCommand = new FixPassMark(AggregateId, passMark);
+            var expectedEvents = new object[] { new PassMarkFixed { Id = AggregateId, PassMark = passMark } };
+            var expectedSut = new Course() { Number = number, Name = name, PassMark = passMark };
+            IEnumerable<object> actualEvents = null;
+
+            this.Given(_ => GivenPriorEvents(givenPriorEvents), false)
+                .When(_ => WhenDispatchingCommand<FixPassMark>(whenCommand, out actualEvents))
+                .Then(_ => ThenExpectedEventsAreGenerated(expectedEvents, actualEvents))
+                .BDDfy();
+        }
+        #endregion
+
+        #region Alternate Scenarios for Domain
+        [Theory]
+        [InlineData(0)]
+        [InlineData(49)]
+        [InlineData(76)]
+        [InlineData(100)]
+        public void Rejects_AssignCourse_With_Invalid_PassMark(int passMark)
+        {
+            object[] givenPriorEvents = new object[] { new CourseAssigned(AggregateId, "PROG 1001", "Programming Fundamentals", 60) };
+            var whenCommand = new FixPassMark(AggregateId, passMark);
+
+            PassMarkIsInvalid actualEvents;
+            this.Given(_ => GivenPriorEvents(givenPriorEvents), false)
+                .When(_ => FailWhenDispatchingCommand<FixPassMark, PassMarkIsInvalid>(whenCommand, out actualEvents))
+                .BDDfy();
+        }
+
+        [Theory]
+        [InlineData(0)]
+        [InlineData(49)]
+        [InlineData(76)]
+        [InlineData(100)]
+        public void Rejects_AssignCourse_With_Incorrect_Id(int passMark)
+        {
+            object[] givenPriorEvents = new object[] { new CourseAssigned(AggregateId, "PROG 1001", "Programming Fundamentals", 60) };
+            var whenCommand = new FixPassMark(Guid.NewGuid(), passMark);
+
+            IdentityMismatch actualEvents;
+            this.Given(_ => GivenPriorEvents(givenPriorEvents), false)
+                .When(_ => FailWhenDispatchingCommand<FixPassMark, IdentityMismatch>(whenCommand, out actualEvents))
                 .BDDfy();
         }
         #endregion
