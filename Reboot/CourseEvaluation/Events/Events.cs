@@ -23,6 +23,7 @@ namespace StudentMarks.Framework.CourseEvaluation.Events
         }
         public CourseAssigned() { }
     }
+    [Serializable]
     public class PassMarkFixed
     {
         public Guid Id { get; set; }

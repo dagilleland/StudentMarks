@@ -8,7 +8,9 @@ using StudentMarks.Framework.CourseEvaluation.Events;
 
 namespace StudentMarks.Framework.CourseEvaluation.Domain
 {
-    public class Course : Aggregate, IHandleCommand<AssignCourse>
+    public class Course : Aggregate, 
+        IHandleCommand<AssignCourse>, IApplyEvent<CourseAssigned>,
+        IHandleCommand<FixPassMark>
     {
         public string Number { get; set; }
         public string Name { get; set; }
@@ -35,6 +37,16 @@ namespace StudentMarks.Framework.CourseEvaluation.Domain
             if (course.PassMark < 50 || course.PassMark > 75) throw new PassMarkIsInvalid();
 
             yield return new CourseAssigned(Guid.Empty, course.CourseNumber, course.CourseName, 0);
+        }
+
+        public IEnumerable Handle(FixPassMark c)
+        {
+            yield return new PassMarkFixed();
+        }
+
+        public void Apply(CourseAssigned e)
+        {
+            
         }
     }
 }
