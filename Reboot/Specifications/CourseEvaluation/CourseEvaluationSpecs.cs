@@ -18,10 +18,10 @@ using Newtonsoft.Json;
 namespace StudentMarks.Framework.Specifications.CourseEvaluation
 {
     [Story()]
-    public class CourseEvaluationSpecs_2 : AbstractCQRSDomainEventFixture<Course>
+    public class CourseEvaluation_AssignCourse : AbstractCQRSDomainEventFixture<Course>
     {
         public Guid AggregateId { get; set; }
-        public CourseEvaluationSpecs_2()
+        public CourseEvaluation_AssignCourse()
         {
             AggregateId = Guid.NewGuid();
         }
