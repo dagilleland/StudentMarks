@@ -3,11 +3,12 @@ using System.Collections.Generic;
 
 namespace StudentMarks.Framework.CourseEvaluation.Events
 {
+    [Serializable]
     public class CourseAssigned
     {
-        internal string CourseNumber { get;  set; }
-        internal string CourseName { get; set; }
-        internal int PassMark { get; set; }
+        public string CourseNumber { get;  set; }
+        public string CourseName { get; set; }
+        public int PassMark { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="CourseAssigned"/> class.
         /// </summary>
@@ -20,31 +21,31 @@ namespace StudentMarks.Framework.CourseEvaluation.Events
             CourseNumber = courseNumber;
             CourseName = courseName;
         }
-        internal CourseAssigned() { }
+        public CourseAssigned() { }
     }
     public class PassMarkFixed
     {
-        internal Guid Id { get; set; }
-        internal int PassMark { get; set; }
+        public Guid Id { get; set; }
+        public int PassMark { get; set; }
     }
     public class EvaluationComponentsSet
     {
-        internal Guid Id { get; set; }
+        public Guid Id { get; set; }
     }
     public class CourseMadeAvailable
     {
-        internal Guid Id { get; set; }
+        public Guid Id { get; set; }
     }
     public class CourseReevaluated
     {
-        internal Guid Id { get; set; }
+        public Guid Id { get; set; }
     }
     public class CourseRetired
     {
-        internal Guid Id { get; set; }
+        public Guid Id { get; set; }
     }
     public class CourseScrapped
     {
-        internal Guid Id { get; set; }
+        public Guid Id { get; set; }
     }
 }
