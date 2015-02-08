@@ -17,10 +17,10 @@ namespace StudentMarks.Framework.CourseEvaluation.Commands
             PassMark = passMark;
         }
     }
-    public class FixPassMark : AbstractCommand
+    public class ChangePassMark : AbstractCommand
     {
         public int PassMark { get; private set; }
-        public FixPassMark(Guid aggregateId, int passMark)
+        public ChangePassMark(Guid aggregateId, int passMark)
             : base(aggregateId)
         {
             PassMark = passMark;

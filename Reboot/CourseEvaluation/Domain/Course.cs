@@ -10,7 +10,7 @@ namespace StudentMarks.Framework.CourseEvaluation.Domain
 {
     public class Course : Aggregate, 
         IHandleCommand<AssignCourse>, IApplyEvent<CourseAssigned>,
-        IHandleCommand<FixPassMark>
+        IHandleCommand<ChangePassMark>
     {
         public string Number { get; set; }
         public string Name { get; set; }
@@ -41,10 +41,10 @@ namespace StudentMarks.Framework.CourseEvaluation.Domain
             return new object[] { new CourseAssigned(course.Id, course.CourseNumber, course.CourseName, course.PassMark) };
         }
 
-        public IEnumerable Handle(FixPassMark c)
+        public IEnumerable Handle(ChangePassMark c)
         {
             if (c.Id != Id) throw new IdentityMismatch();
-            yield return new PassMarkFixed();
+            return new object[] { new PassMarkChanged(c.Id, c.PassMark) };
         }
 
         public void Apply(CourseAssigned eventData)

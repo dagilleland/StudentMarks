@@ -9,7 +9,7 @@ For this bounded context, we'll work in the **Course Evaluation** domain. Our fo
 Events describe what has *happened* in changes to the information in the domain.
 
 * CourseAssigned
-* PassMarkFixed
+* PassMarkChanged
 * EvaluationComponentsSet
 * CourseMadeAvailable
 * CourseReevaluated
@@ -21,7 +21,7 @@ Events describe what has *happened* in changes to the information in the domain.
 Commands indicate some kind of *request* to change the information in the domain. Commands can fail (see Exceptions below).
 
 * AssignCourse
-* FixPassMark
+* ChangePassMark
 * SetEvaluationComponents
 * MakeCourseAvailable
 * ReevaluateCourse
@@ -35,9 +35,10 @@ Exceptions describe when a command fails, indicating *why* it failed.
 * CourseDuplication - for *AssignCourse*
 * CourseNumberInvalid - for *AssignCourse*
 * CourseNameInvalid - for *AssignCourse*
-* IdentityMismatch - for *FixPassMark*, *SetEvaluationComponents*, *MakeCourseAvailable*, *ReevaluateCourse*, *RetireCourse*, and *ScrapCourse*
-* CourseNotFound - for *FixPassMark*, *SetEvaluationComponents*, *MakeCourseAvailable*, *ReevaluateCourse*, *RetireCourse*, and *ScrapCourse*
-* PassMarkIsInvalid - for *FixPassMark* and *AssignCourse*
+* IdentityMismatch - for *ChangePassMark*, *SetEvaluationComponents*, *MakeCourseAvailable*, *ReevaluateCourse*, *RetireCourse*, and *ScrapCourse*
+* CourseNotFound - for *ChangePassMark*, *SetEvaluationComponents*, *MakeCourseAvailable*, *ReevaluateCourse*, *RetireCourse*, and *ScrapCourse*
+* PassMarkIsInvalid - for *ChangePassMark* and *AssignCourse*
+* PassMarkCannotBeChanged - for *ChangePassMark* when course is available for course offerings
 * InvalidEvaluationComponentWeight - for *SetEvaluationComponets*
 * IncorrectTotalEvaluationComponentWeight - for *MakeCourseAvailable*
 * CourseNotAvailable - for *ReevaluateCourse* and *RetireCourse*

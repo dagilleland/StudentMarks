@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Runtime.Serialization;
 
 namespace StudentMarks.Framework.CourseEvaluation.Events
 {
@@ -7,7 +8,7 @@ namespace StudentMarks.Framework.CourseEvaluation.Events
     public class CourseAssigned
     {
         public Guid Id { get; set; }
-        public string CourseNumber { get;  set; }
+        public string CourseNumber { get; set; }
         public string CourseName { get; set; }
         public int PassMark { get; set; }
         /// <summary>
@@ -27,10 +28,23 @@ namespace StudentMarks.Framework.CourseEvaluation.Events
         public CourseAssigned() { }
     }
     [Serializable]
-    public class PassMarkFixed
+    public class PassMarkChanged
     {
         public Guid Id { get; set; }
         public int PassMark { get; set; }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="PassMarkChanged"/> class.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="passMark"></param>
+        public PassMarkChanged(Guid id, int passMark)
+        {
+            Id = id;
+            PassMark = passMark;
+        }
+
+        public PassMarkChanged() { }
     }
     public class EvaluationComponentsSet
     {
