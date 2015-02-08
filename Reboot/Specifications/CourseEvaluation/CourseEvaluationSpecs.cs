@@ -35,12 +35,15 @@ namespace StudentMarks.Framework.Specifications.CourseEvaluation
             object[] givenPriorEvents = new object[] {};
             var whenCommand = new AssignCourse(AggregateId, number, name, passMark);
             var expectedEvents = new object[] { new CourseAssigned(AggregateId, number, name, passMark) };
-            var expectedSut = new Course() { Number = number, Name = name, PassMark = passMark };
             IEnumerable<object> actualEvents = null;
 
             this.Given(_ => GivenPriorEvents(AggregateId, givenPriorEvents), false)
-                .When(_ => WhenDispatchingCommand<AssignCourse>(whenCommand, out actualEvents))
-                .Then(_ => ThenExpectedEventsAreGenerated(expectedEvents, actualEvents))
+                .When(_ => WhenDispatchingCommand<AssignCourse>(whenCommand, out actualEvents), false)
+                .Then(_ => ThenExpectedEventsAreGenerated(expectedEvents, actualEvents), false)
+                .And(_ => ThenTheIdMatches())
+                .And(_ => ThenTheCourseNumberMatches(number))
+                .And(_ => ThenTheCourseNameMatches(name))
+                .And(_ => ThenThePassMarkMatches(passMark))
                 .BDDfy();
         }
 
@@ -50,30 +53,30 @@ namespace StudentMarks.Framework.Specifications.CourseEvaluation
         public void Should_Handle_CourseAssigned_Event(string number, string name, int passMark)
         {
             object[] givenPriorEvents = new object[] { new CourseAssigned(AggregateId, number, name, passMark) };
-            var expectedSut = new Course() { Number = number, Name = name, PassMark = passMark };
+            //var expectedSut = new Course() { Number = number, Name = name, PassMark = passMark };
 
             this.Given(_ => GivenPriorEvents(AggregateId, givenPriorEvents), false)
-                .Then(_ => ThenTheIdIsLoaded())
-                .And(_ => ThenTheNumberIsLoaded(expectedSut))
-                .And(_ => ThenTheNameIsLoaded(expectedSut))
-                .And(_ => ThenThePassMarkIsLoaded(expectedSut))
+                .Then(_ => ThenTheIdMatches())
+                .And(_ => ThenTheCourseNumberMatches(number))
+                .And(_ => ThenTheCourseNameMatches(name))
+                .And(_ => ThenThePassMarkMatches(passMark))
                 .BDDfy();
         }
-        private void ThenTheIdIsLoaded()
+        private void ThenTheIdMatches()
         {
             Assert.Equal(AggregateId, SUT_ActualDomain.Id);
         }
-        private void ThenTheNumberIsLoaded(Course expected)
+        private void ThenTheCourseNumberMatches(string expected)
         {
-            Assert.Equal(expected.Number, SUT_ActualDomain.Number);
+            Assert.Equal(expected, SUT_ActualDomain.Number);
         }
-        private void ThenTheNameIsLoaded(Course expected)
+        private void ThenTheCourseNameMatches(string expected)
         {
-            Assert.Equal(expected.Name, SUT_ActualDomain.Name);
+            Assert.Equal(expected, SUT_ActualDomain.Name);
         }
-        private void ThenThePassMarkIsLoaded(Course expected)
+        private void ThenThePassMarkMatches(int expected)
         {
-            Assert.Equal(expected.PassMark, SUT_ActualDomain.PassMark);
+            Assert.Equal(expected, SUT_ActualDomain.PassMark);
         }
         #endregion
 

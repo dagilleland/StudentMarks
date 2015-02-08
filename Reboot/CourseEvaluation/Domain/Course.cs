@@ -36,6 +36,9 @@ namespace StudentMarks.Framework.CourseEvaluation.Domain
             if (string.IsNullOrWhiteSpace(course.CourseNumber)) throw new CourseNumberInvalid();
             ValidatePassMark(course.PassMark);
             ApplyId(course.Id);
+            Name = course.CourseName;
+            Number = course.CourseNumber;
+            PassMark = course.PassMark;
 
             // Note: yield return ... will result in a re-evaluation of the above ApplyId(), causing a run-time error/exception
             return new object[] { new CourseAssigned(course.Id, course.CourseNumber, course.CourseName, course.PassMark) };
