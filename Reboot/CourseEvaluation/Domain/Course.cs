@@ -53,6 +53,8 @@ namespace StudentMarks.Framework.CourseEvaluation.Domain
         {
             if (c.Id != Id) throw new IdentityMismatch();
             ValidatePassMark(c.PassMark);
+            PassMark = c.PassMark;
+
             return new object[] { new PassMarkChanged(c.Id, c.PassMark) };
         }
 
