@@ -22,8 +22,22 @@ namespace Edument.CQRS
         /// </summary>
         public Guid Id { get; internal set; }
 
+        protected void ApplyId(Guid aggregateId)
+        {
+            if (Id != Guid.Empty)
+                throw new InvalidOperationException(string.Format(
+                    "Unable to assign new Aggregate Id of {1} - aggregate Id of {0} has already assigned",
+                    Id, aggregateId));
+            Id = aggregateId;
+        }
+
+        public void RebuildFromEvents(Guid aggregateId, IEnumerable events)
+        {
+            ApplyId(aggregateId);
+            ApplyEvents(events);
+        }
         /// <summary>
-        /// Enuerates the supplied events and applies them in order to the aggregate.
+        /// Enumerates the supplied events and applies them in order to the aggregate.
         /// </summary>
         /// <param name="events"></param>
         public void ApplyEvents(IEnumerable events)

@@ -75,8 +75,9 @@ namespace Edument.CQRS
                     var agg = new TAggregate();
 
                     // Load the aggregate with events.
-                    agg.Id = ((dynamic)c).Id;
-                    agg.ApplyEvents(eventStore.LoadEventsFor<TAggregate>(agg.Id));
+                    agg.RebuildFromEvents(((dynamic)c).Id, eventStore.LoadEventsFor<TAggregate>(agg.Id));
+                    //agg.Id = ((dynamic)c).Id;
+                    //agg.ApplyEvents(eventStore.LoadEventsFor<TAggregate>(agg.Id));
                     
                     // With everything set up, we invoke the command handler, collecting the
                     // events that it produces.

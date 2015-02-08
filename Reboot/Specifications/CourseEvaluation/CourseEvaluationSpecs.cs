@@ -30,7 +30,7 @@ namespace StudentMarks.Framework.Specifications.CourseEvaluation
         [Theory]
         [InlineData("PROG 1001", "Programming Fundamentals", 50)]
         [InlineData("COMP 2018", "Application Development", 70)]
-        public void Should_Handle_AssignCourse(string number, string name, int passMark)
+        public void Should_Handle_AssignCourse_Command(string number, string name, int passMark)
         {
             object[] givenPriorEvents = new object[] {};
             var whenCommand = new AssignCourse(AggregateId, number, name, passMark);
@@ -38,10 +38,42 @@ namespace StudentMarks.Framework.Specifications.CourseEvaluation
             var expectedSut = new Course() { Number = number, Name = name, PassMark = passMark };
             IEnumerable<object> actualEvents = null;
 
-            this.Given(_ => GivenPriorEvents(givenPriorEvents), false)
+            this.Given(_ => GivenPriorEvents(AggregateId, givenPriorEvents), false)
                 .When(_ => WhenDispatchingCommand<AssignCourse>(whenCommand, out actualEvents))
                 .Then(_ => ThenExpectedEventsAreGenerated(expectedEvents, actualEvents))
                 .BDDfy();
+        }
+
+        [Theory]
+        [InlineData("PROG 1001", "Programming Fundamentals", 50)]
+        [InlineData("COMP 2018", "Application Development", 70)]
+        public void Should_Handle_CourseAssigned_Event(string number, string name, int passMark)
+        {
+            object[] givenPriorEvents = new object[] { new CourseAssigned(AggregateId, number, name, passMark) };
+            var expectedSut = new Course() { Number = number, Name = name, PassMark = passMark };
+
+            this.Given(_ => GivenPriorEvents(AggregateId, givenPriorEvents), false)
+                .Then(_ => ThenTheIdIsLoaded())
+                .And(_ => ThenTheNumberIsLoaded(expectedSut))
+                .And(_ => ThenTheNameIsLoaded(expectedSut))
+                .And(_ => ThenThePassMarkIsLoaded(expectedSut))
+                .BDDfy();
+        }
+        private void ThenTheIdIsLoaded()
+        {
+            Assert.Equal(AggregateId, SUT_ActualDomain.Id);
+        }
+        private void ThenTheNumberIsLoaded(Course expected)
+        {
+            Assert.Equal(expected.Number, SUT_ActualDomain.Number);
+        }
+        private void ThenTheNameIsLoaded(Course expected)
+        {
+            Assert.Equal(expected.Name, SUT_ActualDomain.Name);
+        }
+        private void ThenThePassMarkIsLoaded(Course expected)
+        {
+            Assert.Equal(expected.PassMark, SUT_ActualDomain.PassMark);
         }
         #endregion
 
@@ -56,7 +88,7 @@ namespace StudentMarks.Framework.Specifications.CourseEvaluation
             var whenCommand = new AssignCourse(AggregateId, number, name, passMark);
 
             CourseDuplication actualEvents;
-            this.Given(_ => GivenPriorEvents(givenPriorEvents), false)
+            this.Given(_ => GivenPriorEvents(AggregateId, givenPriorEvents), false)
                 .When(_ => FailWhenDispatchingCommand<AssignCourse, CourseDuplication>(whenCommand, out actualEvents))
                 .BDDfy();
         }
@@ -71,7 +103,7 @@ namespace StudentMarks.Framework.Specifications.CourseEvaluation
             var whenCommand = new AssignCourse(AggregateId, number, name, passMark);
 
             CourseDuplication actualEvents;
-            this.Given(_ => GivenPriorEvents(givenPriorEvents), false)
+            this.Given(_ => GivenPriorEvents(AggregateId, givenPriorEvents), false)
                 .When(_ => FailWhenDispatchingCommand<AssignCourse, CourseDuplication>(whenCommand, out actualEvents))
                 .BDDfy();
         }
@@ -88,7 +120,7 @@ namespace StudentMarks.Framework.Specifications.CourseEvaluation
             var whenCommand = new AssignCourse(AggregateId, "PROG 1001", name, 50);
 
             CourseNameInvalid actualEvents;
-            this.Given(_ => GivenPriorEvents(givenPriorEvents), false)
+            this.Given(_ => GivenPriorEvents(AggregateId, givenPriorEvents), false)
                 .When(_ => FailWhenDispatchingCommand<AssignCourse, CourseNameInvalid>(whenCommand, out actualEvents))
                 .BDDfy();
         }
@@ -105,7 +137,7 @@ namespace StudentMarks.Framework.Specifications.CourseEvaluation
             var whenCommand = new AssignCourse(AggregateId, number, "Programming Fundamentals", 50);
 
             CourseNumberInvalid actualEvents;
-            this.Given(_ => GivenPriorEvents(givenPriorEvents), false)
+            this.Given(_ => GivenPriorEvents(AggregateId, givenPriorEvents), false)
                 .When(_ => FailWhenDispatchingCommand<AssignCourse, CourseNumberInvalid>(whenCommand, out actualEvents))
                 .BDDfy();
         }
@@ -121,7 +153,7 @@ namespace StudentMarks.Framework.Specifications.CourseEvaluation
             var whenCommand = new AssignCourse(AggregateId, "PROG 1001", "Programming Fundamentals", passMark);
 
             PassMarkIsInvalid actualEvents;
-            this.Given(_ => GivenPriorEvents(givenPriorEvents), false)
+            this.Given(_ => GivenPriorEvents(AggregateId, givenPriorEvents), false)
                 .When(_ => FailWhenDispatchingCommand<AssignCourse, PassMarkIsInvalid>(whenCommand, out actualEvents))
                 .BDDfy();
         }
@@ -149,7 +181,7 @@ namespace StudentMarks.Framework.Specifications.CourseEvaluation
             var expectedSut = new Course() { Number = number, Name = name, PassMark = passMark };
             IEnumerable<object> actualEvents = null;
 
-            this.Given(_ => GivenPriorEvents(givenPriorEvents), false)
+            this.Given(_ => GivenPriorEvents(AggregateId, givenPriorEvents), false)
                 .When(_ => WhenDispatchingCommand<FixPassMark>(whenCommand, out actualEvents))
                 .Then(_ => ThenExpectedEventsAreGenerated(expectedEvents, actualEvents))
                 .BDDfy();
@@ -168,7 +200,7 @@ namespace StudentMarks.Framework.Specifications.CourseEvaluation
             var whenCommand = new FixPassMark(AggregateId, passMark);
 
             PassMarkIsInvalid actualEvents;
-            this.Given(_ => GivenPriorEvents(givenPriorEvents), false)
+            this.Given(_ => GivenPriorEvents(AggregateId, givenPriorEvents), false)
                 .When(_ => FailWhenDispatchingCommand<FixPassMark, PassMarkIsInvalid>(whenCommand, out actualEvents))
                 .BDDfy();
         }
@@ -184,7 +216,7 @@ namespace StudentMarks.Framework.Specifications.CourseEvaluation
             var whenCommand = new FixPassMark(Guid.NewGuid(), passMark);
 
             IdentityMismatch actualEvents;
-            this.Given(_ => GivenPriorEvents(givenPriorEvents), false)
+            this.Given(_ => GivenPriorEvents(AggregateId, givenPriorEvents), false)
                 .When(_ => FailWhenDispatchingCommand<FixPassMark, IdentityMismatch>(whenCommand, out actualEvents))
                 .BDDfy();
         }

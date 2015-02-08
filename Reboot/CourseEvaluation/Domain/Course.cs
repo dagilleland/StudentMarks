@@ -35,18 +35,24 @@ namespace StudentMarks.Framework.CourseEvaluation.Domain
             if (string.IsNullOrWhiteSpace(course.CourseName)) throw new CourseNameInvalid();
             if (string.IsNullOrWhiteSpace(course.CourseNumber)) throw new CourseNumberInvalid();
             if (course.PassMark < 50 || course.PassMark > 75) throw new PassMarkIsInvalid();
+            ApplyId(course.Id);
 
-            yield return new CourseAssigned(Guid.Empty, course.CourseNumber, course.CourseName, 0);
+            // Note: yield return ... will result in a re-evaluation of the above ApplyId(), causing a run-time error/exception
+            return new object[] { new CourseAssigned(course.Id, course.CourseNumber, course.CourseName, course.PassMark) };
         }
 
         public IEnumerable Handle(FixPassMark c)
         {
+            if (c.Id != Id) throw new IdentityMismatch();
             yield return new PassMarkFixed();
         }
 
-        public void Apply(CourseAssigned e)
+        public void Apply(CourseAssigned eventData)
         {
-            
+            ApplyId(eventData.Id);
+            Number = eventData.CourseNumber;
+            Name = eventData.CourseName;
+            PassMark = eventData.PassMark;
         }
     }
 }

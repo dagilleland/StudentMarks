@@ -18,7 +18,7 @@ namespace StudentMarks.Framework.Specifications.CourseEvaluation
         #endregion
 
         #region Common Given/When/Then Methods
-        protected void GivenPriorEvents(object[] givenPriorEvents)
+        protected void GivenPriorEvents(Guid aggregateId, object[] givenPriorEvents)
         {
             SUT_ActualDomain.ApplyEvents(givenPriorEvents);
         }

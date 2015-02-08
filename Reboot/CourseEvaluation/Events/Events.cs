@@ -6,6 +6,7 @@ namespace StudentMarks.Framework.CourseEvaluation.Events
     [Serializable]
     public class CourseAssigned
     {
+        public Guid Id { get; set; }
         public string CourseNumber { get;  set; }
         public string CourseName { get; set; }
         public int PassMark { get; set; }
@@ -18,8 +19,10 @@ namespace StudentMarks.Framework.CourseEvaluation.Events
         /// <param name="passMark"></param>
         public CourseAssigned(Guid aggregateId, string courseNumber, string courseName, int passMark)
         {
+            Id = aggregateId;
             CourseNumber = courseNumber;
             CourseName = courseName;
+            PassMark = passMark;
         }
         public CourseAssigned() { }
     }
