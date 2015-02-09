@@ -63,6 +63,7 @@ namespace StudentMarks.Framework.Specifications.CourseEvaluation
                 .And(_ => ThenTheCourseNumberMatches(number))
                 .And(_ => ThenTheCourseNameMatches(name))
                 .And(_ => ThenThePassMarkMatches(passMark))
+                //.And(_ => ThenTheUncommittedEventCountIs(0)) // RESUME: here - about unsaved events
                 .BDDfy();
         }
         private void ThenTheIdMatches()
@@ -80,6 +81,10 @@ namespace StudentMarks.Framework.Specifications.CourseEvaluation
         private void ThenThePassMarkMatches(int expected)
         {
             Assert.Equal(expected, SUT_ActualDomain.PassMark);
+        }
+        private void ThenTheUncommittedEventCountIs(int count)
+        {
+            Assert.Equal(count, SUT_ActualDomain.EventsLoaded);
         }
         #endregion
 
