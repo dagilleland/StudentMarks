@@ -20,8 +20,10 @@ namespace Edument.CQRS.Specs.Tests
      *
      *  For the back-end, the main persistence choices are to do state-based persistence (as in most CRUD systems) or event-based persistence (also known as Event Sourcing).
      *  On the front end, BDD may reveal that the Domain (with the help of a bit of DTOs) is mostly sufficient for both input and output. Alternatively, a BDD analysis might reveal that CQRS would be more appropriate.
-     *  
+     *
      *  Resolving the questions of what to use in the back-end and the front-end bring with it implications for the infrastructure of the application as a whole, and it is not unusual to see the design of the Domain as directly affected by those decisions. As these infrastructure aspects become more intertwined with the Domain itself, it's also not uncommon to see the whole design of the system slowly devolve into a "big ball of mud".
+     *
+     *  How do we write our application so that there are clearer and cleaner seams between our Domain and our infrastructure? How do we ensure that our infrastructure choices dont "grow tentacles" that insinuate themselves into the Domain itself, blurring the boundaries that help to give our app its identity and highlight its true value?
      *
 
      *  Refine the Edument CQRS infrastructure to achieve the following:
