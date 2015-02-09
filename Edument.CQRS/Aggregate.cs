@@ -36,6 +36,7 @@ namespace Edument.CQRS
             ApplyId(aggregateId);
             ApplyEvents(events);
         }
+
         /// <summary>
         /// Enumerates the supplied events and applies them in order to the aggregate.
         /// </summary>

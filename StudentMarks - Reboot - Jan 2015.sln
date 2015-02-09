@@ -35,6 +35,8 @@ Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "RebootWebsite", "http://loc
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Edument.CQRS", "Edument.CQRS\Edument.CQRS.csproj", "{D2BAB57D-225D-4F4C-9410-ED39495A8FE0}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Edument.CQRS.Specs", "Edument.CQRS.Specs\Edument.CQRS.Specs.csproj", "{1721E793-C4CD-4D7B-B32E-9B0405522279}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -53,6 +55,10 @@ Global
 		{D2BAB57D-225D-4F4C-9410-ED39495A8FE0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D2BAB57D-225D-4F4C-9410-ED39495A8FE0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D2BAB57D-225D-4F4C-9410-ED39495A8FE0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1721E793-C4CD-4D7B-B32E-9B0405522279}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1721E793-C4CD-4D7B-B32E-9B0405522279}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1721E793-C4CD-4D7B-B32E-9B0405522279}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1721E793-C4CD-4D7B-B32E-9B0405522279}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
